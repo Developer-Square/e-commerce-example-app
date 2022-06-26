@@ -5,4 +5,6 @@
 html, body {
   background: #fff !important;
   font-family: 'Nunito Sans', sans-serif;
+  width: 100vw;
+  height: 100vh;
 }

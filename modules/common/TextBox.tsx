@@ -14,7 +14,7 @@ const TextBox = ({ title, type, placeholder }: Props) => {
   return (
     <>
       {type === 'text' ? (
-        <div className="mb-4 w-full rounded-3xl bg-white p-2">
+        <div className="mb-3 w-full rounded-3xl bg-white p-2">
           <label className="label pl-4 pb-0">{title}</label>
           <div className="flex items-center pl-4">
             <FontAwesomeIcon icon={faEnvelope} />
@@ -27,7 +27,7 @@ const TextBox = ({ title, type, placeholder }: Props) => {
         </div>
       ) : (
         <div className="w-full rounded-3xl bg-white p-2">
-          <label className="label pl-4 pb-0">Password</label>
+          <label className="label pl-4 pb-0">{title}</label>
           <div className="flex items-center pl-4">
             <FontAwesomeIcon icon={faLock} />
             <input
