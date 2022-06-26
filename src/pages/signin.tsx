@@ -1,17 +1,42 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable tailwindcss/no-custom-classname */
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TextBox from 'modules/common/TextBox';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
+import { animated, config, useSpring } from 'react-spring';
 
 import JewelleryIcon from '@/public/assets/images/icons/jewelry.png';
 
 const Signin = () => {
+  const [opacity, setOpacity] = useState<Record<string, number>>({
+    to: 1,
+    from: 0,
+  });
+  const [pageState, setPageState] = useState('signin');
+
+  const loginProps = useSpring({
+    to: { opacity: opacity.to },
+    from: { opacity: opacity.from },
+    reset: true,
+    reverse: false,
+    delay: 200,
+    config: config.molasses,
+  });
+  const signUpProps = useSpring({
+    to: { opacity: opacity.from },
+    from: { opacity: opacity.to },
+    reset: true,
+    reverse: false,
+    delay: 200,
+    config: config.molasses,
+  });
   return (
     <section className="flex h-screen w-full items-center justify-center bg-[#dde5f4]">
       <div className="card w-96 bg-[#f1f7fe] text-slate-800">
-        <div className="card-body flex items-center justify-center">
+        <animated.div
+          style={loginProps}
+          className="card-body flex items-center justify-center"
+        >
           <div className="mb-4">
             <Image
               src={JewelleryIcon}
@@ -20,39 +45,46 @@ const Signin = () => {
               height={100}
             />
           </div>
-          <div className="mb-4 w-full rounded-3xl bg-white p-2">
-            <label className="label pl-4 pb-0">Email Address</label>
-            <div className="flex items-center pl-4">
-              <FontAwesomeIcon icon={faEnvelope} />
-              <input
-                type="text"
-                placeholder="Username@gmail.com"
-                className="input-ghost input w-full max-w-xs pl-1 placeholder:text-slate-500 focus:outline-none"
-              />
-            </div>
-          </div>
-          <div className="w-full rounded-3xl bg-white p-2">
-            <label className="label pl-4 pb-0">Password</label>
-            <div className="flex items-center pl-4">
-              <FontAwesomeIcon icon={faLock} />
-              <input
-                type="password"
-                placeholder="***********"
-                className="input-ghost input w-full max-w-xs pl-1 placeholder:text-slate-500 focus:outline-none"
-              />
-            </div>
-          </div>
+          <animated.div style={loginProps} className="w-full">
+            <TextBox
+              title="Email Address"
+              type="text"
+              placeholder="Username@gmail.com"
+            />
+          </animated.div>
+          <animated.div style={loginProps} className="w-full">
+            <TextBox
+              title="Password"
+              type="password"
+              placeholder="***********"
+            />
+          </animated.div>
+          <animated.div style={signUpProps} className="w-full">
+            <TextBox
+              title="Email Address"
+              type="text"
+              placeholder="Username@gmail.com"
+            />
+          </animated.div>
           <div className="card-actions mt-5 flex w-full justify-center">
             <button className="btn w-full rounded-3xl bg-[#3e4684]">
-              Login
+              {pageState === 'signin' ? 'Login' : 'Signup'}
             </button>
 
             <div className="my-6 flex w-full justify-between text-sm font-semibold">
-              <span className="cursor-pointer">Signup</span>
+              <span
+                className="cursor-pointer"
+                onClick={() => {
+                  setOpacity({ to: 0, from: 1 });
+                  setPageState('signup');
+                }}
+              >
+                Signup
+              </span>
               <span className="cursor-pointer">Forgot password</span>
             </div>
           </div>
-        </div>
+        </animated.div>
       </div>
     </section>
   );
