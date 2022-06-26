@@ -42,8 +42,15 @@ const Signin = () => {
               />
             </div>
           </div>
-          <div className="card-actions justify-end">
-            <button className="btn">Login</button>
+          <div className="card-actions mt-5 flex w-full justify-center">
+            <button className="btn w-full rounded-3xl bg-[#3e4684]">
+              Login
+            </button>
+
+            <div className="my-6 flex w-full justify-between">
+              <span className="cursor-pointer">Signup</span>
+              <span className="cursor-pointer">Forgot password</span>
+            </div>
           </div>
         </div>
       </div>
