@@ -47,7 +47,7 @@ const Signin = () => {
               Login
             </button>
 
-            <div className="my-6 flex w-full justify-between">
+            <div className="my-6 flex w-full justify-between text-sm font-semibold">
               <span className="cursor-pointer">Signup</span>
               <span className="cursor-pointer">Forgot password</span>
             </div>
