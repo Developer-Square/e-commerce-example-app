@@ -1,5 +1,6 @@
+/* eslint-disable global-require */
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './modules/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontSize: {
       xs: '0.75rem',
@@ -40,5 +41,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 };
