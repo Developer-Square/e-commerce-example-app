@@ -4,8 +4,13 @@
 
 import React from 'react';
 
+import { ErrorBoundary } from '@/modules/errors';
 import { SignInPage } from '@/modules/signin-page';
 
-const Signin = () => <SignInPage />;
+const Signin = () => (
+  <ErrorBoundary>
+    <SignInPage />
+  </ErrorBoundary>
+);
 
 export default Signin;
