@@ -8,6 +8,7 @@ const envVariables = {
       .default('e-commerce-app_session-cookies')
       .asString(),
     password: env.get('PASSWORD').required().asString(),
+    tokenSecret: env.get('TOKEN_SECRET').required().asString(),
   },
   mongodb: {
     uri: env
@@ -15,7 +16,11 @@ const envVariables = {
       .default('mongodb://127.0.0.1:27017')
       .required()
       .asString(),
-    dbName: env.get('DBNAME').default('next-app').required().asString(),
+    dbName: env
+      .get('DBNAME')
+      .default('e-commerce-example-app')
+      .required()
+      .asString(),
   },
 };
 

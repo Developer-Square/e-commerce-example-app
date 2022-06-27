@@ -3,6 +3,7 @@
 import type {
   BulkWriteOptions,
   Collection,
+  CountDocumentsOptions,
   DeleteOptions,
   DeleteResult,
   Document,
@@ -23,7 +24,8 @@ import type {
 } from 'mongodb';
 import { ObjectId } from 'mongodb';
 
-import type { DBRecordDeleted, IDBRecord } from '@/definitions/IDBRecord';
+import logger from '@/config/logger';
+import type { DBRecordDeleted, IDBRecord } from '@/lib/definitions/IDBRecord';
 
 import { setUpdatedAt } from './utils/setUpdatedAt';
 
@@ -46,12 +48,13 @@ type ExtractIdType<TSchema> = TSchema extends { _id: infer U } // user has defin
 export type ModelOptionalId<T> = EnhancedOmit<T, '_id'> & {
   _id?: ExtractIdType<T>;
 };
-// InsertionModel forces both _id and _updatedAt to be optional, regardless of how they are declared in T
+// InsertionModel forces both _id, _createdAt and _updatedAt to be optional, regardless of how they are declared in T
 export type InsertionModel<T> = EnhancedOmit<
   ModelOptionalId<T>,
-  '_updatedAt'
+  '_updatedAt' | '_createdAt'
 > & {
   _updatedAt?: Date;
+  _createdAt?: Date;
 };
 
 export interface IBaseRaw<T> {
@@ -67,29 +70,23 @@ type ResultFields<Base, Defaults> = Defaults extends void
   ? Pick<Defaults, keyof Defaults>
   : Omit<Defaults, keyof Defaults>;
 
-const warnFields =
-  process.env.NODE_ENV !== 'production'
-    ? (...rest: any): void => {
-        // eslint-disable-next-line no-console
-        console.warn(...rest, new Error().stack);
-      }
-    : () => {};
-
 export class BaseRaw<T, C extends DefaultFields<T> = undefined>
   implements IBaseRaw<T>
 {
-  public readonly defaultFields: C | undefined;
+  public readonly defaultFields!: C;
 
   protected name: string;
 
   private preventSetUpdatedAt: boolean;
 
-  public readonly trash: Collection<DBRecordDeleted<T>>;
+  private preventSetCreatedAt: boolean;
+
+  public readonly trash?: Collection<DBRecordDeleted<T>>;
 
   constructor(
     public readonly col: Collection<T>,
-    trash: Collection<T>,
-    options?: { preventSetUpdatedAt?: boolean }
+    trash?: Collection<T>,
+    options?: { preventSetUpdatedAt?: boolean; preventSetCreatedAt?: boolean }
   ) {
     this.name = this.col.collectionName.replace(baseName, '');
     this.trash = trash as unknown as Collection<DBRecordDeleted<T>>;
@@ -103,6 +100,7 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
     }
 
     this.preventSetUpdatedAt = options?.preventSetUpdatedAt ?? false;
+    this.preventSetCreatedAt = options?.preventSetCreatedAt ?? false;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -149,7 +147,7 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
     const { fields: deprecatedFields, projection, ...rest } = options || {};
 
     if (deprecatedFields) {
-      warnFields("Using 'fields' in models is deprecated.", options);
+      logger.warn("Using 'fields' in models is deprecated.");
     }
 
     const fields = { ...deprecatedFields, ...projection };
@@ -240,6 +238,22 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
     return this.col.find(query, optionsDef);
   }
 
+  countDocuments(): Promise<number>;
+
+  countDocuments(query: Filter<T>): Promise<number>;
+
+  countDocuments(
+    query: Filter<T>,
+    options: CountDocumentsOptions
+  ): Promise<number>;
+
+  countDocuments(
+    query: Filter<T> | undefined = {},
+    options?: CountDocumentsOptions
+  ): Promise<number> {
+    return this.col.countDocuments(query, options as CountDocumentsOptions);
+  }
+
   updateOne(
     filter: Filter<T>,
     update: UpdateFilter<T> | Partial<T>,
@@ -269,6 +283,7 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
         return { _id: oid.toHexString(), ...doc };
       }
       this.setUpdatedAt(doc);
+      this.setCreatedAt(doc);
       return doc;
     });
 
@@ -290,6 +305,7 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
     }
 
     this.setUpdatedAt(doc);
+    this.setCreatedAt(doc);
 
     // TODO reavaluate following type casting
     return this.col.insertOne(
@@ -368,7 +384,7 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
       ids.push(_id);
 
       // since the operation is not atomic, we need to make sure that the record is not already deleted/inserted
-      this.trash.updateOne(
+      this.trash?.updateOne(
         { _id } as Filter<DBRecordDeleted<T>>,
         { $set: trash },
         {
@@ -436,6 +452,14 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
       return;
     }
     setUpdatedAt(record);
+  }
+
+  private setCreatedAt(record: InsertionModel<T>): void {
+    if (this.preventSetCreatedAt) {
+      return;
+    }
+    // eslint-disable-next-line no-param-reassign
+    record._createdAt = new Date();
   }
 
   trashFindDeletedAfter(
