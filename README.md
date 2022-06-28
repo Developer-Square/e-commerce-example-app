@@ -19,6 +19,8 @@ Developer experience first:
 - 🤖 SEO metadata, JSON-LD and Open Graph tags with Next SEO
 - ⚙️ [Bundler Analyzer](https://www.npmjs.com/package/@next/bundle-analyzer)
 - 🖱️ One click deployment with Vercel or Netlify (or manual deployment to any hosting services)
+- 🌈 Include a FREE minimalist theme
+- 💯 Maximize lighthouse score
 
 Built-in feature from Next.js:
 
@@ -100,13 +102,13 @@ All tests are colocated with the source code inside the same directory. So, it m
 
 Clone this repository on own GitHub account and deploy to Netlify:
 
-[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Developer-Square/e-commerce-example-app)
+[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ixartz/Next-js-Boilerplate)
 
 ### Deploy to Vercel
 
 Deploy this Next JS Boilerplate on Vercel in one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FDeveloper-Square%2Fe-commerce-example-app)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fixartz%2FNext-js-Boilerplate)
 
 ### VSCode information (optional)
 
