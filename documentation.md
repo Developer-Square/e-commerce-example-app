@@ -1,5 +1,0 @@
- - Component names under the pages/ directory are in small caps
- - Component names in the rest of the project all start with capital letters.
- - All external libraries are imported in the modules/common/index.ts file
- - The components under pages/ should have as little code as possible, all the functionalities for the file should be done in the modules folder.
- - Helper functions if possible should converted to hooks.
