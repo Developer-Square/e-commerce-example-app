@@ -28,7 +28,7 @@ const SignInPage = () => {
     from: { opacity: loginOpacity.from },
     reset: true,
     reverse: false,
-    delay: 400,
+    delay: 401,
     config: config.molasses,
   });
 
