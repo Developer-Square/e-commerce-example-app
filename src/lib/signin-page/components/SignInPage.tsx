@@ -73,9 +73,7 @@ const SignInPage = () => {
           />
           <div className="card-actions mt-5 flex w-full justify-center">
             <button className="btn w-full rounded-3xl bg-[#3e4684]">
-              {pageState === 'signin' ? 'Login' : null}
-              {pageState === 'signup' ? 'Signup' : null}
-              {pageState === 'forgot' ? 'Send' : null}
+              Login
             </button>
             <PageFooter
               pageState={pageState}
