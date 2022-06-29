@@ -1,5 +1,11 @@
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 /* eslint-disable tailwindcss/no-custom-classname */
+import {
+  faBlog,
+  faCartShopping,
+  faCreditCard,
+  faStore,
+} from '@fortawesome/free-solid-svg-icons';
 import type { ReactNode } from 'react';
 
 import { ExpandableNavItem } from '@/lib/common';
@@ -9,6 +15,29 @@ type IMainProps = {
   meta: ReactNode;
   children: ReactNode;
 };
+
+const pages = [
+  {
+    title: 'About Us',
+    content: 'Read our story on how and why we made this site',
+    icon: faBlog,
+  },
+  {
+    title: 'Shop Details',
+    content: 'All the product details you need to make a decision',
+    icon: faStore,
+  },
+  {
+    title: 'Shopping Cart',
+    content: 'View all the items in cart',
+    icon: faCartShopping,
+  },
+  {
+    title: 'Check Out',
+    content: 'Finished shopping? Buy the goods and have them delivered.',
+    icon: faCreditCard,
+  },
+];
 
 const Main = (props: IMainProps) => (
   <div className="w-full px-1 text-gray-700 antialiased">
@@ -53,7 +82,7 @@ const Main = (props: IMainProps) => (
             </button>
           </div>
           <nav className="hidden space-x-10 md:flex">
-            <ExpandableNavItem />
+            <ExpandableNavItem pages={pages} />
             <a
               href="#"
               className="text-base font-medium text-gray-500 hover:text-gray-900"

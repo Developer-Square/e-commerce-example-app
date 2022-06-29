@@ -1,15 +1,45 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 /* eslint-disable import/no-cycle */
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import React, { useState } from 'react';
 import { easings } from 'react-spring';
 
-import { animated, config, useSpring } from '@/lib/common/index';
+import {
+  animated,
+  config,
+  FontAwesomeIcon,
+  useSpring,
+} from '@/lib/common/index';
 
-const NavbarItems = ({ items }: Record<string, any>[]) => {
-  return <div></div>;
+type Props = {
+  pages: Record<string, any>[];
 };
 
-const ExpandableNavItem = () => {
+type NavbarProps = {
+  items: Record<string, any>[];
+};
+
+const NavbarItems = ({ items }: NavbarProps) => {
+  return (
+    <>
+      {items.map((item, index) => (
+        <a
+          href="#"
+          className="-m-3 flex items-center rounded-lg p-3 hover:bg-gray-50"
+          key={index}
+        >
+          <FontAwesomeIcon icon={item.icon} />
+          <div className="ml-4">
+            <p className="text-base font-medium text-gray-900">{item.title}</p>
+            <p className="mt-1 text-sm text-gray-500">{item.content}</p>
+          </div>
+        </a>
+      ))}
+    </>
+  );
+};
+
+const ExpandableNavItem = ({ pages }: Props) => {
   const [showProps, setShowProps] = useState<Record<string, number>>({
     toOpacity: 0,
     fromOpacity: 0,
@@ -34,7 +64,7 @@ const ExpandableNavItem = () => {
       {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
       <button
         type="button"
-        className="group inline-flex items-center rounded-md bg-white text-base font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="group focus:outline-non inline-flex items-center rounded-md bg-white text-base font-medium text-gray-500 hover:text-gray-900"
         aria-expanded="false"
         onClick={() =>
           setShowProps({
@@ -43,7 +73,7 @@ const ExpandableNavItem = () => {
           })
         }
       >
-        <span>Solutions</span>
+        <span>Pages</span>
         {/* Heroicon name: solid/chevron-down Item active: "text-gray-600", Item inactive: "text-gray-400" */}
         <svg
           className="ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500"
@@ -59,49 +89,13 @@ const ExpandableNavItem = () => {
           />
         </svg>
       </button>
-      {/*           
-            'Solutions' flyout menu, show/hide based on flyout menu state.
-
-            Entering: "transition ease-out duration-200"
-              From: "opacity-0 translate-y-1"
-              To: "opacity-100 translate-y-0"
-            Leaving: "transition ease-in duration-150"
-              From: "opacity-100 translate-y-0"
-              To: "opacity-0 translate-y-1" */}
       <animated.div
         style={navbarProps}
         className="absolute z-10 -ml-4 mt-3 w-screen max-w-md px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2"
       >
         <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
           <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-            <a
-              href="#"
-              className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
-            >
-              {/* <!-- Heroicon name: outline/chart-bar --> */}
-              <svg
-                className="h-6 w-6 shrink-0 text-indigo-600"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
-              <div className="ml-4">
-                <p className="text-base font-medium text-gray-900">Analytics</p>
-                <p className="mt-1 text-sm text-gray-500">
-                  Get a better understanding of where your traffic is coming
-                  from.
-                </p>
-              </div>
-            </a>
+            <NavbarItems items={pages} />
           </div>
         </div>
       </animated.div>
