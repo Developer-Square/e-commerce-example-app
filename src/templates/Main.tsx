@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
@@ -37,12 +38,11 @@ const Main = (props: IMainProps) => (
               </Link>
             </li>
             <li className="mr-6">
-              <a
-                className="border-none text-gray-700 hover:text-gray-900"
-                href="https://github.com/ixartz/Next-js-Boilerplate"
-              >
-                GitHub
-              </a>
+              <Link href="/signin">
+                <div className="flex cursor-pointer items-center">
+                  <p className="ml-2 font-bold">Signin</p>
+                </div>
+              </Link>
             </li>
           </ul>
         </div>
