@@ -6,7 +6,7 @@ const Index = () => {
     <Main
       meta={
         <Meta
-          title="Jewellery and Hand Carvings ECommerce Homepage"
+          title="Jewellery and Hand Carvings E-Commerce"
           description="An ecommerce site for selling jewellery and hand carvings in Kenya"
         />
       }

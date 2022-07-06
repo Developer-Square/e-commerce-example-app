@@ -1,32 +1,50 @@
 {
-  "editor.tabSize": 2,
-  "editor.detectIndentation": false,
-  "search.exclude": {
-    "package-lock.json": true,
-    "**/.yarn": true,
-    "**/.pnp.*": true
+	"editor.tabSize": 2,
+	"editor.detectIndentation": false,
+	"search.exclude": {
+		"package-lock.json": true,
+		"**/.yarn": true,
+		"**/.pnp.*": true
+	},
+	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"editor.formatOnSave": false,
+	"editor.codeActionsOnSave": [
+		"source.addMissingImports",
+		"source.fixAll.eslint"
+	],
+	"jest.autoRun": {
+		"watch": true, // Start the jest with the watch flag
+		"onStartup": ["all-tests"] // Run all tests upon project launch
+	},
+	"jest.showCoverageOnLoad": true, // Show code coverage when the project is launched
+	"jest.showTerminalOnLaunch": false, // Don't automatically open test explorer terminal on launch
+	// Multiple language settings for json and jsonc files
+	"[json][jsonc]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"eslint.nodePath": ".yarn/sdks",
+	"prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+	"typescript.tsdk": ".yarn/sdks/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#3399ff",
+    "activityBar.activeBorder": "#bf0060",
+    "activityBar.background": "#3399ff",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#bf0060",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "sash.hoverBorder": "#3399ff",
+    "statusBar.background": "#007fff",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#3399ff",
+    "statusBarItem.remoteBackground": "#007fff",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#007fff",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#007fff99",
+    "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": [
-    "source.addMissingImports",
-    "source.fixAll.eslint"
-  ],
-  "jest.autoRun": {
-    "watch": true, // Start the jest with the watch flag
-    "onStartup": [
-      "all-tests"
-    ] // Run all tests upon project launch
-  },
-  "jest.showCoverageOnLoad": true, // Show code coverage when the project is launched
-  "jest.showTerminalOnLaunch": false, // Don't automatically open test explorer terminal on launch
-  // Multiple language settings for json and jsonc files
-  "[json][jsonc]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "eslint.nodePath": ".yarn/sdks",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+	"peacock.color": "#007fff"
 }
