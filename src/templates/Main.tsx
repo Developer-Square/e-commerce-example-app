@@ -82,6 +82,13 @@ const Main = (props: IMainProps) => {
       });
     }
   }, [menuVisibility]);
+
+  const handleActiveItems = (e: any) => {
+    const navbarItems = document.querySelectorAll('.navbar-item');
+    Array.from(navbarItems).map((item) => item.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+  };
+
   return (
     <div className="w-full px-1 text-gray-700 antialiased">
       {props.meta}
@@ -125,20 +132,26 @@ const Main = (props: IMainProps) => {
               </button>
             </div>
             <nav className="hidden space-x-10 md:flex">
-              <li className="navbar-item">
+              <li
+                className="navbar-item"
+                onClick={(e): void => handleActiveItems(e)}
+              >
                 <a
                   href="#"
                   className="text-base font-bold text-gray-900"
-                  onClick={() => setMenuVisibility(false)}
+                  onClick={(): void => setMenuVisibility(false)}
                 >
                   Home{' '}
                 </a>
               </li>
-              <li className="navbar-item">
+              <li
+                className="navbar-item"
+                onClick={(e): void => handleActiveItems(e)}
+              >
                 <a
                   href="#"
                   className="text-base font-bold text-gray-900"
-                  onClick={() => setMenuVisibility(false)}
+                  onClick={(): void => setMenuVisibility(false)}
                 >
                   Shop{' '}
                 </a>
@@ -150,20 +163,26 @@ const Main = (props: IMainProps) => {
                 menuVisibility={menuVisibility}
                 setMenuVisibility={setMenuVisibility}
               />
-              <li className="navbar-item">
+              <li
+                className="navbar-item"
+                onClick={(e): void => handleActiveItems(e)}
+              >
                 <a
                   href="#"
                   className="text-base font-bold text-gray-900"
-                  onClick={() => setMenuVisibility(false)}
+                  onClick={(): void => setMenuVisibility(false)}
                 >
                   Contacts{' '}
                 </a>
               </li>
-              <li className="navbar-item">
+              <li
+                className="navbar-item"
+                onClick={(e): void => handleActiveItems(e)}
+              >
                 <a
                   href="#"
                   className="text-base font-bold text-gray-900"
-                  onClick={() => setMenuVisibility(false)}
+                  onClick={(): void => setMenuVisibility(false)}
                 >
                   Signin{' '}
                 </a>
