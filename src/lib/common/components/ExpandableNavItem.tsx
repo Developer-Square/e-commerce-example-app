@@ -22,13 +22,13 @@ const NavbarItems = ({ items }: NavbarProps) => {
       {items.map((item, index) => (
         <a
           href="#"
-          className="-m-3 flex items-center rounded-lg p-3 hover:bg-gray-50"
+          className="hover:bg-gray-150 -m-3 flex items-center rounded-lg p-3"
           key={index}
         >
           <FontAwesomeIcon icon={item.icon} />
           <div className="ml-4">
             <p className="text-base font-medium text-gray-900">{item.title}</p>
-            <p className="mt-1 text-sm text-gray-500">{item.content}</p>
+            <p className="text-gray-550 mt-1 text-sm">{item.content}</p>
           </div>
         </a>
       ))}
@@ -47,13 +47,13 @@ const ExpandableNavItem = ({
       {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
       <button
         type="button"
-        className="group focus:outline-non inline-flex items-center rounded-md bg-white text-base font-medium text-gray-500 hover:text-gray-900"
+        className="group focus:outline-non inline-flex items-center rounded-md bg-white text-base font-bold text-gray-900"
         aria-expanded="false"
         onClick={() => setMenuVisibility(!menuVisibility)}
       >
         <span>Pages</span>
         <svg
-          className="ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+          className="ml-2 h-5 w-5 text-gray-900"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"

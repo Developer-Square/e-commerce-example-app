@@ -125,33 +125,49 @@ const Main = (props: IMainProps) => {
               </button>
             </div>
             <nav className="hidden space-x-10 md:flex">
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-                onClick={() => setMenuVisibility(false)}
-              >
-                Home{' '}
-              </a>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-                onClick={() => setMenuVisibility(false)}
-              >
-                Shop{' '}
-              </a>
+              <li className="navbar-item">
+                <a
+                  href="#"
+                  className="text-base font-bold text-gray-900"
+                  onClick={() => setMenuVisibility(false)}
+                >
+                  Home{' '}
+                </a>
+              </li>
+              <li className="navbar-item">
+                <a
+                  href="#"
+                  className="text-base font-bold text-gray-900"
+                  onClick={() => setMenuVisibility(false)}
+                >
+                  Shop{' '}
+                </a>
+              </li>
+
               <ExpandableNavItem
                 pages={pages}
                 useSpringProps={navbarProps}
                 menuVisibility={menuVisibility}
                 setMenuVisibility={setMenuVisibility}
               />
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-                onClick={() => setMenuVisibility(false)}
-              >
-                Signin{' '}
-              </a>
+              <li className="navbar-item">
+                <a
+                  href="#"
+                  className="text-base font-bold text-gray-900"
+                  onClick={() => setMenuVisibility(false)}
+                >
+                  Contacts{' '}
+                </a>
+              </li>
+              <li className="navbar-item">
+                <a
+                  href="#"
+                  className="text-base font-bold text-gray-900"
+                  onClick={() => setMenuVisibility(false)}
+                >
+                  Signin{' '}
+                </a>
+              </li>
             </nav>
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0"></div>
           </div>
