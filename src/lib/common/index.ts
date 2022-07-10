@@ -6,6 +6,7 @@ import { animated, config, useSpring } from 'react-spring';
 
 import BackButton from './components/BackButton';
 import ExpandableNavItem from './components/ExpandableNavItem';
+import SearchWishCartButton from './components/SearchWishCartButton';
 import TextBox from './components/TextBox';
 
 export {
@@ -14,6 +15,7 @@ export {
   config,
   ExpandableNavItem,
   FontAwesomeIcon,
+  SearchWishCartButton,
   TextBox,
   useSpring,
 };
