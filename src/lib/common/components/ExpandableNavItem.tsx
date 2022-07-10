@@ -44,7 +44,6 @@ const ExpandableNavItem = ({
 }: Props) => {
   return (
     <div className="relative">
-      {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
       <button
         type="button"
         className="group focus:outline-non inline-flex items-center rounded-md bg-white text-base font-bold text-gray-900"
