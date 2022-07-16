@@ -96,7 +96,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["swiper", "npm:8.3.0"],\
             ["swr", "virtual:9b8e3c9a2c46e85da5b2c80a1c1460cbc80580a3553712a344195102db1bfa7d680d52072d306dcc85a9dec6c60bf4773aef9334dde1dfd3fb01389ae2228e9e#npm:1.3.0"],\
             ["tailwindcss", "virtual:bec610cc0e7db25ea0369a206db177a32a4891512cd3505e72f79bfd7a97feaaacd6a00199801d21b2f34f053045dd2a13769f61bc9182ae6cf3ac0e24755479#npm:3.1.3"],\
-            ["tiny-slider", "npm:2.9.4"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"],\
             ["winston", "npm:3.7.2"]\
           ],\
@@ -5513,7 +5512,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["swiper", "npm:8.3.0"],\
             ["swr", "virtual:9b8e3c9a2c46e85da5b2c80a1c1460cbc80580a3553712a344195102db1bfa7d680d52072d306dcc85a9dec6c60bf4773aef9334dde1dfd3fb01389ae2228e9e#npm:1.3.0"],\
             ["tailwindcss", "virtual:bec610cc0e7db25ea0369a206db177a32a4891512cd3505e72f79bfd7a97feaaacd6a00199801d21b2f34f053045dd2a13769f61bc9182ae6cf3ac0e24755479#npm:3.1.3"],\
-            ["tiny-slider", "npm:2.9.4"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"],\
             ["winston", "npm:3.7.2"]\
           ],\
@@ -12107,15 +12105,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["through2", "npm:4.0.2"],\
             ["readable-stream", "npm:3.6.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["tiny-slider", [\
-        ["npm:2.9.4", {\
-          "packageLocation": "./.yarn/cache/tiny-slider-npm-2.9.4-116c5728c8-6bb5e156ec.zip/node_modules/tiny-slider/",\
-          "packageDependencies": [\
-            ["tiny-slider", "npm:2.9.4"]\
           ],\
           "linkType": "HARD"\
         }]\
