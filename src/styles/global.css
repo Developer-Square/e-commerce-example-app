@@ -19,6 +19,29 @@ html, body {
   height: 100vh;
 }
 
+/* Makes the menu on mobile screens cover the whole screen */
 .menu-container {
   height: 100vh;
+}
+
+/* Enlarges the hero image */
+.hero__items {
+	height: 800px;
+	padding-top: 230px;
+}
+
+.set-bg {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top center;
+}
+
+/* Small Device = 320px */
+
+@media only screen and (max-width: 479px) {
+  .hero__items {
+		height: auto;
+		padding-top: 130px;
+		padding-bottom: 40px;
+	}
 }
