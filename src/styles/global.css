@@ -34,6 +34,7 @@ html, body {
   text-align: center;
   font-size: 18px;
   background: #fff;
+  height: 800px !important;
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -55,4 +56,34 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Hero Section Css */
+.trailsText {
+  will-change: transform, opacity;
+  overflow: hidden;
+}
+
+.trailsText > div {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 479px) {
+  .swiper-slide {
+    height: 510px !important;
+  }
+
+  .swiper-button-next {
+    left: 30% !important;
+  }
+
+  .swiper-button-prev, .swiper-button-next {
+    top: 89% !important;
+  }
+
+  .swiper-button-prev::after, .swiper-button-next::after {
+    font-size: 28px !important;
+    font-weight: bold;
+    color: #000;
+  }
 }
