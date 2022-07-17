@@ -34,8 +34,6 @@ html, body {
   text-align: center;
   font-size: 18px;
   background: #fff;
-  height: 800px !important;
-
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -58,6 +56,12 @@ html, body {
   object-fit: cover;
 }
 
+.swiper-button-prev::after, .swiper-button-next::after {
+  font-size: 28px !important;
+  font-weight: bold;
+  color: #000;
+}
+
 /* Hero Section Css */
 .trailsText {
   will-change: transform, opacity;
@@ -68,7 +72,24 @@ html, body {
   overflow: hidden;
 }
 
-@media only screen and (max-width: 479px) {
+@media only screen and (min-width: 479px) {
+  .swiper-slide {
+    height: 570px !important;
+  }
+
+  .swiper-slide .title {
+    font-size: 48px;
+    line-height: 58px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .hero-container {
+    left: 10% !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .swiper-slide {
     height: 510px !important;
   }
@@ -80,10 +101,10 @@ html, body {
   .swiper-button-prev, .swiper-button-next {
     top: 89% !important;
   }
+}
 
-  .swiper-button-prev::after, .swiper-button-next::after {
-    font-size: 28px !important;
-    font-weight: bold;
-    color: #000;
+@media only screen and (max-width: 479px) {
+  .swiper-slide .title {
+    width: 90%;
   }
 }

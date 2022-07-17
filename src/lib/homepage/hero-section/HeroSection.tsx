@@ -17,33 +17,24 @@ interface HeroProps {
   title: string;
   subtitle: string;
   text: string;
-  hero: string;
   open: boolean;
 }
 
 // Custom component to add an effect to the HeroTextSection.
-const Trail = ({
-  open,
-  children,
-  hero,
-}: {
-  open: boolean;
-  children: ReactNode;
-  hero: string;
-}) => {
+const Trail = ({ open, children }: { open: boolean; children: ReactNode }) => {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
     config: { mass: 5, tension: 2000, friction: 200 },
     opacity: open ? 1 : 0,
-    height: open ? 110 : 0,
+    height: open ? 130 : 0,
     from: { opacity: 0, height: 0 },
   });
   return (
-    <div className={hero}>
+    <div>
       {/* @ts-ignore */}
       {trail.map(({ height, ...style }, index) => (
         <a.div key={index} className="trailsText" style={style}>
-          <a.div style={{ height }}>{items[index]}</a.div>
+          <a.div style={index === 1 ? { height } : {}}>{items[index]}</a.div>
         </a.div>
       ))}
     </div>
@@ -56,19 +47,20 @@ const HeroTextSection = ({
   title,
   subtitle,
   text,
-  hero,
   open,
 }: HeroProps) => {
   return (
     <>
       <img src={imgSource} alt={altTag} />
-      <div className="top-9/50 absolute left-2.5 text-left">
-        <Trail hero={hero} open={open}>
+      <div className="top-9/50 md:left-1/10 hero-container absolute left-2.5 text-left sm:left-7">
+        <Trail open={open}>
           <h6 className="mb-6 text-sm font-bold uppercase tracking-widest text-[#e53637]">
             {subtitle}
           </h6>
-          <h2 className="mb-6 text-4xl font-bold text-[#111111]">{title}</h2>
-          <p className="mb-7 w-3/4 text-sm font-normal text-[#3d3d3d]">
+          <h2 className="title mb-6 text-4xl font-bold text-[#111111] md:w-9/12">
+            {title}
+          </h2>
+          <p className="mb-7 w-3/4 text-sm font-normal text-[#3d3d3d] md:w-8/12">
             {text}
           </p>
           <a
@@ -138,14 +130,13 @@ const HeroSection = () => {
         modules={[Navigation, EffectCreative, Autoplay]}
         className="mySwiper"
       >
-        <SwiperSlide className="relative">
+        <SwiperSlide className="relative md:mx-auto">
           <HeroTextSection
             imgSource="/assets/images/hero/hero-1.jpg"
             title="Fall - Winter Collections 2030"
             altTag="slide-1"
             subtitle="Summer Collection"
             text="A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality."
-            hero="hero-1"
             open={openSlideOne}
           />
         </SwiperSlide>
@@ -156,7 +147,6 @@ const HeroSection = () => {
             altTag="slide-2"
             subtitle="Summer Collection"
             text="A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality."
-            hero="hero-2"
             open={openSlideTwo}
           />
         </SwiperSlide>
