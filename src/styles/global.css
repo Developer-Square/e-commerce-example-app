@@ -83,13 +83,19 @@ html, body {
   }
 }
 
+@media only screen and (max-width: 479px) {
+  .swiper-slide .title {
+    width: 90%;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .hero-container {
     left: 10% !important;
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .swiper-slide {
     height: 510px !important;
   }
@@ -103,8 +109,8 @@ html, body {
   }
 }
 
-@media only screen and (max-width: 479px) {
-  .swiper-slide .title {
-    width: 90%;
+@media only screen and (min-width: 992px) {
+  .swiper-slide .subtitle {
+    font-size: 16px !important;
   }
 }
