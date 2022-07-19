@@ -5,11 +5,9 @@ import type {
   NextApiHandler,
 } from 'next';
 
-import type { IUser } from '../users/users.types';
+import envVariables from '@/config/envVariables';
 
-const password = process.env.IRON_PASSWORD;
-if (!password) throw new Error('Please set a password for iron-session');
-export const MAX_AGE = 60 * 60 * 8;
+import type { IUser } from '../users/users.types';
 
 declare module 'iron-session' {
   interface IronSessionData {
@@ -18,12 +16,14 @@ declare module 'iron-session' {
 }
 
 const sessionOptions = {
-  password,
+  password: envVariables.auth.password,
   cookieName: 'e-commerce-app-cookies',
   // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
   cookieOptions: {
-    maxAge: MAX_AGE,
-    expires: new Date(Date.now() + MAX_AGE * 1000),
+    maxAge: envVariables.auth.cookieOptions.maxAge,
+    expires: new Date(
+      Date.now() + envVariables.auth.cookieOptions.maxAge * 1000
+    ),
     secure: process.env.NODE_ENV === 'production',
   },
 };
