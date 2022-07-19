@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { removeTokenCookie } from '@/lib/auth/cookies';
+import { withSessionRoute } from '@/lib/auth/withSession';
 import catchAPIError from '@/lib/error-handling/catchAPIError';
 
-async function logoutRoute(_req: NextApiRequest, res: NextApiResponse) {
-  removeTokenCookie(res);
-  res.writeHead(302, { Location: '/' }).end();
+async function logoutRoute(req: NextApiRequest, res: NextApiResponse) {
+  req.session.destroy();
+  res.send({ ok: true });
 }
 
-export default catchAPIError(logoutRoute);
+export default withSessionRoute(catchAPIError(logoutRoute));

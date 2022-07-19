@@ -19,7 +19,7 @@ export type IUserLean = Omit<
   '_id' | '_updatedAt' | '_createdAt' | 'salt'
 >;
 
-export type IUserCreateParams = Omit<IUserLean, 'isEmailVerified'>;
+export type IUserCreateParams = Omit<IUserLean, 'isEmailVerified' | 'role'>;
 
 export type IValidatePasswordData = { password: string } & (
   | { name: string; email: never }
@@ -36,6 +36,6 @@ export interface IUserService {
   delete(userId: string): Promise<void>;
   getUser(userId: string): Promise<IUser | null>;
   hashPassword(password: string, salt: string): string;
-  verifyPassword(name: string, password: string): Promise<boolean>;
+  verifyPassword(name: string, password: string): Promise<IUser>;
   findByName(name: string): Promise<IUser | null>;
 }

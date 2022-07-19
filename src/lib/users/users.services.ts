@@ -28,13 +28,15 @@ export class UserService implements IUserService {
       .toString('hex');
   }
 
-  async verifyPassword(name: string, password: string): Promise<boolean> {
+  async verifyPassword(name: string, password: string): Promise<IUser> {
     const user = await (await this.model).findOne({ name });
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
-    const hash = crypto
-      .pbkdf2Sync(password, user.salt, 1000, 64, 'sha512')
-      .toString('hex');
-    return user.password === hash;
+    if (user.password !== this.hashPassword(password, user.salt))
+      throw new ApiError(
+        httpStatus.UNAUTHORIZED,
+        'Username or password is wrong'
+      );
+    return user;
   }
 
   async create(params: IUserCreateParams): Promise<IUser | null> {
@@ -46,6 +48,7 @@ export class UserService implements IUserService {
       isEmailVerified: false,
       password: this.hashPassword(params.password, salt),
       salt,
+      role: 'user',
     });
     return (await this.model).findOneById(result.insertedId);
   }

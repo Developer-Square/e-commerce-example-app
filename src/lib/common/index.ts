@@ -3,6 +3,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, config, useSpring } from 'react-spring';
 
+import SubmitButton from './components/SubmitButton';
 import TextBox from './components/TextBox';
 
-export { animated, config, FontAwesomeIcon, TextBox, useSpring };
+export { animated, config, FontAwesomeIcon, SubmitButton, TextBox, useSpring };
