@@ -42,9 +42,7 @@ const PageView = ({
     const body: IUserCreateParams = { name, email, password };
 
     try {
-      const response = await axios.post('/api/register', body);
-      // eslint-disable-next-line no-console
-      console.log(response.data);
+      await axios.post('/api/register', body);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -53,8 +51,17 @@ const PageView = ({
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
+    const body: Pick<IUser, 'name' | 'password'> = { name, password };
+
+    try {
+      await axios.post('/api/login', body);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
+  // TODO: Add forgot password logic
   async function handleForgotPassword(e: React.FormEvent) {
     e.preventDefault();
   }

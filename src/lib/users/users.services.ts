@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import crypto from 'crypto';
 import httpStatus from 'http-status';
 
@@ -14,6 +15,7 @@ import type {
   IUserCreateParams,
   IUserLean,
   IUserService,
+  IUserWithoutPassword,
 } from './users.types';
 
 export class UserService implements IUserService {
@@ -21,25 +23,35 @@ export class UserService implements IUserService {
 
   private model: Promise<UsersRaw> = UsersModel();
 
-  // eslint-disable-next-line class-methods-use-this
   hashPassword(password: string, salt: string): string {
     return crypto
       .pbkdf2Sync(password, salt, 1000, 64, 'sha512')
       .toString('hex');
   }
 
-  async verifyPassword(name: string, password: string): Promise<IUser> {
-    const user = await (await this.model).findOne({ name });
+  async verifyPassword(
+    name: string,
+    password: string
+  ): Promise<IUserWithoutPassword> {
+    const user = await this.findByName(name);
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
     if (user.password !== this.hashPassword(password, user.salt))
       throw new ApiError(
         httpStatus.UNAUTHORIZED,
         'Username or password is wrong'
       );
-    return user;
+    const userWithoutPassword = (await (
+      await this.model
+    ).findOne(
+      { name },
+      { projection: { password: 0, salt: 0 } }
+    )) as IUserWithoutPassword;
+    return userWithoutPassword;
   }
 
-  async create(params: IUserCreateParams): Promise<IUser | null> {
+  async create(
+    params: IUserCreateParams
+  ): Promise<IUserWithoutPassword | null> {
     const salt = crypto.randomBytes(16).toString('hex');
     const result = await (
       await this.model
@@ -50,11 +62,15 @@ export class UserService implements IUserService {
       salt,
       role: 'user',
     });
-    return (await this.model).findOneById(result.insertedId);
+    return (await this.model).findOneById(result.insertedId, {
+      projection: { password: 0, salt: 0 },
+    });
   }
 
-  async getUser(userId: string): Promise<IUser | null> {
-    return (await this.model).findOneById(userId);
+  async getUser(userId: string): Promise<IUserWithoutPassword | null> {
+    return (await this.model).findOneById(userId, {
+      projection: { password: 0, salt: 0 },
+    });
   }
 
   async findByName(name: string): Promise<IUser | null> {
@@ -68,7 +84,7 @@ export class UserService implements IUserService {
   async update(
     userId: string,
     params: Partial<IUserLean>
-  ): Promise<IUser | null> {
+  ): Promise<IUserWithoutPassword | null> {
     const query = { _id: userId };
     const updateInfo = params;
     if (params.password) {
@@ -82,13 +98,15 @@ export class UserService implements IUserService {
     const result = await (
       await this.model
     ).updateOne(query, { $set: updateInfo });
-    return (await this.model).findOneById(result.upsertedId.toHexString());
+    return (await this.model).findOneById(result.upsertedId.toHexString(), {
+      projection: { password: 0, salt: 0 },
+    });
   }
 
   async list(
     { offset, count }: IPaginationOptions = { offset: 0, count: 50 },
     { sort, query }: IQueryOptions<IUser> = { sort: {}, query: {} }
-  ): Promise<IQueryResult<IUser>> {
+  ): Promise<IQueryResult<IUserWithoutPassword>> {
     const totalCount = await (await this.model).countDocuments({ ...query });
     const paginationCursor = (await this.model).find(
       { ...query },
@@ -96,6 +114,7 @@ export class UserService implements IUserService {
         ...(sort && { sort }),
         limit: count,
         skip: offset,
+        projection: { password: 0, salt: 0 },
       }
     );
     return {

@@ -7,11 +7,11 @@ import type {
 
 import envVariables from '@/config/envVariables';
 
-import type { IUser } from '../users/users.types';
+import type { IUserWithoutPassword } from '../users/users.types';
 
 declare module 'iron-session' {
   interface IronSessionData {
-    user?: IUser;
+    user?: IUserWithoutPassword;
   }
 }
 
