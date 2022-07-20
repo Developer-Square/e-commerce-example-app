@@ -19,7 +19,9 @@ export type IUserLean = Omit<
   '_id' | '_updatedAt' | '_createdAt' | 'salt'
 >;
 
-export type IUserCreateParams = Omit<IUserLean, 'isEmailVerified'>;
+export type IUserWithoutPassword = Omit<IUser, 'password' | 'salt'>;
+
+export type IUserCreateParams = Omit<IUserLean, 'isEmailVerified' | 'role'>;
 
 export type IValidatePasswordData = { password: string } & (
   | { name: string; email: never }
@@ -27,15 +29,18 @@ export type IValidatePasswordData = { password: string } & (
 );
 
 export interface IUserService {
-  create(params: IUserCreateParams): Promise<IUser | null>;
+  create(params: IUserCreateParams): Promise<IUserWithoutPassword | null>;
   list(
     paginationOptions?: IPaginationOptions,
     queryOptions?: IQueryOptions<IUser>
-  ): Promise<IQueryResult<IUser>>;
-  update(userId: string, params: Partial<IUserLean>): Promise<IUser | null>;
+  ): Promise<IQueryResult<IUserWithoutPassword>>;
+  update(
+    userId: string,
+    params: Partial<IUserLean>
+  ): Promise<IUserWithoutPassword | null>;
   delete(userId: string): Promise<void>;
-  getUser(userId: string): Promise<IUser | null>;
+  getUser(userId: string): Promise<IUserWithoutPassword | null>;
   hashPassword(password: string, salt: string): string;
-  verifyPassword(name: string, password: string): Promise<boolean>;
+  verifyPassword(name: string, password: string): Promise<IUserWithoutPassword>;
   findByName(name: string): Promise<IUser | null>;
 }
