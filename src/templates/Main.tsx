@@ -98,8 +98,8 @@ const Main = (props: IMainProps) => {
 
       <div className="relative bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
-            <div className="flex justify-start lg:w-0 lg:flex-1">
+          <div className="md:justify-start md:space-x-10 flex items-center justify-between border-b-2 border-gray-100 py-4">
+            <div className="lg:w-0 lg:flex-1 flex justify-start">
               <a href="#">
                 <span className="sr-only">Workflow</span>
                 <img
@@ -109,7 +109,7 @@ const Main = (props: IMainProps) => {
                 />
               </a>
             </div>
-            <div className="-my-2 -mr-2 md:hidden">
+            <div className="md:hidden -my-2 -mr-2">
               <button
                 type="button"
                 className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-900 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
@@ -134,7 +134,7 @@ const Main = (props: IMainProps) => {
                 </svg>
               </button>
             </div>
-            <nav className="hidden space-x-10 md:flex">
+            <nav className="md:flex hidden space-x-10">
               <NavItems
                 menuVisibility={menuVisibility}
                 setMenuVisibility={setMenuVisibility}
@@ -154,7 +154,7 @@ const Main = (props: IMainProps) => {
         />
       </div>
 
-      <div className="content py-5 text-xl">{props.children}</div>
+      <div className="content text-xl">{props.children}</div>
 
       <div className="border-t border-gray-300 py-8 text-center text-sm">
         © Copyright {new Date().getFullYear()} {AppConfig.title}. Powered with{' '}

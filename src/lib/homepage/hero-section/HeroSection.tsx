@@ -57,10 +57,10 @@ const HeroTextSection = ({
           <h6 className="mb-6 text-sm font-bold uppercase tracking-widest text-[#e53637]">
             {subtitle}
           </h6>
-          <h2 className="title mb-6 text-4xl font-bold text-[#111111] sm:w-9/12">
+          <h2 className="title mb-6 text-4xl font-bold text-[#111111]">
             {title}
           </h2>
-          <p className="subtitle mb-7 w-3/4 text-sm font-normal text-[#3d3d3d] sm:w-8/12">
+          <p className="subtitle mb-7 w-3/4 text-sm font-normal text-[#3d3d3d]">
             {text}
           </p>
           <a

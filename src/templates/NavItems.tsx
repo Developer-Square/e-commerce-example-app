@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 import { ExpandableNavItem } from '@/lib/common';
@@ -19,6 +20,10 @@ const NavItems = ({
   handleActiveItems,
   setMenuVisibility,
 }: Props) => {
+  const handleMenuItemClick = (evt: any) => {
+    handleActiveItems(evt);
+    setMenuVisibility(false);
+  };
   return (
     <>
       {navItems.map((item, index) => (
@@ -35,15 +40,13 @@ const NavItems = ({
             <li
               key={index}
               className="navbar-item"
-              onClick={(e): void => handleActiveItems(e)}
+              onClick={(e): void => handleMenuItemClick(e)}
             >
-              <a
-                href="#"
-                className="text-base font-bold text-gray-900"
-                onClick={(): void => setMenuVisibility(false)}
-              >
-                {item}
-              </a>
+              <Link href={`/${item.toLowerCase()}`}>
+                <a href="#" className="text-base font-bold text-gray-900">
+                  {item}
+                </a>
+              </Link>
             </li>
           )}
         </>

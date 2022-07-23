@@ -89,6 +89,12 @@ html, body {
   }
 }
 
+@media only screen and (min-width: 576px) and (max-width: 1400px) {
+  .title, .subtitle {
+    width: 70%;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .hero-container {
     left: 10% !important;
