@@ -71,10 +71,7 @@ const SignInPage = () => {
             forgotPasswordProps={forgotPasswordProps}
             pageState={pageState}
           />
-          <div className="card-actions mt-5 flex w-full justify-center">
-            <button className="btn w-full rounded-3xl bg-[#3e4684]">
-              Login
-            </button>
+          <div className="card-actions flex w-full justify-center">
             <PageFooter
               pageState={pageState}
               setPageState={setPageState}
