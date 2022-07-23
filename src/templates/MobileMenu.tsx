@@ -23,7 +23,9 @@ const MobileMenu = ({
   return (
     <animated.div
       style={navbarProps}
-      className="menu-container absolute inset-x-0 top-0 origin-top-right p-2 transition md:hidden"
+      className={`menu-container md:hidden absolute inset-x-0 top-0 origin-top-right transition ${
+        menuVisibility ? 'z-10' : 'z-0'
+      }`}
     >
       <div className="h-full divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
         <div className="px-5 pt-5 pb-6">
