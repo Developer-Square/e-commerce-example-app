@@ -72,6 +72,10 @@ html, body {
   overflow: hidden;
 }
 
+.letter-spacing {
+  letter-spacing: 4px;
+}
+
 @media only screen and (min-width: 479px) {
   .swiper-slide {
     height: 570px !important;
