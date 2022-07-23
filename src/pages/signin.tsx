@@ -4,11 +4,13 @@
 
 import React from 'react';
 
+import { BackButton } from '@/lib/common';
 import { ErrorBoundary } from '@/lib/error-handling';
 import { SignInPage } from '@/lib/signin-page';
 
 const Signin = () => (
   <ErrorBoundary>
+    <BackButton />
     <SignInPage />
   </ErrorBoundary>
 );
