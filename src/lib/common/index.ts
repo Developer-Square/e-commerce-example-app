@@ -4,7 +4,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, config, useSpring } from 'react-spring';
 
-import SubmitButton from './components/SubmitButton';
+import BackButton from './components/BackButton';
+import ExpandableNavItem from './components/ExpandableNavItem';
+import SearchWishCartButton from './components/SearchWishCartButton';
 import TextBox from './components/TextBox';
 
-export { animated, config, FontAwesomeIcon, SubmitButton, TextBox, useSpring };
+export {
+  animated,
+  BackButton,
+  config,
+  ExpandableNavItem,
+  FontAwesomeIcon,
+  SearchWishCartButton,
+  TextBox,
+  useSpring,
+};
