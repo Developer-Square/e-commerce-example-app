@@ -54,13 +54,15 @@ const Section = ({ content, image }: Props) => {
 
 const FeatureSections = () => {
   return (
-    <div className="container mx-auto mt-24 px-4">
-      <div className="column-1">
-        <Section content="Clothing Collections 2030" image="banner-1.jpg" />
-        <Section content="Accessories" image="banner-2.jpg" />
-        <Section content="Shoe Spring 2030" image="banner-3.jpg" />
+    <section>
+      <div className="container mx-auto mt-24 px-4">
+        <div className="column-1">
+          <Section content="Clothing Collections 2030" image="banner-1.jpg" />
+          <Section content="Accessories" image="banner-2.jpg" />
+          <Section content="Shoe Spring 2030" image="banner-3.jpg" />
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -76,6 +76,11 @@ html, body {
   letter-spacing: 4px;
 }
 
+/* Product Section */
+.active {
+  color: #111111;
+}
+
 @media only screen and (min-width: 479px) {
   .swiper-slide {
     height: 570px !important;

@@ -1,5 +1,5 @@
 import { Meta } from '@/layouts/Meta';
-import { FeatureSection, HeroSection } from '@/lib/homepage';
+import { FeatureSection, HeroSection, ProductSection } from '@/lib/homepage';
 import { Main } from '@/templates/Main';
 
 const Index = () => {
@@ -14,6 +14,7 @@ const Index = () => {
     >
       <HeroSection />
       <FeatureSection />
+      <ProductSection />
     </Main>
   );
 };
