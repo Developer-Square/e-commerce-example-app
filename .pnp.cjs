@@ -77,6 +77,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:9b8e3c9a2c46e85da5b2c80a1c1460cbc80580a3553712a344195102db1bfa7d680d52072d306dcc85a9dec6c60bf4773aef9334dde1dfd3fb01389ae2228e9e#npm:28.1.1"],\
             ["jest-environment-jsdom", "npm:28.1.1"],\
             ["lint-staged", "npm:12.5.0"],\
+            ["lodash.shuffle", "npm:4.2.0"],\
             ["mongodb", "npm:4.7.0"],\
             ["next", "virtual:9b8e3c9a2c46e85da5b2c80a1c1460cbc80580a3553712a344195102db1bfa7d680d52072d306dcc85a9dec6c60bf4773aef9334dde1dfd3fb01389ae2228e9e#npm:12.1.6"],\
             ["next-seo", "virtual:9b8e3c9a2c46e85da5b2c80a1c1460cbc80580a3553712a344195102db1bfa7d680d52072d306dcc85a9dec6c60bf4773aef9334dde1dfd3fb01389ae2228e9e#npm:5.4.0"],\
@@ -5494,6 +5495,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:9b8e3c9a2c46e85da5b2c80a1c1460cbc80580a3553712a344195102db1bfa7d680d52072d306dcc85a9dec6c60bf4773aef9334dde1dfd3fb01389ae2228e9e#npm:28.1.1"],\
             ["jest-environment-jsdom", "npm:28.1.1"],\
             ["lint-staged", "npm:12.5.0"],\
+            ["lodash.shuffle", "npm:4.2.0"],\
             ["mongodb", "npm:4.7.0"],\
             ["next", "virtual:9b8e3c9a2c46e85da5b2c80a1c1460cbc80580a3553712a344195102db1bfa7d680d52072d306dcc85a9dec6c60bf4773aef9334dde1dfd3fb01389ae2228e9e#npm:12.1.6"],\
             ["next-seo", "virtual:9b8e3c9a2c46e85da5b2c80a1c1460cbc80580a3553712a344195102db1bfa7d680d52072d306dcc85a9dec6c60bf4773aef9334dde1dfd3fb01389ae2228e9e#npm:5.4.0"],\
@@ -8616,6 +8618,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash.merge-npm-4.6.2-77cb4416bf-ad580b4bdb.zip/node_modules/lodash.merge/",\
           "packageDependencies": [\
             ["lodash.merge", "npm:4.6.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lodash.shuffle", [\
+        ["npm:4.2.0", {\
+          "packageLocation": "./.yarn/cache/lodash.shuffle-npm-4.2.0-0e57e0a432-3d451e16c1.zip/node_modules/lodash.shuffle/",\
+          "packageDependencies": [\
+            ["lodash.shuffle", "npm:4.2.0"]\
           ],\
           "linkType": "HARD"\
         }]\
