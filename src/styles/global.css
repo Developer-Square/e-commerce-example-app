@@ -76,10 +76,6 @@ html, body {
   letter-spacing: 4px;
 }
 
-.image-text {
-  height: 440px;
-}
-
 @media only screen and (min-width: 479px) {
   .swiper-slide {
     height: 570px !important;
@@ -107,6 +103,18 @@ html, body {
   .hero-container {
     left: 10% !important;
   }
+
+  .image-text {
+    height: 440px;
+  }
+
+  .mobile-image {
+    display: none;
+  }
+  
+  .web-image {
+    display: block;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -121,10 +129,24 @@ html, body {
   .swiper-button-prev, .swiper-button-next {
     top: 89% !important;
   }
+
+  .mobile-image {
+    display: block;
+  }
+  
+  .web-image {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   .swiper-slide .subtitle {
     font-size: 16px !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
   }
 }

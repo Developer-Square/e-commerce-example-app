@@ -9,8 +9,25 @@ type Props = {
 const Section = ({ content, image }: Props) => {
   return (
     <div className="mb-10 flex flex-col items-center md:flex-row">
+      <img
+        className="mobile-image w-full"
+        src={`/assets/images/banner/${image}`}
+        alt="feature section"
+      />
+      {/* This is done for purely aesthetics, just so as the UI can look similar to the design */}
+      {content === 'Accessories' ? (
+        <img
+          className="web-image w-full"
+          src={`/assets/images/banner/${image}`}
+          alt="feature section"
+        />
+      ) : null}
       <div className="image-text relative w-full">
-        <div className="absolute top-1/4 left-10 w-full max-w-xs">
+        <div
+          className={`w-full max-w-xs md:absolute md:top-1/4 md:left-10 ${
+            content !== 'Accessories' ? 'lg:left-96' : ''
+          }`}
+        >
           <p className="mb-2.5 max-w-full pt-6 text-4xl font-bold text-[#111]">
             {content}
           </p>
@@ -24,11 +41,13 @@ const Section = ({ content, image }: Props) => {
           </li>
         </div>
       </div>
-      <img
-        className=""
-        src={`/assets/images/banner/${image}`}
-        alt="feature section"
-      />
+      {content !== 'Accessories' ? (
+        <img
+          className="web-image"
+          src={`/assets/images/banner/${image}`}
+          alt="feature section"
+        />
+      ) : null}
     </div>
   );
 };
