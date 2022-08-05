@@ -14,14 +14,29 @@ interface ProductProps {
   image: string;
   title: string;
   price: string;
+  category: string;
 }
 
-const Product = ({ image, title, price }: ProductProps): ReactElement => {
+const Product = ({
+  image,
+  title,
+  price,
+  category,
+}: ProductProps): ReactElement => {
   return (
     <div className="mb-10 flex flex-col items-center">
-      <span className="label color-[#111] text-xs font-bold uppercase inline-block pt-1">
-        New
-      </span>
+      {category !== 'best-sellers' ? (
+        <span
+          className={`label ${
+            category === 'new-arrivals' ? 'text-[#111]' : 'text-[#fff]'
+          } ${
+            category === 'new-arrivals' ? 'bg-[#fff]' : 'bg-[#111]'
+          } text-xs font-bold uppercase inline-block pt-1 pb-0.5 px-4 absolute left-0 top-5`}
+        >
+          {category === 'new-arrivals' ? 'New' : 'Sale'}
+        </span>
+      ) : null}
+
       <img
         className="w-full"
         src={`/assets/images/product/${image}`}
@@ -118,6 +133,7 @@ const ProductSection = () => {
                   title={item.title}
                   image={item.image}
                   price={item.price}
+                  category={item.category}
                 />
               </animated.div>
             ))}
