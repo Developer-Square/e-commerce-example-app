@@ -2,10 +2,16 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable tailwindcss/no-custom-classname */
-import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHeart,
+  faSearch,
+  faStar,
+  faStarHalf,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { ReactElement } from 'react';
 import React, { useEffect, useState } from 'react';
+import { MobileView } from 'react-device-detect';
 import { animated, useTransition } from 'react-spring';
 
 import products from './products.json';
@@ -24,7 +30,7 @@ const Product = ({
   category,
 }: ProductProps): ReactElement => {
   return (
-    <div className="mb-10 flex flex-col items-center">
+    <div className="mb-10 flex flex-col items-center product__item">
       {category !== 'best-sellers' ? (
         <span
           className={`label ${
@@ -36,24 +42,56 @@ const Product = ({
           {category === 'new-arrivals' ? 'New' : 'Sale'}
         </span>
       ) : null}
-
+      <ul className="product__hover absolute -right-52 top-5 transition-all duration-800">
+        <li>
+          <a href="#">
+            <FontAwesomeIcon icon={faHeart} />
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <FontAwesomeIcon icon={faSearch} />
+          </a>
+        </li>
+      </ul>
       <img
         className="w-full"
         src={`/assets/images/product/${image}`}
         alt="product section"
       />
-      <div className="w-full mt-6">
-        <h6 className="text-left text-[#111] text-base font-semibold mb-1.5">
-          {title}
-        </h6>
-        <div className="rating">
-          <FontAwesomeIcon icon={faStar} />
-          <FontAwesomeIcon icon={faStar} />
-          <FontAwesomeIcon icon={faStar} />
-          <FontAwesomeIcon icon={faStar} />
-          <FontAwesomeIcon icon={faStarHalf} />
+      <div className="w-full mt-6 flex justify-between">
+        <div>
+          <h6 className="text-left text-[#111] text-base font-semibold mb-1.5">
+            {title}
+          </h6>
+          <div className="rating">
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStarHalf} />
+          </div>
+          <p className="text-[#0d0d0d] font-bold text-lg">{price}</p>
         </div>
-        <p className="text-[#0d0d0d] font-bold text-lg">{price}</p>
+        <MobileView>
+          <div className="flex flex-col list-none">
+            <ul className="flex">
+              <li className="mr-3">
+                <a href="#">
+                  <FontAwesomeIcon icon={faHeart} />
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faSearch} />
+                </a>
+              </li>
+            </ul>
+            <a href="#" className="text-base text-[#e53637] font-bold">
+              + Add To Cart
+            </a>
+          </div>
+        </MobileView>
       </div>
     </div>
   );

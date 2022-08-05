@@ -89,6 +89,11 @@ html, body {
   letter-spacing: 2px;
 }
 
+.product__item:hover .product__hover {
+  right: 20px;
+	opacity: 1;
+}
+
 @media only screen and (min-width: 479px) {
   .swiper-slide {
     height: 570px !important;
