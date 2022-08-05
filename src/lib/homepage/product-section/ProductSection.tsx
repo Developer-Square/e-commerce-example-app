@@ -4,11 +4,11 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import shuffle from 'lodash.shuffle';
 import type { ReactElement } from 'react';
 import React, { useEffect, useState } from 'react';
 import { animated, useTransition } from 'react-spring';
-import { setInterval } from 'timers';
+
+import products from './products.json';
 
 interface ProductProps {
   image: string;
@@ -16,30 +16,12 @@ interface ProductProps {
   price: string;
 }
 
-const products = [
-  {
-    image: 'product-1.jpg',
-    title: 'Piqué Biker Jacket',
-    price: '$68.24',
-    height: 260,
-  },
-  {
-    image: 'product-2.jpg',
-    title: 'Piqué Biker Jacket',
-    price: '$68.24',
-    height: 260,
-  },
-  {
-    image: 'product-3.jpg',
-    title: 'Piqué Biker Jacket',
-    price: '$68.24',
-    height: 260,
-  },
-];
-
 const Product = ({ image, title, price }: ProductProps): ReactElement => {
   return (
     <div className="mb-10 flex flex-col items-center">
+      <span className="label color-[#111] text-xs font-bold uppercase inline-block pt-1">
+        New
+      </span>
       <img
         className="w-full"
         src={`/assets/images/product/${image}`}
@@ -63,10 +45,13 @@ const Product = ({ image, title, price }: ProductProps): ReactElement => {
 };
 
 const ProductSection = () => {
-  const [rows, set] = useState(products);
+  const [rows, set] = useState([]);
+
   useEffect(() => {
-    const t = setInterval(() => set(shuffle), 2000);
-    return () => clearInterval(t);
+    const sortedList = products.filter(
+      (product) => product.category === 'best-sellers'
+    );
+    set(sortedList);
   }, []);
 
   // Product list animation
@@ -86,7 +71,11 @@ const ProductSection = () => {
       update: ({ y, height }) => ({ y, height }),
     }
   );
-  const handleProductShuffle = (evt: any) => {
+  const handleProductShuffle = (evt: any, category: string) => {
+    const sortedList = products.filter(
+      (product) => product.category === category
+    );
+    set(sortedList);
     const productLinks = document.querySelectorAll('.product-links');
     Array.from(productLinks).map((links): null => {
       links.classList.remove('active');
@@ -101,19 +90,19 @@ const ProductSection = () => {
           <ul className="grid mb-11 cursor-pointer list-none grid-cols-2 gap-4 text-2xl font-bold text-[#b7b7b7]">
             <li
               className="active product-links"
-              onClick={(e): void => handleProductShuffle(e)}
+              onClick={(e): void => handleProductShuffle(e, 'best-sellers')}
             >
               Best Sellers
             </li>
             <li
               className="product-links"
-              onClick={(e): void => handleProductShuffle(e)}
+              onClick={(e): void => handleProductShuffle(e, 'new-arrivals')}
             >
               New Arrivals
             </li>
             <li
               className="product-links"
-              onClick={(e): void => handleProductShuffle(e)}
+              onClick={(e): void => handleProductShuffle(e, 'hot-sales')}
             >
               Hot Sales
             </li>
@@ -122,7 +111,7 @@ const ProductSection = () => {
             {/* @ts-ignore */}
             {transitions((style: any, item: any, index: number) => (
               <animated.div
-                className="product-list"
+                className="product-list md:columns-2"
                 style={{ zIndex: rows.length - index, ...style }}
               >
                 <Product

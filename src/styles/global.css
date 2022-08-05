@@ -85,6 +85,10 @@ html, body {
   will-change: transform, height, opacity;
 }
 
+.label {
+  
+}
+
 @media only screen and (min-width: 479px) {
   .swiper-slide {
     height: 570px !important;
