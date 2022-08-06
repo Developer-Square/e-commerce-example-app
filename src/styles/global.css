@@ -94,6 +94,13 @@ html, body {
 	opacity: 1;
 }
 
+.product__item:hover .add-cart {
+  top: 6px;
+  visibility: visible;
+  opacity: 1;
+  background: #fff;
+}
+
 @media only screen and (min-width: 479px) {
   .swiper-slide {
     height: 570px !important;

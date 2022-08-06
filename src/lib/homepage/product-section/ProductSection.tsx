@@ -43,12 +43,12 @@ const Product = ({
         </span>
       ) : null}
       <ul className="product__hover absolute -right-52 top-5 transition-all duration-800">
-        <li>
+        <li className="mb-2.5 relative bg-white pt-2 px-2.5 pb-1">
           <a href="#">
             <FontAwesomeIcon icon={faHeart} />
           </a>
         </li>
-        <li>
+        <li className="bg-white pt-2 px-2.5 pb-1">
           <a href="#">
             <FontAwesomeIcon icon={faSearch} />
           </a>
@@ -60,7 +60,7 @@ const Product = ({
         alt="product section"
       />
       <div className="w-full mt-6 flex justify-between">
-        <div>
+        <div className="relative">
           <h6 className="text-left text-[#111] text-base font-semibold mb-1.5">
             {title}
           </h6>
@@ -71,12 +71,18 @@ const Product = ({
             <FontAwesomeIcon icon={faStar} />
             <FontAwesomeIcon icon={faStarHalf} />
           </div>
+          <a
+            href="#"
+            className="text-base text-[#e53637] font-bold absolute top-0 left-0 transition-all duration-300 invisible opacity-0 add-cart"
+          >
+            + Add To Cart
+          </a>
           <p className="text-[#0d0d0d] font-bold text-lg">{price}</p>
         </div>
         <MobileView>
           <div className="flex flex-col list-none">
             <ul className="flex">
-              <li className="mr-3">
+              <li className="mr-5">
                 <a href="#">
                   <FontAwesomeIcon icon={faHeart} />
                 </a>
@@ -98,7 +104,7 @@ const Product = ({
 };
 
 const ProductSection = () => {
-  const [rows, set] = useState([]);
+  const [rows, set] = useState<Record<string, any>>([]);
 
   useEffect(() => {
     const sortedList = products.filter(
