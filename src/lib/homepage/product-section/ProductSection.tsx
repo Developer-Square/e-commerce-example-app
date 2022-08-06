@@ -30,7 +30,7 @@ const Product = ({
   category,
 }: ProductProps): ReactElement => {
   return (
-    <div className="mb-10 flex flex-col items-center product__item">
+    <div className="mb-10 flex flex-col items-center product__item relative">
       {category !== 'best-sellers' ? (
         <span
           className={`label ${
@@ -42,7 +42,7 @@ const Product = ({
           {category === 'new-arrivals' ? 'New' : 'Sale'}
         </span>
       ) : null}
-      <ul className="product__hover absolute -right-52 top-5 transition-all duration-800">
+      <ul className="product__hover opacity-0 invisible absolute -right-52 top-5 transition-all duration-700">
         <li className="mb-2.5 relative bg-white pt-2 px-2.5 pb-1">
           <a href="#">
             <FontAwesomeIcon icon={faHeart} />
@@ -55,7 +55,7 @@ const Product = ({
         </li>
       </ul>
       <img
-        className="w-full"
+        className="w-full bg-center"
         src={`/assets/images/product/${image}`}
         alt="product section"
       />
@@ -145,43 +145,41 @@ const ProductSection = () => {
   return (
     <section>
       <div className="container mx-auto mt-16 px-4">
-        <div className="column-1">
-          <ul className="grid mb-11 cursor-pointer list-none grid-cols-2 gap-4 text-2xl font-bold text-[#b7b7b7]">
-            <li
-              className="active product-links"
-              onClick={(e): void => handleProductShuffle(e, 'best-sellers')}
+        <ul className="grid header-container mb-11 cursor-pointer list-none grid-cols-2 gap-4 text-2xl font-bold text-[#b7b7b7]">
+          <li
+            className="active product-links"
+            onClick={(e): void => handleProductShuffle(e, 'best-sellers')}
+          >
+            Best Sellers
+          </li>
+          <li
+            className="product-links"
+            onClick={(e): void => handleProductShuffle(e, 'new-arrivals')}
+          >
+            New Arrivals
+          </li>
+          <li
+            className="product-links"
+            onClick={(e): void => handleProductShuffle(e, 'hot-sales')}
+          >
+            Hot Sales
+          </li>
+        </ul>
+        <div className="products">
+          {/* @ts-ignore */}
+          {transitions((style: any, item: any, index: number) => (
+            <animated.div
+              className="product-list"
+              style={{ zIndex: rows.length - index, ...style }}
             >
-              Best Sellers
-            </li>
-            <li
-              className="product-links"
-              onClick={(e): void => handleProductShuffle(e, 'new-arrivals')}
-            >
-              New Arrivals
-            </li>
-            <li
-              className="product-links"
-              onClick={(e): void => handleProductShuffle(e, 'hot-sales')}
-            >
-              Hot Sales
-            </li>
-          </ul>
-          <div>
-            {/* @ts-ignore */}
-            {transitions((style: any, item: any, index: number) => (
-              <animated.div
-                className="product-list md:columns-2"
-                style={{ zIndex: rows.length - index, ...style }}
-              >
-                <Product
-                  title={item.title}
-                  image={item.image}
-                  price={item.price}
-                  category={item.category}
-                />
-              </animated.div>
-            ))}
-          </div>
+              <Product
+                title={item.title}
+                image={item.image}
+                price={item.price}
+                category={item.category}
+              />
+            </animated.div>
+          ))}
         </div>
       </div>
     </section>
