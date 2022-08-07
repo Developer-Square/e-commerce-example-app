@@ -29,6 +29,25 @@ const Product = ({
   price,
   category,
 }: ProductProps): ReactElement => {
+  const convertTitle = (title: string): string => {
+    return title.toLowerCase().replace(/\s/g, '-');
+  };
+
+  // Changes the color when a user click on the the colors
+  const handleColorSelect = (e: any, title: string) => {
+    const result = convertTitle(title);
+    const productColorContainer = document.querySelector(
+      `#${result}`
+    )?.children;
+    if (productColorContainer?.length) {
+      Array.from(productColorContainer).map((colorItems) => {
+        colorItems.classList.remove('active-select');
+        return null;
+      });
+    }
+    e.currentTarget.classList.add('active-select');
+  };
+
   return (
     <div className="mb-10 flex flex-col items-center product__item relative">
       {category !== 'best-sellers' ? (
@@ -60,7 +79,7 @@ const Product = ({
         alt="product section"
       />
       <div className="w-full mt-6 flex justify-between">
-        <div className="relative">
+        <div className="relative w-full">
           <h6 className="text-left text-[#111] text-base font-semibold mb-1.5">
             {title}
           </h6>
@@ -78,6 +97,32 @@ const Product = ({
             + Add To Cart
           </a>
           <p className="text-[#0d0d0d] font-bold text-lg">{price}</p>
+          <div
+            className="product__color__select absolute right-0 bottom-0 opacity-0 transition-all duration-500"
+            id={convertTitle(title)}
+          >
+            <label
+              htmlFor="pc-4"
+              className="bg-[#5e64d1] product-select"
+              onClick={(e: any): void => handleColorSelect(e, title)}
+            >
+              <input type="radio" className="absolute invisible" id="pc-4" />
+            </label>
+            <label
+              className="active-select bg-[#404a47] product-select"
+              htmlFor="pc-5"
+              onClick={(e: any): void => handleColorSelect(e, title)}
+            >
+              <input type="radio" className="absolute invisible" id="pc-5" />
+            </label>
+            <label
+              className="bg-[#d5a667] product-select"
+              htmlFor="pc-6"
+              onClick={(e: any): void => handleColorSelect(e, title)}
+            >
+              <input type="radio" className="absolute invisible" id="pc-6" />
+            </label>
+          </div>
         </div>
         <MobileView>
           <div className="flex flex-col list-none">
