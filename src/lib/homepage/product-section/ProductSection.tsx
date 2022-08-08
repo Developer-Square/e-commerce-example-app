@@ -2,151 +2,12 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable tailwindcss/no-custom-classname */
-import {
-  faHeart,
-  faSearch,
-  faStar,
-  faStarHalf,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import type { ReactElement } from 'react';
+
 import React, { useEffect, useState } from 'react';
-import { MobileView } from 'react-device-detect';
 import { animated, useTransition } from 'react-spring';
 
+import Product from './components/Product';
 import products from './products.json';
-
-interface ProductProps {
-  image: string;
-  title: string;
-  price: string;
-  category: string;
-}
-
-const Product = ({
-  image,
-  title,
-  price,
-  category,
-}: ProductProps): ReactElement => {
-  const convertTitle = (title: string): string => {
-    return title.toLowerCase().replace(/\s/g, '-');
-  };
-
-  // Changes the color when a user click on the the colors
-  const handleColorSelect = (e: any, title: string) => {
-    const result = convertTitle(title);
-    const productColorContainer = document.querySelector(
-      `#${result}`
-    )?.children;
-    if (productColorContainer?.length) {
-      Array.from(productColorContainer).map((colorItems) => {
-        colorItems.classList.remove('active-select');
-        return null;
-      });
-    }
-    e.currentTarget.classList.add('active-select');
-  };
-
-  return (
-    <div className="mb-10 flex flex-col items-center product__item relative">
-      {category !== 'best-sellers' ? (
-        <span
-          className={`label ${
-            category === 'new-arrivals' ? 'text-[#111]' : 'text-[#fff]'
-          } ${
-            category === 'new-arrivals' ? 'bg-[#fff]' : 'bg-[#111]'
-          } text-xs font-bold uppercase inline-block pt-1 pb-0.5 px-4 absolute left-0 top-5`}
-        >
-          {category === 'new-arrivals' ? 'New' : 'Sale'}
-        </span>
-      ) : null}
-      <ul className="product__hover opacity-0 invisible absolute -right-52 top-5 transition-all duration-700">
-        <li className="mb-2.5 relative bg-white pt-2 px-2.5 pb-1">
-          <a href="#">
-            <FontAwesomeIcon icon={faHeart} />
-          </a>
-        </li>
-        <li className="bg-white pt-2 px-2.5 pb-1">
-          <a href="#">
-            <FontAwesomeIcon icon={faSearch} />
-          </a>
-        </li>
-      </ul>
-      <img
-        className="w-full bg-center"
-        src={`/assets/images/product/${image}`}
-        alt="product section"
-      />
-      <div className="w-full mt-6 flex justify-between">
-        <div className="relative w-full">
-          <h6 className="text-left text-[#111] text-base font-semibold mb-1.5">
-            {title}
-          </h6>
-          <div className="rating">
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStarHalf} />
-          </div>
-          <a
-            href="#"
-            className="text-base text-[#e53637] font-bold absolute top-0 left-0 transition-all duration-300 invisible opacity-0 add-cart"
-          >
-            + Add To Cart
-          </a>
-          <p className="text-[#0d0d0d] font-bold text-lg">{price}</p>
-          <div
-            className="product__color__select absolute right-0 bottom-0 opacity-0 transition-all duration-500"
-            id={convertTitle(title)}
-          >
-            <label
-              htmlFor="pc-4"
-              className="bg-[#5e64d1] product-select"
-              onClick={(e: any): void => handleColorSelect(e, title)}
-            >
-              <input type="radio" className="absolute invisible" id="pc-4" />
-            </label>
-            <label
-              className="active-select bg-[#404a47] product-select"
-              htmlFor="pc-5"
-              onClick={(e: any): void => handleColorSelect(e, title)}
-            >
-              <input type="radio" className="absolute invisible" id="pc-5" />
-            </label>
-            <label
-              className="bg-[#d5a667] product-select"
-              htmlFor="pc-6"
-              onClick={(e: any): void => handleColorSelect(e, title)}
-            >
-              <input type="radio" className="absolute invisible" id="pc-6" />
-            </label>
-          </div>
-        </div>
-        <MobileView>
-          <div className="flex flex-col list-none">
-            <ul className="flex">
-              <li className="mr-5">
-                <a href="#">
-                  <FontAwesomeIcon icon={faHeart} />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FontAwesomeIcon icon={faSearch} />
-                </a>
-              </li>
-            </ul>
-            <a href="#" className="text-base text-[#e53637] font-bold">
-              + Add To Cart
-            </a>
-          </div>
-        </MobileView>
-      </div>
-    </div>
-  );
-};
 
 const ProductSection = () => {
   const [rows, set] = useState<Record<string, any>>([]);
@@ -192,19 +53,19 @@ const ProductSection = () => {
       <div className="container mx-auto mt-16 px-4">
         <ul className="grid header-container mb-11 cursor-pointer list-none grid-cols-2 gap-4 text-2xl font-bold text-[#b7b7b7]">
           <li
-            className="active product-links"
+            className="active product-links sm:text-center"
             onClick={(e): void => handleProductShuffle(e, 'best-sellers')}
           >
             Best Sellers
           </li>
           <li
-            className="product-links"
+            className="product-links sm:text-center"
             onClick={(e): void => handleProductShuffle(e, 'new-arrivals')}
           >
             New Arrivals
           </li>
           <li
-            className="product-links"
+            className="product-links sm:text-center"
             onClick={(e): void => handleProductShuffle(e, 'hot-sales')}
           >
             Hot Sales
