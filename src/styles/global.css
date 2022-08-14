@@ -14,6 +14,10 @@
   .product-select {
     @apply inline-block h-3 w-3 mb-0 mr-1.5 relative cursor-pointer rounded-full
   }
+
+  .subtitle {
+    @apply mb-6 text-sm font-bold uppercase tracking-widest text-[#e53637]
+  }
 }
 
 html, body {
@@ -137,6 +141,12 @@ html, body {
 @media only screen and (max-width: 479px) {
   .swiper-slide .title {
     width: 90%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .products {
+    height: 2570px;
   }
 }
 
