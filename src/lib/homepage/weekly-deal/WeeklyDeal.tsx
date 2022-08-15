@@ -1,7 +1,24 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useCountdown } from '@/hooks/useCountdown';
+
+import ShowCounter from './components/ShowCounter';
+
+const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
+const NOW_IN_MS = new Date().getTime();
+
+const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
 
 const WeeklyDeal = () => {
+  const [days, hours, minutes, seconds] = useCountdown(dateTimeAfterThreeDays);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    if (days && hours && minutes && seconds) {
+      setTotal(days + hours + minutes + seconds);
+    }
+  }, [days, hours, minutes, seconds]);
   return (
     <section className="bg-[#f3f2ee] pt-36 pb-32">
       <div className="container mx-auto mt-16 px-4">
@@ -20,24 +37,16 @@ const WeeklyDeal = () => {
             <h2 className="mb-6 text-4xl font-bold text-[#111]">
               Multi-pocket Chest Bag Black
             </h2>
-            <div className="categories__deal__countdown__timer" id="countdown">
-              <div className="cd-item">
-                <span>3</span>
-                <p>Days</p>
-              </div>
-              <div className="cd-item">
-                <span>1</span>
-                <p>Hours</p>
-              </div>
-              <div className="cd-item">
-                <span>50</span>
-                <p>Minutes</p>
-              </div>
-              <div className="cd-item">
-                <span>18</span>
-                <p>Seconds</p>
-              </div>
-            </div>
+            {total <= 0 ? (
+              <h4>Expired</h4>
+            ) : (
+              <ShowCounter
+                days={days || 0}
+                hours={hours || 0}
+                minutes={minutes || 0}
+                seconds={seconds || 0}
+              />
+            )}
             <a href="#" className="primary-btn">
               Shop now
             </a>
