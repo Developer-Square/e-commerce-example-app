@@ -9,9 +9,15 @@ type Props = {
 
 const DateTimeDisplay = ({ value, type, isDanger }: Props) => {
   return (
-    <div className={isDanger ? 'danger countdown' : 'countdown'}>
-      <p className="before:content-none">{value}</p>
-      <span className="before:content-none">{type}</span>
+    <div
+      className={`${
+        isDanger ? 'danger countdown' : 'countdown'
+      } mx-5 flex flex-col`}
+    >
+      <p className="h-auto before:content-none">{value}</p>
+      <span className="h-auto text-sm font-normal before:content-none">
+        {type}
+      </span>
     </div>
   );
 };
