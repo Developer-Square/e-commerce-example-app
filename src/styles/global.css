@@ -15,6 +15,10 @@
     @apply inline-block h-3 w-3 mb-0 mr-1.5 relative cursor-pointer rounded-full
   }
 
+  .main-title {
+    @apply text-4xl font-bold text-[#111]
+  }
+
   .sub-title {
     @apply mb-6 text-sm font-bold uppercase tracking-widest text-[#e53637]
   }
@@ -131,6 +135,17 @@ html, body {
   transition: all 0.2s;
 }
 
+/* Blog Section */
+.blog-text {
+  padding: 30px 30px 25px;
+  margin: -35px auto 0 auto;
+}
+
+.calendar {
+  height: 16px;
+  color: #3d3d3d;
+}
+
 @media only screen and (min-width: 479px) {
   .swiper-slide {
     height: 570px !important;
@@ -183,6 +198,12 @@ html, body {
   .danger {
     margin-left: 0.5rem !important;
   }
+
+  .blogs-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column-gap: 10px;
+  }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 1400px) {
@@ -224,6 +245,10 @@ html, body {
 
   .danger {
     margin-left: 0.5rem !important;
+  }
+
+  .blogs-container {
+    grid-column-gap: 30px;
   }
 }
 
@@ -274,6 +299,11 @@ html, body {
 
   .danger {
     margin-left: 0.5rem !important;
+  }
+
+  .blogs-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

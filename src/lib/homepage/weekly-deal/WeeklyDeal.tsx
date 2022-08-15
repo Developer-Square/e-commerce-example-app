@@ -38,9 +38,7 @@ const WeeklyDeal = () => {
         <div>
           <div>
             <span className="sub-title">Deal Of The Week</span>
-            <h2 className="mb-6 text-4xl font-bold text-[#111]">
-              Multi-pocket Chest Bag Black
-            </h2>
+            <h2 className="main-title mb-6">Multi-pocket Chest Bag Black</h2>
             {total <= 0 ? (
               <h4>Expired</h4>
             ) : (

@@ -5,6 +5,7 @@ import {
   ProductSection,
   WeeklyDeal,
 } from '@/lib/homepage';
+import BlogSection from '@/lib/homepage/blog-section/BlogSection';
 import { Main } from '@/templates/Main';
 
 const Index = () => {
@@ -21,6 +22,7 @@ const Index = () => {
       <FeatureSection />
       <ProductSection />
       <WeeklyDeal />
+      <BlogSection />
     </Main>
   );
 };
