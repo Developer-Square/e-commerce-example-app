@@ -148,7 +148,7 @@ html, body {
   }
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 575px) {
   .products {
     height: 2570px;
   }
@@ -169,6 +169,19 @@ html, body {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-gap: 1rem;
+    margin-bottom: 60px;
+  }
+
+  .date-time-container {
+    justify-content: start !important;
+  }
+
+  .countdown {
+    margin: 0 2rem !important;
+  }
+
+  .danger {
+    margin-left: 0.5rem !important;
   }
 }
 
@@ -203,6 +216,14 @@ html, body {
   
   .web-image {
     display: block;
+  }
+
+  .countdown {
+    margin: 0 3rem !important;
+  }
+
+  .danger {
+    margin-left: 0.5rem !important;
   }
 }
 
@@ -243,6 +264,16 @@ html, body {
 
   .container {
     max-width: 960px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .countdown {
+    margin: 0 1.5rem !important;
+  }
+
+  .danger {
+    margin-left: 0.5rem !important;
   }
 }
 
