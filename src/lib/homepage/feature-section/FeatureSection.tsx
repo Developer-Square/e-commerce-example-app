@@ -32,10 +32,7 @@ const Section = ({ content, image }: Props) => {
             {content}
           </p>
           <li className="navbar-item w-32">
-            <a
-              href="#"
-              className="letter-spacing py-1 text-sm font-bold uppercase text-[#111]"
-            >
+            <a href="#" className="shop-now">
               Shop Now
             </a>
           </li>

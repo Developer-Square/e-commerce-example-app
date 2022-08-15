@@ -20,7 +20,7 @@ const WeeklyDeal = () => {
     }
   }, [days, hours, minutes, seconds]);
   return (
-    <section className="bg-[#f3f2ee] pt-36 pb-32">
+    <section className="bg-[#f3f2ee] py-32">
       <div className="container mx-auto mt-16 px-4">
         <div className="relative mb-10">
           <img src="/assets/images/product-sale.png" alt="product-sale" />
@@ -33,7 +33,7 @@ const WeeklyDeal = () => {
         </div>
         <div className="col-lg-4 offset-lg-1">
           <div className="categories__deal__countdown">
-            <span className="subtitle">Deal Of The Week</span>
+            <span className="sub-title">Deal Of The Week</span>
             <h2 className="mb-6 text-4xl font-bold text-[#111]">
               Multi-pocket Chest Bag Black
             </h2>
@@ -47,7 +47,10 @@ const WeeklyDeal = () => {
                 seconds={seconds || 0}
               />
             )}
-            <a href="#" className="primary-btn">
+            <a
+              href="#"
+              className="shop-now inline-block bg-[#000] py-3.5 px-8 text-[#fff]"
+            >
               Shop now
             </a>
           </div>

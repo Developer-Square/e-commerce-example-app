@@ -15,8 +15,12 @@
     @apply inline-block h-3 w-3 mb-0 mr-1.5 relative cursor-pointer rounded-full
   }
 
-  .subtitle {
+  .sub-title {
     @apply mb-6 text-sm font-bold uppercase tracking-widest text-[#e53637]
+  }
+
+  .shop-now {
+    @apply letter-spacing py-1 text-sm font-bold uppercase text-[#111]
   }
 }
 
@@ -212,7 +216,7 @@ html, body {
   }
 
   .swiper-button-prev, .swiper-button-next {
-    top: 89% !important;
+    top: 91% !important;
   }
 
   .mobile-image {

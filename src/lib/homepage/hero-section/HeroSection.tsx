@@ -55,7 +55,7 @@ const HeroTextSection = ({
       <img src={imgSource} alt={altTag} />
       <div className="top-9/50 md:left-1/10 hero-container absolute left-2.5 text-left sm:left-7">
         <Trail open={open}>
-          <h6 className="subtitle">{subtitle}</h6>
+          <h6 className="sub-title">{subtitle}</h6>
           <h2 className="title mb-6 text-4xl font-bold text-[#111111]">
             {title}
           </h2>
