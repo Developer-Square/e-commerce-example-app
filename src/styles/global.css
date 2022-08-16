@@ -26,6 +26,10 @@
   .shop-now {
     @apply letter-spacing py-1 text-sm font-bold uppercase text-[#111]
   }
+
+  .container {
+    @apply w-full px-3.5
+  }
 }
 
 html, body {
