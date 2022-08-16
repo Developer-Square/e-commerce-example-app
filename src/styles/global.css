@@ -208,6 +208,11 @@ html, body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-column-gap: 10px;
   }
+
+  .footer-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column-gap: 30px;
+  }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 1400px) {
@@ -253,6 +258,11 @@ html, body {
 
   .blogs-container {
     grid-column-gap: 30px;
+  }
+
+  .footer-items {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-column-gap: 50px;
   }
 }
 
@@ -308,6 +318,10 @@ html, body {
   .blogs-container {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer-items {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
