@@ -23,7 +23,7 @@ const MobileMenu = ({
   return (
     <animated.div
       style={navbarProps}
-      className={`menu-container md:hidden absolute inset-x-0 top-0 origin-top-right transition ${
+      className={`menu-container absolute inset-x-0 top-0 origin-top-right transition md:hidden ${
         menuVisibility ? 'z-10' : 'z-0'
       }`}
     >
@@ -32,9 +32,9 @@ const MobileMenu = ({
           <div className="flex items-center justify-between">
             <div>
               <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt="Workflow"
+                className="w-16 rounded-full"
+                src="/assets/images/Logo - dark surface.png"
+                alt="logo"
               />
             </div>
             <div className="-mr-2">
