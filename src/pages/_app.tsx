@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import '../styles/global.css';
+import '../styles/shop.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import { config } from '@fortawesome/fontawesome-svg-core';
