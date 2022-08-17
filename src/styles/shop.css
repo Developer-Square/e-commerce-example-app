@@ -4,3 +4,13 @@
   height: 38px;
   width: 38px;
 }
+
+.collapse-title {
+  padding: 0 0 0 0.5rem;
+  min-height: 2em;
+}
+
+.collapse-title::after {
+  top: 0.2rem !important;
+  right: 2.5rem !important;
+}

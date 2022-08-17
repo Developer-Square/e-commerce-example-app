@@ -1,11 +1,11 @@
 import { Meta } from '@/layouts/Meta';
 import {
+  BlogSection,
   FeatureSection,
   HeroSection,
   ProductSection,
   WeeklyDeal,
 } from '@/lib/homepage';
-import BlogSection from '@/lib/homepage/blog-section/BlogSection';
 import { Main } from '@/templates/Main';
 
 const Index = () => {
