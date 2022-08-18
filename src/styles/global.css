@@ -219,9 +219,13 @@ html, body {
   }
 }
 
-@media only screen and (min-width: 576px) and (max-width: 1400px) {
-  .title, .subtitle {
+@media only screen and (min-width: 576px) {
+  .title {
     width: 70%;
+  }
+
+  .subtitle {
+    width: 50%;
   }
 }
 

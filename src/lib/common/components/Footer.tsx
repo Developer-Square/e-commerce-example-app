@@ -33,7 +33,7 @@ const Footer = () => {
           <div className="mb-7">
             <a href="#">
               <img
-                className="mb-7 w-20 rounded-full md:w-1/4"
+                className="mb-7 w-20 rounded-full md:w-1/4 xl:w-1/6"
                 src="/assets/images/Logo - light surface.png"
                 alt="footer-logo"
               />
