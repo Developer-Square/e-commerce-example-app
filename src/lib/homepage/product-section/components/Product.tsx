@@ -58,7 +58,7 @@ const Product = ({
   };
 
   return (
-    <div className="product__item relative mb-10 flex h-full flex-col items-center">
+    <div className="product__item relative mb-10 flex h-full w-full flex-col items-center">
       <Label category={category} />
       <ul className="product__hover invisible absolute -right-52 top-5 opacity-0 transition-all duration-700">
         <li className="relative mb-2.5 bg-white px-2.5 pt-2 pb-1">

@@ -70,7 +70,7 @@ const ShopItems = () => {
         </div>
         <div id="shop-products" className="products">
           {products.map((product, index) => (
-            <div key={index}>
+            <div key={index} className="w-full">
               <Product
                 title={product.title}
                 image={product.image}
