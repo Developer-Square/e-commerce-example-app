@@ -2,6 +2,7 @@
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import React from 'react';
 import { animated } from 'react-spring';
 
@@ -64,32 +65,40 @@ const MobileMenu = ({
           </div>
           <div className="mt-6">
             <div className="my-5 flex justify-center font-bold">
-              <span className="mr-4 cursor-pointer">Signin</span>
-              <span className="cursor-pointer">FAQs</span>
+              <span className="mr-4 cursor-pointer">
+                <Link href="/contacts">Signin</Link>
+              </span>
+              <span className="cursor-pointer">
+                <Link href="/faqs">FAQs</Link>
+              </span>
             </div>
             <div className="my-5 flex justify-center">
               <SearchWishCartButton placement="mobile" />
             </div>
             <nav className="grid gap-y-8">
-              <a
-                href="#"
-                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-              >
-                <span className="ml-3 text-base font-bold text-gray-900">
-                  {' '}
-                  Home{' '}
-                </span>
-              </a>
+              <Link href="/">
+                <a
+                  href="#"
+                  className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                >
+                  <span className="ml-3 text-base font-bold text-gray-900">
+                    {' '}
+                    Home{' '}
+                  </span>
+                </a>
+              </Link>
 
-              <a
-                href="#"
-                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-              >
-                <span className="ml-3 text-base font-bold text-gray-900">
-                  {' '}
-                  Shop{' '}
-                </span>
-              </a>
+              <Link href="/shop">
+                <a
+                  href="#"
+                  className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                >
+                  <span className="ml-3 text-base font-bold text-gray-900">
+                    {' '}
+                    Shop{' '}
+                  </span>
+                </a>
+              </Link>
 
               <span className="ml-3 text-base font-bold text-gray-900">
                 <div className="dropdown">
@@ -109,16 +118,17 @@ const MobileMenu = ({
                   </ul>
                 </div>
               </span>
-
-              <a
-                href="#"
-                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-              >
-                <span className="ml-3 text-base font-bold text-gray-900">
-                  {' '}
-                  Contacts{' '}
-                </span>
-              </a>
+              <Link href="/contacts">
+                <a
+                  href="#"
+                  className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                >
+                  <span className="ml-3 text-base font-bold text-gray-900">
+                    {' '}
+                    Contacts{' '}
+                  </span>
+                </a>
+              </Link>
             </nav>
           </div>
         </div>

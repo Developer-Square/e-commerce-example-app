@@ -9,7 +9,6 @@ type Props = {
   menuVisibility: boolean;
   setMenuVisibility: Function;
   navbarProps: any;
-  handleActiveItems: Function;
   pages: Record<string, any>[];
 };
 
@@ -17,7 +16,6 @@ const TopBar = ({
   menuVisibility,
   setMenuVisibility,
   navbarProps,
-  handleActiveItems,
   pages,
 }: Props) => {
   return (
@@ -65,7 +63,6 @@ const TopBar = ({
               setMenuVisibility={setMenuVisibility}
               navbarProps={navbarProps}
               pages={pages}
-              handleActiveItems={handleActiveItems}
             />
           </nav>
           <SearchWishCartButton placement="web" />

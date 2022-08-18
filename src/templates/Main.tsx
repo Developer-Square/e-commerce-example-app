@@ -8,7 +8,7 @@ import {
   faStore,
 } from '@fortawesome/free-solid-svg-icons';
 import type { ReactNode } from 'react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { easings } from 'react-spring';
 
 import { config, useSpring } from '@/lib/common';
@@ -84,11 +84,31 @@ const Main = (props: IMainProps) => {
     }
   }, [menuVisibility]);
 
-  const handleActiveItems = (e: any) => {
-    const navbarItems = document.querySelectorAll('.navbar-item');
+  const removeActiveItems = () => {
+    const navbarItems = document.querySelectorAll('.navbarItem');
     Array.from(navbarItems).map((item) => item.classList.remove('active'));
-    e.currentTarget.classList.add('active');
   };
+
+  const addActiveItems = (item: string) => {
+    const navbarItem = document.querySelector(`.${item}`);
+    if (navbarItem) {
+      removeActiveItems();
+      navbarItem.classList.add('active');
+    }
+  };
+
+  useEffect(() => {
+    const url = window.location.href;
+    if (url.includes('shop')) {
+      addActiveItems('shop');
+    } else if (url.includes('contacts')) {
+      addActiveItems('contacts');
+    } else if (url.includes('signin')) {
+      addActiveItems('signin');
+    } else {
+      addActiveItems('home');
+    }
+  }, []);
 
   return (
     <div className="w-full text-gray-700 antialiased">
@@ -98,7 +118,6 @@ const Main = (props: IMainProps) => {
         pages={pages}
         menuVisibility={menuVisibility}
         setMenuVisibility={setMenuVisibility}
-        handleActiveItems={handleActiveItems}
       />
       <div className="content text-xl">{props.children}</div>
 
