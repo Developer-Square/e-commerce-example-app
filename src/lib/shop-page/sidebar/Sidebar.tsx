@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
@@ -101,7 +102,7 @@ const SidebarItems = ({ title, items }: ISidebarItemsProps) => (
 
 const Sidebar = () => {
   return (
-    <section className="py-24 lg:columns-1">
+    <section className="sidebar py-24">
       <div className="container-sm container relative mb-10">
         <input
           type="text"

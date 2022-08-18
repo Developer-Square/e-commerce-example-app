@@ -1,3 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .pagination-btn {
+    @apply !mr-2 !px-3.5 !h-10 !min-h-0 !rounded-full bg-transparent text-[#111]
+  }
+}
+
 .color:after {
   top: -3px;
   left: -3px;
@@ -13,4 +23,40 @@
 .collapse-title::after {
   top: 0.2rem !important;
   right: 2.5rem !important;
+}
+
+.arrow-right::after {
+  right: 0.5rem !important;
+}
+
+@media only screen and (max-width: 575px) {
+  #shop-products {
+    height: 5790px;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .results-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .sorting-container {
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .sidebar {
+    width: 25%;
+  }
+
+  .products-section {
+    width: 75%;
+  }
+
+  /* Overwriting the css in global.css */
+  #shop-products {
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+  }
 }

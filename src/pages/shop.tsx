@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import React from 'react';
 
 import { Meta } from '@/layouts/Meta';
-import { Breadcrumb } from '@/lib/common';
+import { Breadcrumb, Pagination } from '@/lib/common';
 import { ShopItems, Sidebar } from '@/lib/shop-page';
 import { Main } from '@/templates/Main';
 
@@ -22,10 +22,11 @@ const Shop = (): ReactElement => {
         previousLink="home"
         previousTitle="Home"
       />
-      <div className="gap-6 lg:flex">
+      <div className="container-sm container w-full gap-6 lg:flex">
         <Sidebar />
         <ShopItems />
       </div>
+      <Pagination />
     </Main>
   );
 };
