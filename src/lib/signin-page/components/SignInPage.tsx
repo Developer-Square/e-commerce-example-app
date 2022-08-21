@@ -51,9 +51,7 @@ const SignInPage = () => {
   });
   return (
     <section
-      className={`flex ${
-        pageState === 'signup' ? 'h-full' : 'h-screen'
-      } w-full items-center justify-center bg-[#dde5f4]`}
+      className={`flex h-screen w-full items-center justify-center bg-[#dde5f4]`}
     >
       <div className="card w-96 bg-[#f1f7fe] text-slate-800">
         <div className="card-body flex items-center justify-center">

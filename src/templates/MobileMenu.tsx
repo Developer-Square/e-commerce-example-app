@@ -66,7 +66,7 @@ const MobileMenu = ({
           <div className="mt-6">
             <div className="my-5 flex justify-center font-bold">
               <span className="mr-4 cursor-pointer">
-                <Link href="/contacts">Signin</Link>
+                <Link href="/signin">Signin</Link>
               </span>
               <span className="cursor-pointer">
                 <Link href="/faqs">FAQs</Link>

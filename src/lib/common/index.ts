@@ -9,6 +9,7 @@ import Breadcrumb from './components/Breadcrumb';
 import ExpandableNavItem from './components/ExpandableNavItem';
 import Pagination from './components/Pagination';
 import SearchWishCartButton from './components/SearchWishCartButton';
+import SubmitButton from './components/SubmitButton';
 import TextBox from './components/TextBox';
 
 export {
@@ -20,6 +21,7 @@ export {
   FontAwesomeIcon,
   Pagination,
   SearchWishCartButton,
+  SubmitButton,
   TextBox,
   useSpring,
 };
