@@ -167,6 +167,14 @@ html, body {
   color: #3d3d3d;
 }
 
+/* Testimonial */
+.testimonial {
+  height: 350px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+}
+
 @media only screen and (min-width: 479px) {
   .swiper-slide {
     height: 570px !important;
