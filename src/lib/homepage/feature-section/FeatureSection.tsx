@@ -31,7 +31,7 @@ const Section = ({ content, image }: Props) => {
           <p className="mb-2.5 max-w-full pt-6 text-4xl font-bold text-[#111]">
             {content}
           </p>
-          <li className="navbar-item w-32">
+          <li className="navbar-item w-32 list-none">
             <a href="#" className="shop-now">
               Shop Now
             </a>
