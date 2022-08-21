@@ -12,7 +12,7 @@ const getReturnValues = (countDown: number) => {
   return [days, hours, minutes, seconds];
 };
 
-const useCountdown = (targetDate: number) => {
+const useCountdown = (targetDate: number): number[] => {
   const countDownDate = new Date(targetDate).getTime();
 
   const [countDown, setCountDown] = useState(

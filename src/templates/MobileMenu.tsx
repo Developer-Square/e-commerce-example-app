@@ -6,6 +6,7 @@ import Link from 'next/link';
 import React from 'react';
 import { animated } from 'react-spring';
 
+import { useToLowerCase } from '@/hooks/useToLowerCase';
 import { SearchWishCartButton } from '@/lib/common';
 
 type Props = {
@@ -21,6 +22,7 @@ const MobileMenu = ({
   setMenuVisibility,
   pages,
 }: Props) => {
+  const toLowerCase = useToLowerCase();
   return (
     <animated.div
       style={navbarProps}
@@ -113,7 +115,13 @@ const MobileMenu = ({
                     className="dropdown-content menu w-52 bg-base-100 p-2"
                   >
                     {pages.slice(0, 4).map((page, index) => (
-                      <li key={index}>{<a>{page.title}</a>}</li>
+                      <li key={index}>
+                        {
+                          <Link href={`/${toLowerCase(page.title)}`}>
+                            <a>{page.title}</a>
+                          </Link>
+                        }
+                      </li>
                     ))}
                   </ul>
                 </div>
