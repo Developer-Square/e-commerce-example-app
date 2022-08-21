@@ -1,4 +1,5 @@
 import { Meta } from '@/layouts/Meta';
+import { ErrorBoundary } from '@/lib/error-handling';
 import {
   BlogSection,
   FeatureSection,
@@ -18,11 +19,21 @@ const Index = () => {
         />
       }
     >
-      <HeroSection />
-      <FeatureSection />
-      <ProductSection />
-      <WeeklyDeal />
-      <BlogSection />
+      <ErrorBoundary>
+        <HeroSection />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <FeatureSection />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ProductSection />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <WeeklyDeal />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <BlogSection />
+      </ErrorBoundary>
     </Main>
   );
 };
