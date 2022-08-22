@@ -9,6 +9,11 @@ interface IInfoSectionProps {
   content: string;
 }
 
+interface IClientNumbers {
+  number: number | string;
+  text: string;
+}
+
 const data: Record<string, any>[] = [
   {
     title: 'Who We Are ?',
@@ -31,6 +36,15 @@ const InfoSection = ({ title, content }: IInfoSectionProps) => (
   <div className="mb-7">
     <h4 className="mb-2.5 text-2xl font-bold text-[#111]">{title}</h4>
     <p className="mb-0 text-sm text-[#3d3d3d]">{content}</p>
+  </div>
+);
+
+const ClientNumbers = ({ number, text }: IClientNumbers) => (
+  <div className="mb-2 flex">
+    <h2 className="mr-2.5 text-6xl font-bold">{number}</h2>
+    <span className="flex items-center text-lg font-bold text-[#3d3d3d]">
+      {text}
+    </span>
   </div>
 );
 
@@ -85,6 +99,13 @@ const About = () => (
           alt="testimonial"
           className="testimonial"
         />
+      </div>
+    </section>
+    <section className="pt-24">
+      <div className="container-sm container text-[#111]">
+        <ClientNumbers number={25} text={'Our Clients'} />
+        <ClientNumbers number={12} text={'Total Categories'} />
+        <ClientNumbers number={'98%'} text={'Happy Customers'} />
       </div>
     </section>
   </Main>
