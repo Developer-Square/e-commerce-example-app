@@ -11,6 +11,10 @@
     @apply text-4xl font-bold text-[#111]
   }
 
+  .section-title {
+    @apply text-4xl font-bold text-[#111]
+  }
+
   .sub-title {
     @apply mb-6 text-sm font-bold uppercase tracking-widest text-[#e53637]
   }
