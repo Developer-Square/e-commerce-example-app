@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/shop.css';
 import '../styles/about-us.css';
+import '../styles/footer.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import { config } from '@fortawesome/fontawesome-svg-core';

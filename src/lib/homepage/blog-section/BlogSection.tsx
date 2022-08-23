@@ -11,7 +11,7 @@ interface IBlogProps {
 }
 
 const Blog = ({ title, date, img }: IBlogProps): ReactElement => (
-  <div className="relative mb-11 flex flex-col justify-center">
+  <div className="relative mb-11 flex flex-col">
     <img src={`/assets/images/blog/${img}.jpg`} alt="blog image" />
     <div className="blog-text flex w-10/12 flex-col bg-[#fff]">
       <div className="mb-2.5 flex">
@@ -39,7 +39,7 @@ const BlogSection = () => {
           <span className="sub-title mb-4 block text-center">Latest News</span>
           <h2 className="main-title text-center">Fashion New Trends</h2>
         </div>
-        <div className="blogs-container px-3.5">
+        <div className="blogs-container grid px-3.5">
           <Blog
             title="What Curling Irons Are The Best Ones"
             date="16 February 2020"

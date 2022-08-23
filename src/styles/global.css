@@ -237,13 +237,13 @@ html, body {
   }
 
   .blogs-container {
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-column-gap: 10px;
   }
 
   .footer-items {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-column-gap: 30px;
   }
 }
@@ -302,7 +302,7 @@ html, body {
   }
 
   .footer-items {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     grid-column-gap: 50px;
   }
 }
@@ -362,7 +362,7 @@ html, body {
   }
 
   .footer-items {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 }
 
