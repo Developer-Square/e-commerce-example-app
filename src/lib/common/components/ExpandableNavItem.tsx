@@ -1,8 +1,10 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 /* eslint-disable import/no-cycle */
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
+import Link from 'next/link';
 import React from 'react';
 
+import { useToLowerCase } from '@/hooks/useToLowerCase';
 import { animated, FontAwesomeIcon } from '@/lib/common/index';
 
 type Props = {
@@ -17,20 +19,24 @@ type NavbarProps = {
 };
 
 const NavbarItems = ({ items }: NavbarProps) => {
+  const toLowerCase = useToLowerCase();
   return (
     <>
       {items.map((item, index) => (
-        <a
-          href="#"
-          className="hover:bg-gray-150 -m-3 flex items-center rounded-lg p-3"
-          key={index}
-        >
-          <FontAwesomeIcon icon={item.icon} />
-          <div className="ml-4">
-            <p className="text-base font-medium text-gray-900">{item.title}</p>
-            <p className="text-gray-550 mt-1 text-sm">{item.content}</p>
-          </div>
-        </a>
+        <Link href={`/${toLowerCase(item.title)}`} key={index}>
+          <a
+            href="#"
+            className="hover:bg-gray-150 -m-3 flex items-center rounded-lg p-3"
+          >
+            <FontAwesomeIcon icon={item.icon} />
+            <div className="ml-4">
+              <p className="text-base font-medium text-gray-900">
+                {item.title}
+              </p>
+              <p className="text-gray-550 mt-1 text-sm">{item.content}</p>
+            </div>
+          </a>
+        </Link>
       ))}
     </>
   );

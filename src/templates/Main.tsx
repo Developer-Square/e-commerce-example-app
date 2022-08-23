@@ -105,8 +105,10 @@ const Main = (props: IMainProps) => {
       addActiveItems('contacts');
     } else if (url.includes('signin')) {
       addActiveItems('signin');
-    } else {
+    } else if (url.includes('home')) {
       addActiveItems('home');
+    } else {
+      removeActiveItems();
     }
   }, []);
 
