@@ -1,10 +1,11 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import { faQuoteRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 const Testimonial = () => {
   return (
-    <section className="bg-[#f3f2ee]">
+    <section className="bg-[#f3f2ee] lg:grid lg:grid-cols-2">
       <div className="container-sm container">
         <div className="flex flex-col justify-center py-14 px-10">
           <FontAwesomeIcon icon={faQuoteRight} className="!h-14" />
@@ -34,7 +35,7 @@ const Testimonial = () => {
         <img
           src="/assets/images/about/testimonial-pic.jpg"
           alt="testimonial"
-          className="testimonial"
+          className="testimonial w-full"
         />
       </div>
     </section>

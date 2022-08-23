@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import React from 'react';
 
 interface IImagesProps {
@@ -26,7 +27,7 @@ const Team = () => {
           <span className="sub-title">Our Team</span>
           <h2 className="section-title">Meet Our Team</h2>
         </div>
-        <div>
+        <div className="team-section">
           <Images
             imgSrc="Linus-Profile-Photo.jpg"
             name="Linus Saisi"

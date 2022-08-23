@@ -1,0 +1,41 @@
+@media only screen and (min-width: 576px) {
+  .testimonial {
+    height: 400px;
+  }
+
+  .info-section, .client-section, .team-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 1rem;
+  }
+
+  .partner-section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 1rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .testimonial {
+    height: 600px;
+  }
+
+  .info-section {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .testimonial {
+    height: 450px;
+  }
+
+  .client-section, .team-section {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .partner-section {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import React from 'react';
 
 interface IClientNumberSection {
@@ -17,7 +18,7 @@ const ClientNumberSection = ({ number, text }: IClientNumberSection) => (
 const ClientNumbers = () => {
   return (
     <section className="pt-24">
-      <div className="container-sm container border border-[#e5e5e5] pb-16 text-[#111]">
+      <div className="container-sm client-section container border-b border-[#e5e5e5] pb-16 text-[#111]">
         <ClientNumberSection number={25} text={'Our Clients'} />
         <ClientNumberSection number={12} text={'Total Categories'} />
         <ClientNumberSection number={'98%'} text={'Happy Customers'} />

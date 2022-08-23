@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import React from 'react';
 
 const imageSources = [
@@ -20,7 +21,7 @@ const Partners = () => {
             <span className="sub-title">Partners</span>
             <h2 className="section-title">Happy Clients</h2>
           </div>
-          <div className="grid grid-cols-2">
+          <div className="partner-section grid grid-cols-2">
             {imageSources.map((img, index) => (
               <div className="mb-16 flex justify-center" key={index}>
                 <img src={`/assets/images/clients/${img}.png`} alt="clients" />
