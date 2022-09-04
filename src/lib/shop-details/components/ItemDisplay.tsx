@@ -3,6 +3,8 @@ import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 
+import VideoPlayer from './VideoPlayer';
+
 interface IItemsNavbarProps {
   image: string;
   setActiveItem: Function;
@@ -36,37 +38,32 @@ const ItemsContent = ({ activeItem }: { activeItem: string }) => {
     <>
       {activeItem === 'thumb-1' ? (
         <img
-          src="/assets/images/shop-details/product-big.png"
+          src="/assets/images/shop-details/product-big-2.png"
           alt="item display"
         />
       ) : null}
 
       {activeItem === 'thumb-2' ? (
         <img
-          src="/assets/images/shop-details/product-big-2.png"
+          src="/assets/images/shop-details/product-big-3.png"
           alt="item display"
         />
       ) : null}
 
       {activeItem === 'thumb-3' ? (
         <img
-          src="/assets/images/shop-details/product-big-3.png"
+          src="/assets/images/shop-details/product-big.png"
           alt="item display"
         />
       ) : null}
 
-      {activeItem === 'thumb-4' ? (
-        <img
-          src="/assets/images/shop-details/product-big-4.png"
-          alt="item display"
-        />
-      ) : null}
+      {activeItem === 'thumb-4' ? <VideoPlayer /> : null}
     </>
   );
 };
 
 const ItemDisplay = () => {
-  const [activeItem, setActiveItem] = useState('thumb-2');
+  const [activeItem, setActiveItem] = useState('thumb-1');
   return (
     <div>
       <div>

@@ -37,6 +37,10 @@
   transform: translate(-50%, -50%);
 }
 
+.video-container > div {
+  width: 100% !important;
+}
+
 @media only screen and (max-width: 575px) {
   #shop-products {
     height: 5790px;
