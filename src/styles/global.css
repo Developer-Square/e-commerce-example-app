@@ -26,6 +26,14 @@
   .container {
     @apply w-full px-3.5 mx-auto
   }
+
+  .colors-item {
+    @apply relative mr-2.5 mb-2.5 inline-block h-8 w-8 cursor-pointer rounded-full after:absolute after:rounded-full after:border-2 after:border-[#e5e5e5] after:content-[""]
+  }
+  
+  .size-item {
+    @apply mr-2 mt-2.5 inline-block cursor-pointer border border-[#e5e5e5] py-1.5 px-6 text-sm font-bold uppercase text-[#111]
+  }
 }
 
 html, body {

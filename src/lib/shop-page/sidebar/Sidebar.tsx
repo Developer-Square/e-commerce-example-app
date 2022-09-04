@@ -21,8 +21,8 @@ const filterPrice = [
   '$200.00 - $250.00',
   '250.00+',
 ];
-const size = ['xs', 's', 'm', 'xl', '2xl', '3xl', '4xl'];
-const colors = [
+export const size = ['xs', 's', 'm', 'xl', '2xl', '3xl', '4xl'];
+export const colors = [
   '#0b090c',
   '#20315f',
   '#f1af4d',
@@ -55,7 +55,7 @@ const SidebarItems = ({ title, items }: ISidebarItemsProps) => (
     <div className="collapse-title text-base font-bold uppercase text-[#111]">
       {title}
     </div>
-    <div className="collapse-content">
+    <div className="">
       <ul className="text-sm font-normal text-[#898989]">
         {title === 'Categories' ||
         title === 'Branding' ||
@@ -68,10 +68,7 @@ const SidebarItems = ({ title, items }: ISidebarItemsProps) => (
           : null}
         {title === 'Size'
           ? items.map((item, index) => (
-              <li
-                className="mr-2 mt-2.5 inline-block cursor-pointer border border-[#e5e5e5] py-1.5 px-6 text-sm font-bold uppercase text-[#111]"
-                key={index}
-              >
+              <li className="size-item" key={index}>
                 {item}
               </li>
             ))
@@ -79,7 +76,7 @@ const SidebarItems = ({ title, items }: ISidebarItemsProps) => (
         {title === 'Colors'
           ? items.map((item, index) => (
               <li
-                className={`color relative mr-2.5 mb-2.5 inline-block h-8 w-8 cursor-pointer rounded-full after:absolute after:-top-1 after:-left-1 after:h-9 after:w-9 after:rounded-full after:border-2 after:border-[#e5e5e5] after:content-[""]`}
+                className={`color colors-item`}
                 style={{ background: `${item}` }}
                 key={index}
               ></li>

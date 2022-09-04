@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { Meta } from '@/layouts/Meta';
-import { ExtendedBreadCrumb, ItemDisplay } from '@/lib/shop-details';
+import {
+  ExtendedBreadCrumb,
+  ItemDisplay,
+  ProductDetails,
+} from '@/lib/shop-details';
 import { Main } from '@/templates/Main';
 
 const ShopDetails = () => {
@@ -21,6 +25,7 @@ const ShopDetails = () => {
             <ItemDisplay />
           </div>
         </div>
+        <ProductDetails />
       </section>
       ;
     </Main>

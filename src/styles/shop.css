@@ -41,6 +41,12 @@
   width: 100% !important;
 }
 
+.products-text-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
 @media only screen and (max-width: 575px) {
   #shop-products {
     height: 5790px;
