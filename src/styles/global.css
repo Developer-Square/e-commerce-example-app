@@ -69,6 +69,12 @@ html, body {
   transform: scale(1);
 }
 
+.active-description a::after {
+  width: 220px;
+  left: 50%;
+  transform: scale(1) translateX(-50%);
+}
+
 /* Makes the menu on mobile screens cover the whole screen */
 .menu-container {
   height: 100vh;
