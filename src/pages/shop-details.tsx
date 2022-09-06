@@ -22,7 +22,7 @@ const ShopDetails = () => {
       <section>
         <div className="mb-24 bg-[#f3f2ee] pt-10 pb-14">
           <div className="container-sm container">
-            <ExtendedBreadCrumb />
+            <ExtendedBreadCrumb currentPage="Product Details" />
             <ItemDisplay />
           </div>
         </div>
