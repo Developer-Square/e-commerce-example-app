@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable tailwindcss/no-custom-classname */
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -100,11 +101,12 @@ const ProductSelectionAndPurchase = () => (
         add to wishlist
       </a>
     </div>
-    <div className="text-center text-base">
-      <p className="mb-6 font-bold">Guaranteed Safe Checkout</p>
+    <div className="flex flex-col justify-center text-center text-base">
+      <p className="mb-6 text-lg font-bold">Guaranteed Safe Checkout</p>
       <img
         src="/assets/images/shop-details/details-payment.png"
         alt="details-payment"
+        className="payment-details"
       />
       <ul className="flex list-none flex-col items-center justify-center pt-10">
         <li className="flex font-bold">
@@ -164,13 +166,13 @@ const ProductDetails = () => {
     }
   };
   return (
-    <div className="container text-[#111]">
-      <div className="product-details-text">
+    <div className="container-sm container text-[#111]">
+      <div className="product-details-text md:w-2/3 mx-auto">
         <ProductDescription />
         <ProductSelectionAndPurchase />
       </div>
       <div className="mt-14">
-        <ul className="grid-cols-1 text-xl font-bold text-[#b7b7b7] sm:grid-cols-2 md:grid-cols-3">
+        <ul className="grid-cols-1 text-xl font-bold text-[#b7b7b7] product-info">
           <li
             className="navbarItem active-description mb-3.5 cursor-pointer text-center"
             id="description"
