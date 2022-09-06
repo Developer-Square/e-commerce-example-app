@@ -2,9 +2,11 @@
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import React from 'react';
 import { animated } from 'react-spring';
 
+import { useToLowerCase } from '@/hooks/useToLowerCase';
 import { SearchWishCartButton } from '@/lib/common';
 
 type Props = {
@@ -20,11 +22,12 @@ const MobileMenu = ({
   setMenuVisibility,
   pages,
 }: Props) => {
+  const toLowerCase = useToLowerCase();
   return (
     <animated.div
       style={navbarProps}
-      className={`menu-container md:hidden absolute inset-x-0 top-0 origin-top-right transition ${
-        menuVisibility ? 'z-10' : 'z-0'
+      className={`menu-container absolute inset-x-0 top-0 origin-top-right transition md:hidden ${
+        menuVisibility ? 'z-10' : 'hidden'
       }`}
     >
       <div className="h-full divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
@@ -32,9 +35,9 @@ const MobileMenu = ({
           <div className="flex items-center justify-between">
             <div>
               <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt="Workflow"
+                className="w-16 rounded-full"
+                src="/assets/images/Logo - dark surface.png"
+                alt="logo"
               />
             </div>
             <div className="-mr-2">
@@ -64,32 +67,40 @@ const MobileMenu = ({
           </div>
           <div className="mt-6">
             <div className="my-5 flex justify-center font-bold">
-              <span className="mr-4 cursor-pointer">Signin</span>
-              <span className="cursor-pointer">FAQs</span>
+              <span className="mr-4 cursor-pointer">
+                <Link href="/signin">Signin</Link>
+              </span>
+              <span className="cursor-pointer">
+                <Link href="/faqs">FAQs</Link>
+              </span>
             </div>
             <div className="my-5 flex justify-center">
               <SearchWishCartButton placement="mobile" />
             </div>
             <nav className="grid gap-y-8">
-              <a
-                href="#"
-                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-              >
-                <span className="ml-3 text-base font-bold text-gray-900">
-                  {' '}
-                  Home{' '}
-                </span>
-              </a>
+              <Link href="/">
+                <a
+                  href="#"
+                  className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                >
+                  <span className="ml-3 text-base font-bold text-gray-900">
+                    {' '}
+                    Home{' '}
+                  </span>
+                </a>
+              </Link>
 
-              <a
-                href="#"
-                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-              >
-                <span className="ml-3 text-base font-bold text-gray-900">
-                  {' '}
-                  Shop{' '}
-                </span>
-              </a>
+              <Link href="/shop">
+                <a
+                  href="#"
+                  className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                >
+                  <span className="ml-3 text-base font-bold text-gray-900">
+                    {' '}
+                    Shop{' '}
+                  </span>
+                </a>
+              </Link>
 
               <span className="ml-3 text-base font-bold text-gray-900">
                 <div className="dropdown">
@@ -104,21 +115,28 @@ const MobileMenu = ({
                     className="dropdown-content menu w-52 bg-base-100 p-2"
                   >
                     {pages.slice(0, 4).map((page, index) => (
-                      <li key={index}>{<a>{page.title}</a>}</li>
+                      <li key={index}>
+                        {
+                          <Link href={`/${toLowerCase(page.title)}`}>
+                            <a>{page.title}</a>
+                          </Link>
+                        }
+                      </li>
                     ))}
                   </ul>
                 </div>
               </span>
-
-              <a
-                href="#"
-                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-              >
-                <span className="ml-3 text-base font-bold text-gray-900">
-                  {' '}
-                  Contacts{' '}
-                </span>
-              </a>
+              <Link href="/contacts">
+                <a
+                  href="#"
+                  className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                >
+                  <span className="ml-3 text-base font-bold text-gray-900">
+                    {' '}
+                    Contacts{' '}
+                  </span>
+                </a>
+              </Link>
             </nav>
           </div>
         </div>

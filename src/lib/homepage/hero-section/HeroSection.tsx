@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable tailwindcss/no-custom-classname */
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -54,9 +55,7 @@ const HeroTextSection = ({
       <img src={imgSource} alt={altTag} />
       <div className="top-9/50 md:left-1/10 hero-container absolute left-2.5 text-left sm:left-7">
         <Trail open={open}>
-          <h6 className="mb-6 text-sm font-bold uppercase tracking-widest text-[#e53637]">
-            {subtitle}
-          </h6>
+          <h6 className="sub-title">{subtitle}</h6>
           <h2 className="title mb-6 text-4xl font-bold text-[#111111]">
             {title}
           </h2>

@@ -5,17 +5,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, config, useSpring } from 'react-spring';
 
 import BackButton from './components/BackButton';
+import Breadcrumb from './components/Breadcrumb';
 import ExpandableNavItem from './components/ExpandableNavItem';
+import Pagination from './components/Pagination';
 import SearchWishCartButton from './components/SearchWishCartButton';
+import SubmitButton from './components/SubmitButton';
 import TextBox from './components/TextBox';
 
 export {
   animated,
   BackButton,
+  Breadcrumb,
   config,
   ExpandableNavItem,
   FontAwesomeIcon,
+  Pagination,
   SearchWishCartButton,
+  SubmitButton,
   TextBox,
   useSpring,
 };

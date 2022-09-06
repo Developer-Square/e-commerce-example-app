@@ -1,0 +1,100 @@
+[
+	{
+		"image": "product-1.jpg",
+		"title": "Piqué Biker Jacket",
+		"price": "$68.24",
+		"category": "new-arrivals",
+		"height": 170
+	},
+	{
+		"image": "product-2.jpg",
+		"title": "Piqué Biker Jacket",
+		"price": "$68.24",
+		"category": "hot-sales",
+		"height": 170
+	},
+	{
+		"image": "product-3.jpg",
+		"title": "Multi-pocket Chest Bag",
+		"price": "$43.48",
+		"category": "new-arrivals",
+		"height": 170
+	},
+	{
+		"image": "product-4.jpg",
+		"title": "Diagonal Textured Cap",
+		"price": "$60.9",
+		"category": "hot-sales",
+		"height": 170
+	},
+	{
+		"image": "product-5.jpg",
+		"title": "Lether Backpack",
+		"price": "$31.37",
+		"category": "new-arrivals",
+		"height": 170
+	},
+	{
+		"image": "product-6.jpg",
+		"title": "Ankle Boots",
+		"price": "$98.49",
+		"category": "hot-sales",
+		"height": 170
+	},
+	{
+		"image": "product-7.jpg",
+		"title": "T-shirt Contrast Pocket",
+		"price": "$49.66",
+		"category": "new-arrivals",
+		"height": 170
+	},
+	{
+		"image": "product-8.jpg",
+		"title": "Basic Flowing Scarf",
+		"price": "$26.28",
+		"category": "hot-sales",
+		"height": 170
+	},
+	{
+		"image": "product-9.jpg",
+		"title": "Black T-shirt",
+		"price": "$20.9",
+		"category": "best-sellers",
+		"height": 170
+	},
+	{
+		"image": "product-10.jpg",
+		"title": "New Cologne",
+		"price": "$53",
+		"category": "best-sellers",
+		"height": 170
+	},
+	{
+		"image": "product-11.jpg",
+		"title": "Gucci bag",
+		"price": "$47.34",
+		"category": "best-sellers",
+		"height": 170
+	},
+	{
+		"image": "product-12.jpg",
+		"title": "Camoflage Jacket",
+		"price": "$27.9",
+		"category": "best-sellers",
+		"height": 170
+	},
+	{
+		"image": "product-13.jpg",
+		"title": "Brown bag",
+		"price": "$58.9",
+		"category": "best-sellers",
+		"height": 170
+	},
+	{
+		"image": "product-14.jpg",
+		"title": "Suit buttons",
+		"price": "$92.9",
+		"category": "best-sellers",
+		"height": 170
+	}
+]

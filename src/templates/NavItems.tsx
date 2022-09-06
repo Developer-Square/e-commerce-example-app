@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import Link from 'next/link';
 import React from 'react';
 
@@ -7,7 +8,6 @@ type Props = {
   pages: Record<string, any>[];
   navbarProps: any;
   menuVisibility: boolean;
-  handleActiveItems: Function;
   setMenuVisibility: Function;
 };
 
@@ -17,13 +17,8 @@ const NavItems = ({
   pages,
   navbarProps,
   menuVisibility,
-  handleActiveItems,
   setMenuVisibility,
 }: Props) => {
-  const handleMenuItemClick = (evt: any) => {
-    handleActiveItems(evt);
-    setMenuVisibility(false);
-  };
   return (
     <>
       {navItems.map((item, index) => (
@@ -39,10 +34,10 @@ const NavItems = ({
           ) : (
             <li
               key={index}
-              className="navbar-item"
-              onClick={(e): void => handleMenuItemClick(e)}
+              className={`navbarItem ${item.toLowerCase()}`}
+              onClick={(): void => setMenuVisibility(false)}
             >
-              <Link href={`/${item.toLowerCase()}`}>
+              <Link href={`${item === 'Home' ? '/' : `${item.toLowerCase()}`}`}>
                 <a href="#" className="text-base font-bold text-gray-900">
                   {item}
                 </a>

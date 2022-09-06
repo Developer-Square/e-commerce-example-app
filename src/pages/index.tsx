@@ -1,5 +1,12 @@
 import { Meta } from '@/layouts/Meta';
-import { HeroSection } from '@/lib/homepage';
+import { ErrorBoundary } from '@/lib/error-handling';
+import {
+  BlogSection,
+  FeatureSection,
+  HeroSection,
+  ProductSection,
+  WeeklyDeal,
+} from '@/lib/homepage';
 import { Main } from '@/templates/Main';
 
 const Index = () => {
@@ -12,7 +19,21 @@ const Index = () => {
         />
       }
     >
-      <HeroSection />
+      <ErrorBoundary>
+        <HeroSection />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <FeatureSection />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ProductSection />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <WeeklyDeal />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <BlogSection />
+      </ErrorBoundary>
     </Main>
   );
 };

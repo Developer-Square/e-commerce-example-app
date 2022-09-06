@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .pagination-btn {
+    @apply !mr-2 !px-3.5 !h-10 !min-h-0 !rounded-full bg-transparent text-[#111]
+  }
+}
+
+.color:after {
+  top: -3px;
+  left: -3px;
+  height: 38px;
+  width: 38px;
+}
+
+.collapse-title {
+  padding: 0 0 0 0.5rem;
+  min-height: 2em;
+}
+
+.collapse-title::after {
+  top: 0.2rem !important;
+  right: 2.5rem !important;
+}
+
+.arrow-right::after {
+  right: 0.5rem !important;
+}
+
+/* Shop Details Page */
+.item-display {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video-container > div {
+  width: 100% !important;
+}
+
+.products-text-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+@media only screen and (max-width: 575px) {
+  #shop-products {
+    height: 5790px;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .container-sm {
+    max-width: 540px;
+  }
+
+  .results-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .sorting-container {
+    padding: 0;
+  }
+
+  .item-display {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .product-info, .related-products {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .payment-details {
+    width: 476px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container-sm {
+    max-width: 720px;
+  }
+
+  .item-display {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .product-info, .related-products {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    max-width: 992px;
+  }
+
+  .sidebar {
+    width: 25%;
+  }
+
+  .products-section {
+    width: 75%;
+  }
+
+  /* Overwriting the css in global.css */
+  #shop-products {
+    grid-gap: 2.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+  }
+
+  .related-products {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px !important;
+  }
+}
