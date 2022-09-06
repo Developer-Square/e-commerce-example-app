@@ -6,6 +6,7 @@ import {
   ItemDisplay,
   ProductDetails,
 } from '@/lib/shop-details';
+import RelatedProducts from '@/lib/shop-details/components/RelatedProducts';
 import { Main } from '@/templates/Main';
 
 const ShopDetails = () => {
@@ -27,7 +28,7 @@ const ShopDetails = () => {
         </div>
         <ProductDetails />
       </section>
-      ;
+      <RelatedProducts />;
     </Main>
   );
 };
