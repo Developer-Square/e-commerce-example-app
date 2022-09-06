@@ -36,7 +36,7 @@ const RatingSection = () => (
   </div>
 );
 
-const ProducDescription = () => (
+const ProductDescription = () => (
   <>
     <h4 className="products-text-title text-center">Hooded thermal anorak</h4>
     <div className="mb-5 flex items-center justify-center">
@@ -166,7 +166,7 @@ const ProductDetails = () => {
   return (
     <div className="container text-[#111]">
       <div className="product-details-text">
-        <ProducDescription />
+        <ProductDescription />
         <ProductSelectionAndPurchase />
       </div>
       <div className="mt-14">

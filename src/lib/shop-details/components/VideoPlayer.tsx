@@ -8,13 +8,13 @@ import ReactPlayer from 'react-player';
 const VideoPlayer = () => {
   const [showVideo, setShowVideo] = useState(false);
   return (
-    <div className="video-container relative w-full">
+    <div className="video-container relative w-full md:flex md:justify-center">
       {!showVideo ? (
         <>
           <img
             src="/assets/images/shop-details/product-big-4.png"
             alt="item display"
-            className="w-full"
+            className="w-full md:w-auto"
           />
           <FontAwesomeIcon
             icon={faCirclePlay}

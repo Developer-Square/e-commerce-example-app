@@ -65,9 +65,9 @@ const ItemsContent = ({ activeItem }: { activeItem: string }) => {
 const ItemDisplay = () => {
   const [activeItem, setActiveItem] = useState('thumb-1');
   return (
-    <div>
+    <div className="md:flex">
       <div>
-        <ul className="mb-10 grid grid-cols-3">
+        <ul className="item-display mb-10">
           {itemImages.map((item, index) => (
             <ItemsNavBar
               key={index}
@@ -77,7 +77,7 @@ const ItemDisplay = () => {
           ))}
         </ul>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center md:w-full">
         <ItemsContent activeItem={activeItem} />
       </div>
     </div>

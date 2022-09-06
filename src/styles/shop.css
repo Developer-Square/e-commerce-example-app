@@ -30,6 +30,11 @@
 }
 
 /* Shop Details Page */
+.item-display {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .play {
   position: absolute;
   top: 50%;
@@ -66,11 +71,19 @@
   .sorting-container {
     padding: 0;
   }
+
+  .item-display {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 @media only screen and (min-width: 768px) {
   .container-sm {
     max-width: 720px;
+  }
+
+  .item-display {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 

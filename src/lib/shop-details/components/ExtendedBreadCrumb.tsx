@@ -6,7 +6,7 @@ import React from 'react';
 const ExtendedBreadCrumb = () => {
   return (
     <div className="mb-7 text-2xl font-bold text-[#111]">
-      <div className="flex">
+      <div className="flex md:justify-center">
         <Link href={`/`}>
           <h4 className="mr-2 text-sm font-normal">Home</h4>
         </Link>
