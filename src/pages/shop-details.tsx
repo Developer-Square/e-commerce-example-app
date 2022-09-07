@@ -1,11 +1,7 @@
 import React from 'react';
 
 import { Meta } from '@/layouts/Meta';
-import {
-  ExtendedBreadCrumb,
-  ItemDisplay,
-  ProductDetails,
-} from '@/lib/shop-details';
+import { ProductDetails, ShopDetailsHeader } from '@/lib/shop-details';
 import RelatedProducts from '@/lib/shop-details/components/RelatedProducts';
 import { Main } from '@/templates/Main';
 
@@ -20,15 +16,10 @@ const ShopDetails = () => {
       }
     >
       <section>
-        <div className="mb-24 bg-[#f3f2ee] pt-10 pb-14">
-          <div className="container-sm container">
-            <ExtendedBreadCrumb currentPage="Product Details" />
-            <ItemDisplay />
-          </div>
-        </div>
+        <ShopDetailsHeader />
         <ProductDetails />
+        <RelatedProducts />;
       </section>
-      <RelatedProducts />;
     </Main>
   );
 };
