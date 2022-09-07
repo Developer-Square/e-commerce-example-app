@@ -23,6 +23,10 @@
     @apply letter-spacing py-1 text-sm font-bold uppercase text-[#111]
   }
 
+  .black-btn {
+    @apply letter-spacing inline-block bg-[#000] py-3.5 px-8 text-sm font-bold uppercase text-[#fff]
+  }
+
   .container {
     @apply w-full px-3.5 mx-auto
   }
