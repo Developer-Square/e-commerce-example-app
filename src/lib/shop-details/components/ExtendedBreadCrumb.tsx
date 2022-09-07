@@ -5,8 +5,12 @@ import React from 'react';
 
 const ExtendedBreadCrumb = ({ currentPage }: { currentPage: string }) => {
   return (
-    <div className="mb-7 text-2xl font-bold text-[#111]">
-      <div className="flex md:justify-center">
+    <div className="mb-7 mt-2 text-2xl font-bold text-[#111]">
+      <div
+        className={`flex ${
+          currentPage === 'Product Details' ? 'md:justify-center' : ''
+        }`}
+      >
         <Link href={`/`}>
           <h4 className="mr-2 text-sm font-normal">Home</h4>
         </Link>

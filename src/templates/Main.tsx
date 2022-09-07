@@ -2,10 +2,8 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import {
   faBlog,
-  faCartShopping,
   faCircleQuestion,
   faCreditCard,
-  faStore,
 } from '@fortawesome/free-solid-svg-icons';
 import type { ReactNode } from 'react';
 import { useEffect, useMemo, useState } from 'react';
@@ -25,16 +23,6 @@ const pages = [
     title: 'About Us',
     content: 'Read our story on how and why we made this site',
     icon: faBlog,
-  },
-  {
-    title: 'Shop Details',
-    content: 'All the product details you need to make a decision',
-    icon: faStore,
-  },
-  {
-    title: 'Shopping Cart',
-    content: 'View all the items in cart',
-    icon: faCartShopping,
   },
   {
     title: 'Check Out',

@@ -24,7 +24,7 @@
   }
 
   .black-btn {
-    @apply letter-spacing inline-block bg-[#000] py-3.5 px-8 text-sm font-bold uppercase text-[#fff]
+    @apply letter-spacing inline-block bg-[#000] py-3.5 px-8 text-sm font-bold uppercase text-[#fff] text-center
   }
 
   .container {
