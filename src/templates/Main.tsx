@@ -1,10 +1,6 @@
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 /* eslint-disable tailwindcss/no-custom-classname */
-import {
-  faBlog,
-  faCircleQuestion,
-  faCreditCard,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBlog, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import type { ReactNode } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { easings } from 'react-spring';
@@ -23,11 +19,6 @@ const pages = [
     title: 'About Us',
     content: 'Read our story on how and why we made this site',
     icon: faBlog,
-  },
-  {
-    title: 'Check Out',
-    content: 'Finished shopping? Buy the goods and have them delivered.',
-    icon: faCreditCard,
   },
   {
     title: 'FAQs',

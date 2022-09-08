@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Meta } from '@/layouts/Meta';
-import { CheckOutForm, CheckOutHeader } from '@/lib/checkout';
+import { CheckOutForm, CheckOutHeader, CheckOutOrder } from '@/lib/checkout';
 import { Main } from '@/templates/Main';
 
 const Checkout = () => {
@@ -16,10 +16,10 @@ const Checkout = () => {
     >
       <section>
         <CheckOutHeader />
-        <div className="container-sm container text-[#0d0d0d]">
-          <div>
+        <div className="container-sm container pb-20 text-[#0d0d0d]">
+          <div className="md:flex">
             <CheckOutForm />
-            <div></div>
+            <CheckOutOrder />
           </div>
         </div>
       </section>

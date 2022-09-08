@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const CartDiscout = () => (
@@ -28,9 +29,11 @@ const CartDiscout = () => (
             <span className="font-bold text-[#e53637]">$ 350.50</span>
           </li>
         </ul>
-        <a href="#" className="black-btn w-full text-center">
-          Proceed to checkout
-        </a>
+        <Link href="/checkout">
+          <a href="#" className="black-btn w-full text-center">
+            Proceed to checkout
+          </a>
+        </Link>
       </div>
     </div>
   </>

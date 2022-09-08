@@ -14,7 +14,7 @@ const TextInput = ({ title }: Props) => {
         </span>
       </label>
       <input
-        type="text"
+        type={`${title.includes('password') ? 'password' : 'text'}`}
         required
         placeholder={`${title}`}
         className="input-bordered input w-full"

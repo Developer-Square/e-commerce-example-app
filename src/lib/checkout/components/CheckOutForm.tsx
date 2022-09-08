@@ -4,7 +4,7 @@ import React from 'react';
 
 import TextInput from './TextInput';
 
-const CheckBoxComponent = ({
+export const CheckBoxComponent = ({
   title,
   type,
 }: {
@@ -27,7 +27,7 @@ const CheckBoxComponent = ({
 
 const CheckOutForm = () => {
   return (
-    <div>
+    <div className="md:w-1/2 lg:w-2/3">
       <h6 className="mb-12 border-t-2 border-[#77b527] bg-[#f5f5f5] px-7 pt-6 pb-5 text-sm">
         <FontAwesomeIcon icon={faTag} className="mr-3" />
         Have a coupon?
