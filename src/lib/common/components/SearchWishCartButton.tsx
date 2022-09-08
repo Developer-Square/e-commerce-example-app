@@ -1,6 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import { faCartArrowDown, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import React from 'react';
 
 type Props = {
@@ -48,10 +49,12 @@ const SearchWishCartButton = ({ placement }: Props) => {
       <button className="mr-5">
         <FontAwesomeIcon icon={faHeart} />
       </button>
-      <button className="mr-5">
-        <FontAwesomeIcon icon={faCartArrowDown} />
-        <span className="ml-1">$ 0.00</span>
-      </button>
+      <Link href="/add-to-cart">
+        <button className="mr-5">
+          <FontAwesomeIcon icon={faCartArrowDown} />
+          <span className="ml-1">$ 0.00</span>
+        </button>
+      </Link>
     </div>
   );
 };

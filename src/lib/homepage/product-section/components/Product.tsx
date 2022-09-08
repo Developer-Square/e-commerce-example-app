@@ -5,6 +5,7 @@ import {
   faStarHalf,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
 import type { ReactElement } from 'react';
 import React from 'react';
 import { MobileView } from 'react-device-detect';
@@ -42,6 +43,8 @@ const Product = ({
     return _title.toLowerCase().replace(/\s/g, '-');
   };
 
+  const router = useRouter();
+
   // Changes the color when a user click on the the colors
   const handleColorSelect = (e: any, _title: string) => {
     const result = convertTitle(_title);
@@ -57,8 +60,15 @@ const Product = ({
     e.currentTarget.classList.add('active-select');
   };
 
+  const handleProductPush = () => {
+    router.push('/shop-details');
+  };
+
   return (
-    <div className="product__item relative mb-10 flex h-full w-full flex-col items-center">
+    <div
+      className="product__item relative mb-10 flex h-full w-full flex-col items-center"
+      onClick={handleProductPush}
+    >
       <Label category={category} />
       <ul className="product__hover invisible absolute -right-52 top-5 opacity-0 transition-all duration-700">
         <li className="relative mb-2.5 bg-white px-2.5 pt-2 pb-1">

@@ -1,11 +1,10 @@
 import React from 'react';
 
 import { Meta } from '@/layouts/Meta';
-import { ProductDetails, ShopDetailsHeader } from '@/lib/shop-details';
-import RelatedProducts from '@/lib/shop-details/components/RelatedProducts';
+import { CheckOutForm, CheckOutHeader, CheckOutOrder } from '@/lib/checkout';
 import { Main } from '@/templates/Main';
 
-const ShopDetails = () => {
+const Checkout = () => {
   return (
     <Main
       meta={
@@ -16,12 +15,16 @@ const ShopDetails = () => {
       }
     >
       <section>
-        <ShopDetailsHeader />
-        <ProductDetails />
-        <RelatedProducts />;
+        <CheckOutHeader />
+        <div className="container-sm container pb-20 text-[#0d0d0d]">
+          <div className="md:flex">
+            <CheckOutForm />
+            <CheckOutOrder />
+          </div>
+        </div>
       </section>
     </Main>
   );
 };
 
-export default ShopDetails;
+export default Checkout;
