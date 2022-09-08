@@ -77,6 +77,38 @@ html, body {
   width: 220px;
   left: 50%;
   transform: scale(1) translateX(-50%);
+  overflow-x: hidden;
+}
+
+.navbarItem {
+  position: relative;
+  list-style: none;
+}
+
+.navbarItem a:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #e53637;
+  content: "";
+  transform: scale(0);
+  transition: all 0.5s;
+}
+
+.navbarItem:hover a::after {
+  transform: scale(1);
+}
+
+.active a::after {
+  transform: scale(1);
+}
+
+.active-description a::after {
+  width: 220px;
+  left: 50%;
+  transform: scale(1) translateX(-50%);
 }
 
 /* Makes the menu on mobile screens cover the whole screen */
@@ -130,6 +162,71 @@ html, body {
 
 .trailsText > div {
   overflow: hidden;
+}
+
+.letter-spacing {
+  letter-spacing: 4px;
+}
+
+/* Product Section */
+.active {
+  color: #111111;
+}
+
+.product-list {
+  will-change: transform, height, opacity;
+  height: 260px !important;
+}
+
+.label {
+  letter-spacing: 2px;
+}
+
+.product__item img {
+  height: 260px;
+}
+
+.product__item:hover .product__hover {
+  right: 20px;
+	opacity: 1;
+  visibility: visible;
+}
+
+.product__item:hover .add-cart {
+  top: 6px;
+  visibility: visible;
+  opacity: 1;
+  background: #fff;
+  width: 100%;
+}
+
+.product__item:hover .product__color__select {
+	opacity: 1;
+}
+
+.product__color__select label.active-select {
+	border: 2px solid red;
+  padding: 10px;
+  transition: all 0.2s;
+}
+
+/* Blog Section */
+.blog-text {
+  padding: 30px 30px 25px;
+  margin: -35px auto 0 auto;
+}
+
+.calendar {
+  height: 16px;
+  color: #3d3d3d;
+}
+
+/* Testimonial */
+.testimonial {
+  height: 350px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
 }
 
 .letter-spacing {
@@ -280,6 +377,16 @@ html, body {
   .product__item {
     width: 240px;
   }
+
+  .subtitle {
+    width: 50% !important;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  .product__item {
+    width: 240px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -291,8 +398,45 @@ html, body {
     width: 330px;
   }
 
+  .container-sm {
+    max-width: 720px;
+  }
+
+  .product__item {
+    width: 330px;
+  }
+
   .hero-container {
     left: 10% !important;
+  }
+
+  .image-text {
+    height: 440px;
+  }
+
+  .mobile-image {
+    display: none;
+  }
+  
+  .web-image {
+    display: block;
+  }
+
+  .countdown {
+    margin: 0 3rem !important;
+  }
+
+  .danger {
+    margin-left: 0.5rem !important;
+  }
+
+  .blogs-container {
+    grid-column-gap: 30px;
+  }
+
+  .footer-items {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-column-gap: 50px;
   }
 
   .image-text {
@@ -350,6 +494,43 @@ html, body {
 @media only screen and (min-width: 992px) {
   .swiper-slide .subtitle {
     font-size: 16px !important;
+  }
+
+  .products {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .product__item {
+    width: 210px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    max-width: 992px;
+  }
+
+  .countdown {
+    margin: 0 1.5rem !important;
+  }
+
+  .danger {
+    margin-left: 0.5rem !important;
+  }
+
+  .blogs-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer-items {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px !important;
   }
 
   .products {
