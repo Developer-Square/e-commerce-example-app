@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Meta } from '@/layouts/Meta';
-import { ContactForm } from '@/lib/contacts';
+import { ContactForm, Map } from '@/lib/contacts';
 import { Main } from '@/templates/Main';
 
 const Contacts = () => {
@@ -15,7 +15,7 @@ const Contacts = () => {
       }
     >
       <section className="text-[#111]">
-        <div></div>
+        <Map />
         <ContactForm />
       </section>
     </Main>

@@ -945,6 +945,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iconify/react@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@iconify/react@npm:4.0.0"
+  dependencies:
+    "@iconify/types": ^2.0.0
+  peerDependencies:
+    react: ">=16"
+  checksum: 8f6644ea6467fa2dc622a231bbb4705cc840e5f756c9a00b9d1deb4bf9cf122c03e654724335684f9a00b9c1fd2253cc2ca560e06285e65c09b8da50b3e0d06a
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@iconify/types@npm:2.0.0"
+  checksum: 029f58542c160e9d4a746869cf2e475b603424d3adf3994c5cc8d0406c47e6e04a3b898b2707840c1c5b9bd5563a1660a34b110d89fce43923baca5222f4e597
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.1.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.1.0"
@@ -4027,6 +4045,7 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": ^6.1.2
     "@fortawesome/free-solid-svg-icons": ^6.1.2
     "@fortawesome/react-fontawesome": ^0.2.0
+    "@iconify/react": ^4.0.0
     "@next/bundle-analyzer": ^12.1.6
     "@testing-library/jest-dom": ^5.16.4
     "@testing-library/react": ^13.3.0

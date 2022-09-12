@@ -28,10 +28,12 @@ const ContactInfo = () => (
 
 const ContactForm = () => {
   return (
-    <div className="container-sm container py-24">
-      <ContactTitle />
-      <ContactInfo />
-      <div>
+    <div className="container-sm container py-24 md:flex">
+      <div className="mr-8 md:w-1/2">
+        <ContactTitle />
+        <ContactInfo />
+      </div>
+      <div className="md:w-1/2">
         <TextInput title="Name" />
         <TextInput title="Email" />
         <TextArea title="Message" />
