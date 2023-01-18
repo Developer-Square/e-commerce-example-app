@@ -52,7 +52,7 @@ const ExpandableNavItem = ({
     <div className="relative">
       <button
         type="button"
-        className="group focus:outline-non inline-flex items-center rounded-md bg-white text-base font-bold text-gray-900"
+        className="focus:outline-non group inline-flex items-center rounded-md bg-white text-base font-bold text-gray-900"
         aria-expanded="false"
         onClick={() => setMenuVisibility(!menuVisibility)}
       >
