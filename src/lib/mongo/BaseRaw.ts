@@ -57,7 +57,7 @@ export type InsertionModel<T> = EnhancedOmit<
   _createdAt?: Date;
 };
 
-export interface IBaseRaw<T> {
+export interface IBaseRaw<T extends Document> {
   col: Collection<T>;
 }
 
@@ -70,7 +70,7 @@ type ResultFields<Base, Defaults> = Defaults extends void
   ? Pick<Defaults, keyof Defaults>
   : Omit<Defaults, keyof Defaults>;
 
-export class BaseRaw<T, C extends DefaultFields<T> = undefined>
+export class BaseRaw<T extends Document, C extends DefaultFields<T> = undefined>
   implements IBaseRaw<T>
 {
   public readonly defaultFields!: C;
@@ -135,9 +135,11 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
 
   private ensureDefaultFields(options: FindOptions<T>): FindOptions<T>;
 
-  private ensureDefaultFields<P>(options: FindOptions<P>): FindOptions<P>;
+  private ensureDefaultFields<P extends Document>(
+    options: FindOptions<P>
+  ): FindOptions<P>;
 
-  private ensureDefaultFields<P>(
+  private ensureDefaultFields<P extends Document>(
     options?: any
   ): FindOptions<P> | undefined | FindOptions<T> {
     if (this.defaultFields === undefined) {
@@ -176,7 +178,7 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
     options?: FindOptions<T> | undefined
   ): Promise<T | null>;
 
-  async findOneById<P>(
+  async findOneById<P extends Document>(
     _id: string,
     options: FindOptions<P extends T ? T : P>
   ): Promise<P | null>;
@@ -200,7 +202,7 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
     options: FindOptions<T>
   ): Promise<T | null>;
 
-  async findOne<P>(
+  async findOne<P extends Document>(
     query: Filter<T> | string,
     options: FindOptions<P extends T ? T : P>
   ): Promise<P | null>;
@@ -225,7 +227,7 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
     options: FindOptions<T>
   ): FindCursor<ResultFields<T, C>>;
 
-  find<P = T>(
+  find<P extends Document = T>(
     query: Filter<T>,
     options: FindOptions<P extends T ? T : P>
   ): FindCursor<WithId<P>>;
@@ -425,7 +427,7 @@ export class BaseRaw<T, C extends DefaultFields<T> = undefined>
     options: FindOptions<DBRecordDeleted<T>>
   ): Promise<DBRecordDeleted<DBRecordDeleted<T>> | null>;
 
-  trashFindOneById<P>(
+  trashFindOneById<P extends Document>(
     _id: string,
     options: FindOptions<P extends DBRecordDeleted<T> ? DBRecordDeleted<T> : P>
   ): Promise<P | null>;
