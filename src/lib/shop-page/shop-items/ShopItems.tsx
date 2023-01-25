@@ -14,7 +14,7 @@ const SortPriceDropDown = ({
   filterString,
   setFilterString,
 }: ISortPriceDropDown) => (
-  <div tabIndex={0} className="collapse-arrow collapse text-[#111]">
+  <div tabIndex={0} className="collapse collapse-arrow text-[#111]">
     <div
       className={`collapse-title text-sm font-bold ${
         filterString === '$1000 - $10,000' ? 'arrow-right' : ''

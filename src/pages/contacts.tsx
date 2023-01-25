@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Meta } from '@/layouts/Meta';
+import { ContactForm, Map } from '@/lib/contacts';
 import { Main } from '@/templates/Main';
 
 const Contacts = () => {
@@ -13,7 +14,10 @@ const Contacts = () => {
         />
       }
     >
-      Contacts page
+      <section className="text-[#111]">
+        <Map />
+        <ContactForm />
+      </section>
     </Main>
   );
 };
