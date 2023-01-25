@@ -16,7 +16,7 @@ const SearchWishCartButton = ({ placement }: Props) => {
       } items-center md:flex md:flex-1 lg:w-0`}
     >
       <div className="dropdown">
-        <button className="btn-ghost btn-circle btn mr-2">
+        <button className="btn btn-ghost btn-circle mr-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
