@@ -50,7 +50,7 @@ interface ISidebarItemsProps {
 const SidebarItems = ({ title, items }: ISidebarItemsProps) => (
   <div
     tabIndex={0}
-    className="container-sm container collapse collapse-arrow rounded-box font-bold"
+    className="container-sm collapse-arrow container rounded-box collapse font-bold"
   >
     <div className="collapse-title text-base font-bold uppercase text-[#111]">
       {title}
