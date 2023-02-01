@@ -1,7 +1,7 @@
 import type { IndexDescription } from 'mongodb';
 
 import { BaseRaw } from '../mongo/BaseRaw';
-import { getDb } from '../mongo/client';
+import db from '../mongo/client';
 import type { IUser as T } from './users.types';
 
 export class UsersRaw extends BaseRaw<T> {
@@ -16,7 +16,7 @@ export class UsersRaw extends BaseRaw<T> {
   }
 }
 
-export const UsersModel = async () => {
-  const db = await getDb();
-  return new UsersRaw(db.collection('users'), db.collection('trash'));
-};
+export const UsersModel = new UsersRaw(
+  db.collection('users'),
+  db.collection('trash')
+);
