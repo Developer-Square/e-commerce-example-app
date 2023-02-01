@@ -17,4 +17,12 @@ module.exports = withBundleAnalyzer({
   // So, the source code is "basePath-ready".
   // You can remove `basePath` if you don't need it.
   reactStrictMode: true,
+  webpack: (config) => {
+    // this will override the experiments
+    // eslint-disable-next-line no-param-reassign
+    config.experiments = { ...config.experiments, topLevelAwait: true };
+    // this will just update topLevelAwait property of config.experiments
+    // config.experiments.topLevelAwait = true
+    return config;
+  },
 });
