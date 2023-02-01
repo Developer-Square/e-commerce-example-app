@@ -21,7 +21,7 @@ import type {
 export class UserService implements IUserService {
   protected name = 'user';
 
-  private model: Promise<UsersRaw> = UsersModel();
+  private model: UsersRaw = UsersModel;
 
   hashPassword(password: string, salt: string): string {
     return crypto
@@ -40,9 +40,7 @@ export class UserService implements IUserService {
         httpStatus.UNAUTHORIZED,
         'Username or password is wrong'
       );
-    const userWithoutPassword = (await (
-      await this.model
-    ).findOne(
+    const userWithoutPassword = (await this.model.findOne(
       { name },
       { projection: { password: 0, salt: 0 } }
     )) as IUserWithoutPassword;
@@ -53,32 +51,30 @@ export class UserService implements IUserService {
     params: IUserCreateParams
   ): Promise<IUserWithoutPassword | null> {
     const salt = crypto.randomBytes(16).toString('hex');
-    const result = await (
-      await this.model
-    ).insertOne({
+    const result = await this.model.insertOne({
       ...params,
       isEmailVerified: false,
       password: this.hashPassword(params.password, salt),
       salt,
       role: 'user',
     });
-    return (await this.model).findOneById(result.insertedId, {
+    return this.model.findOneById(result.insertedId, {
       projection: { password: 0, salt: 0 },
     });
   }
 
   async getUser(userId: string): Promise<IUserWithoutPassword | null> {
-    return (await this.model).findOneById(userId, {
+    return this.model.findOneById(userId, {
       projection: { password: 0, salt: 0 },
     });
   }
 
   async findByName(name: string): Promise<IUser | null> {
-    return (await this.model).findOne({ name });
+    return this.model.findOne({ name });
   }
 
   async delete(userId: string): Promise<void> {
-    await (await this.model).removeById(userId);
+    await this.model.removeById(userId);
   }
 
   async update(
@@ -95,10 +91,8 @@ export class UserService implements IUserService {
         salt,
       });
     }
-    const result = await (
-      await this.model
-    ).updateOne(query, { $set: updateInfo });
-    return (await this.model).findOneById(result.upsertedId.toHexString(), {
+    const result = await this.model.updateOne(query, { $set: updateInfo });
+    return this.model.findOneById(result.upsertedId.toHexString(), {
       projection: { password: 0, salt: 0 },
     });
   }
@@ -107,8 +101,8 @@ export class UserService implements IUserService {
     { offset, count }: IPaginationOptions = { offset: 0, count: 50 },
     { sort, query }: IQueryOptions<IUser> = { sort: {}, query: {} }
   ): Promise<IQueryResult<IUserWithoutPassword>> {
-    const totalCount = await (await this.model).countDocuments({ ...query });
-    const paginationCursor = (await this.model).find(
+    const totalCount = await this.model.countDocuments({ ...query });
+    const paginationCursor = this.model.find(
       { ...query },
       {
         ...(sort && { sort }),

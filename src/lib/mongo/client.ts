@@ -20,9 +20,5 @@ if (envVariables.env === 'development') {
   clientPromise = client.connect();
 }
 
-export const getDb = async () => {
-  const db = (await clientPromise).db(envVariables.mongodb.dbName);
-  return db;
-};
-
-export default clientPromise;
+export default (await clientPromise).db(envVariables.mongodb.dbName);
+export { clientPromise };
