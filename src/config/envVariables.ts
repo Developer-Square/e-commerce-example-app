@@ -11,6 +11,7 @@ const envVariables = {
     cookieOptions: {
       maxAge: 60 * 60 * 8, // 8 hours
     },
+    tokenSecret: validate('TOKEN_SECRET', process.env.TOKEN_SECRET),
   },
   mongodb: {
     uri: validate('MONGODB_URI', process.env.MONGODB_URI),

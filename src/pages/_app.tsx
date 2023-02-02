@@ -10,7 +10,11 @@ import type { AppProps } from 'next/app';
 
 config.autoAddCss = false;
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
+// interface CustomAppProps extends AppProps {
+//   pageProps: any;
+// }
+
+const MyApp = ({ Component, pageProps: { ...pageProps } }: AppProps) => (
   <Component {...pageProps} />
 );
 

@@ -14,6 +14,10 @@ export interface IUser extends IDBRecord {
   salt: string;
 }
 
+export type IUserWithID = Omit<IUser, '_id' | 'password' | 'salt'> & {
+  id: string;
+};
+
 export type IUserLean = Omit<
   IUser,
   '_id' | '_updatedAt' | '_createdAt' | 'salt'
@@ -42,5 +46,10 @@ export interface IUserService {
   getUser(userId: string): Promise<IUserWithoutPassword | null>;
   hashPassword(password: string, salt: string): string;
   verifyPassword(name: string, password: string): Promise<IUserWithoutPassword>;
+  confirmPassword(name: string, password: string): Promise<boolean>;
   findByName(name: string): Promise<IUser | null>;
+  findByName(
+    name: string,
+    lean?: boolean
+  ): Promise<IUserWithoutPassword | null>;
 }

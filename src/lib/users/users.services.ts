@@ -47,6 +47,13 @@ export class UserService implements IUserService {
     return userWithoutPassword;
   }
 
+  async confirmPassword(name: string, password: string): Promise<boolean> {
+    const user = await this.findByName(name);
+    if (user && user.password === this.hashPassword(password, user.salt))
+      return true;
+    return false;
+  }
+
   async create(
     params: IUserCreateParams
   ): Promise<IUserWithoutPassword | null> {
@@ -120,3 +127,6 @@ export class UserService implements IUserService {
     };
   }
 }
+
+const Users = new UserService();
+export default Users;

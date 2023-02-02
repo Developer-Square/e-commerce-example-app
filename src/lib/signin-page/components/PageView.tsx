@@ -1,5 +1,4 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/no-unescaped-entities */
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -51,7 +50,7 @@ const PageView = ({
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    const body: Pick<IUser, 'name' | 'password'> = { name, password };
+    const body = { username: name, password };
 
     try {
       await axios.post('/api/login', body);
@@ -149,11 +148,11 @@ const PageView = ({
     <form className="w-full" onSubmit={handleLogin}>
       <animated.div style={loginProps} className="w-full">
         <TextBox
-          title="Email Address"
+          title="Username"
           type="text"
-          placeholder="Username@gmail.com"
-          value={email}
-          onChange={(e) => setEmail((e.target as HTMLInputElement).value)}
+          placeholder="John Doe"
+          value={name}
+          onChange={(e) => setName((e.target as HTMLInputElement).value)}
           required
         />
       </animated.div>

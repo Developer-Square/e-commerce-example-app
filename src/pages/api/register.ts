@@ -1,15 +1,12 @@
 import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { withSessionRoute } from '@/lib/auth/withSession';
 import ApiError from '@/lib/error-handling/ApiError';
 import catchAPIError from '@/lib/error-handling/catchAPIError';
+import Users from '@/lib/users/users.services';
+import type { IUserCreateParams } from '@/lib/users/users.types';
 
-import { UserService } from '../../lib/users/users.services';
-import type { IUserCreateParams } from '../../lib/users/users.types';
-
-async function registerRoute(req: NextApiRequest, res: NextApiResponse) {
-  const Users = new UserService();
+async function register(req: NextApiRequest, res: NextApiResponse) {
   const user = await Users.create(req.body as IUserCreateParams);
   if (!user) {
     throw new ApiError(
@@ -17,9 +14,7 @@ async function registerRoute(req: NextApiRequest, res: NextApiResponse) {
       'Something went wrong while saving your details. Please try again next time'
     );
   }
-  req.session.user = user;
-  await req.session.save();
   res.status(httpStatus.CREATED).json(user);
 }
 
-export default withSessionRoute(catchAPIError(registerRoute));
+export default catchAPIError(register);
