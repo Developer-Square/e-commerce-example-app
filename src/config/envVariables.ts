@@ -47,7 +47,7 @@ const envVariables = {
   },
   siteUrl:
     process.env.NODE_ENV === 'production'
-      ? 'https://mckenzie-store.netlify.app/'
+      ? 'https://mckenzie-store.netlify.app'
       : 'http://localhost:3001',
 };
 
