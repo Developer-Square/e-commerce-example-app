@@ -1,7 +1,13 @@
+import logger from './logger';
+
 const validate = (name: string, envVariable?: string): string => {
-  if (!envVariable)
-    throw new Error(`The Environment Variable ${name} is missing`);
-  return envVariable;
+  if (!envVariable) {
+    logger.error(`The Environment Variable ${name} is missing`);
+    process.exitCode = 1;
+    throw new Error();
+  } else {
+    return envVariable;
+  }
 };
 
 const envVariables = {
@@ -11,11 +17,38 @@ const envVariables = {
     cookieOptions: {
       maxAge: 60 * 60 * 8, // 8 hours
     },
+    tokenSecret: validate('TOKEN_SECRET', process.env.TOKEN_SECRET),
   },
   mongodb: {
     uri: validate('MONGODB_URI', process.env.MONGODB_URI),
     dbName: validate('DBNAME', process.env.DBNAME),
   },
+  jwt: {
+    secret: validate('JWT_SECRET', process.env.JWT_SECRET),
+    resetPasswordExpirationMinutes: validate(
+      'JWT_RESET_PASSWORD_EXPIRATION_MINUTES',
+      process.env.JWT_RESET_PASSWORD_EXPIRATION_MINUTES
+    ),
+    verifyEmailExpirationMinutes: validate(
+      'JWT_VERIFY_EMAIL_EXPIRATION_MINUTES',
+      process.env.JWT_VERIFY_EMAIL_EXPIRATION_MINUTES
+    ),
+  },
+  email: {
+    smtp: {
+      host: validate('SMTP_HOST', process.env.SMTP_HOST),
+      port: Number(validate('SMTP_PORT', process.env.SMTP_PORT)),
+      auth: {
+        user: validate('SMTP_USERNAME', process.env.SMTP_USERNAME),
+        pass: validate('SMTP_PASSWORD', process.env.SMTP_PASSWORD),
+      },
+    },
+    from: validate('EMAIL_FROM', process.env.EMAIL_FROM),
+  },
+  siteUrl:
+    process.env.NODE_ENV === 'production'
+      ? 'https://mckenzie-store.netlify.app/'
+      : 'http://localhost:3001',
 };
 
 export default envVariables;

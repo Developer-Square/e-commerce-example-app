@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 import crypto from 'crypto';
 import httpStatus from 'http-status';
@@ -8,6 +9,9 @@ import type {
   IQueryResult,
 } from '../definitions/query';
 import ApiError from '../error-handling/ApiError';
+// eslint-disable-next-line import/no-cycle
+import Tokens from '../tokens/tokens.services';
+import { TokenTypes } from '../tokens/tokens.types';
 import type { UsersRaw } from './users.model';
 import { UsersModel } from './users.model';
 import type {
@@ -47,6 +51,13 @@ export class UserService implements IUserService {
     return userWithoutPassword;
   }
 
+  async confirmPassword(name: string, password: string): Promise<boolean> {
+    const user = await this.findByName(name);
+    if (user && user.password === this.hashPassword(password, user.salt))
+      return true;
+    return false;
+  }
+
   async create(
     params: IUserCreateParams
   ): Promise<IUserWithoutPassword | null> {
@@ -71,6 +82,10 @@ export class UserService implements IUserService {
 
   async findByName(name: string): Promise<IUser | null> {
     return this.model.findOne({ name });
+  }
+
+  async findByEmail(email: string): Promise<IUser | null> {
+    return this.model.findOne({ email });
   }
 
   async delete(userId: string): Promise<void> {
@@ -119,4 +134,53 @@ export class UserService implements IUserService {
       totalPages: Math.ceil(totalCount / count),
     };
   }
+
+  async resetPassword(
+    resetPasswordToken: any,
+    newPassword: string
+  ): Promise<void> {
+    try {
+      const resetPasswordTokenDoc = await Tokens.verifyToken({
+        token: resetPasswordToken,
+        type: TokenTypes.RESET_PASSWORD,
+      });
+      const user = await this.getUser(resetPasswordTokenDoc.user);
+      if (!user) {
+        throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+      }
+      await this.update(user._id, { password: newPassword });
+      await Tokens.deleteMany({
+        user: user._id,
+        type: TokenTypes.RESET_PASSWORD,
+      });
+    } catch (error) {
+      throw new ApiError(httpStatus.UNAUTHORIZED, 'Password reset failed');
+    }
+  }
+
+  async verifyEmail(verifyEmailToken: any): Promise<IUserWithoutPassword> {
+    try {
+      const verifyEmailTokenDoc = await Tokens.verifyToken({
+        token: verifyEmailToken,
+        type: TokenTypes.VERIFY_EMAIL,
+      });
+      const user = await this.getUser(verifyEmailTokenDoc.user);
+      if (!user) {
+        throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+      }
+      await Tokens.deleteMany({
+        user: user._id,
+        type: TokenTypes.VERIFY_EMAIL,
+      });
+      const updatedUser = await this.update(user._id, {
+        isEmailVerified: true,
+      });
+      return updatedUser as IUserWithoutPassword;
+    } catch (error) {
+      throw new ApiError(httpStatus.UNAUTHORIZED, 'Email verification failed');
+    }
+  }
 }
+
+const Users = new UserService();
+export default Users;
