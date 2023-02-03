@@ -20,7 +20,10 @@ const envVariables = {
     tokenSecret: validate('TOKEN_SECRET', process.env.TOKEN_SECRET),
   },
   mongodb: {
-    uri: validate('MONGODB_URI', process.env.MONGODB_URI),
+    uri:
+      process.env.NODE_ENV === 'production'
+        ? validate('MONGODB_URI', process.env.MONGODB_URI_PROD)
+        : validate('MONGODB_URI', process.env.MONGODB_URI),
     dbName: validate('DBNAME', process.env.DBNAME),
   },
   jwt: {
