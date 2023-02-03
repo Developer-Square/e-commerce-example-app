@@ -5,7 +5,7 @@ import passport from 'passport';
 import logger from '@/config/logger';
 import { setLoginSession } from '@/lib/auth/auth';
 import localStrategy from '@/lib/auth/localStrategy';
-import type { IUser } from '@/lib/users/users.types';
+import type { IUserWithoutPassword } from '@/lib/users/users.types';
 
 const authenticate = (
   method: string,
@@ -28,7 +28,11 @@ export default nextConnect()
   .use(passport.initialize())
   .post(async (req: NextApiRequest, res: NextApiResponse) => {
     try {
-      const user = (await authenticate('local', req, res)) as IUser;
+      const user = (await authenticate(
+        'local',
+        req,
+        res
+      )) as IUserWithoutPassword;
       // session is the payload to save in the token, it may contain basic info about the user
       const session = { ...user };
 

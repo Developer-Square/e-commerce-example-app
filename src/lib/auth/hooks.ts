@@ -16,7 +16,7 @@ export function useUser({
   redirectTo,
   redirectIfFound,
 }: { redirectTo?: string; redirectIfFound?: boolean } = {}) {
-  const { data, error } = useSWR('/api/user', fetcher);
+  const { data, error } = useSWR('/api/auth/user', fetcher);
   const user = data?.user;
   const finished = Boolean(data);
   const hasUser = Boolean(user);

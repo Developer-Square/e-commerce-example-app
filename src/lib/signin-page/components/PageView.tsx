@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import Router from 'next/router';
 import React, { useState } from 'react';
 
 import {
@@ -14,6 +15,7 @@ import type { IUser, IUserCreateParams } from '@/lib/users/users.types';
 
 type Props = {
   pageState: string;
+  setPageState: React.Dispatch<React.SetStateAction<string>>;
   signUpProps: any;
   loginProps: any;
   forgotPasswordProps: any;
@@ -24,6 +26,7 @@ const PageView = ({
   signUpProps,
   loginProps,
   forgotPasswordProps,
+  setPageState,
 }: Props) => {
   const [name, setName] = useState<IUser['name']>('');
   const [email, setEmail] = useState<IUser['email']>('');
@@ -41,7 +44,8 @@ const PageView = ({
     const body: IUserCreateParams = { name, email, password };
 
     try {
-      await axios.post('/api/register', body);
+      const res = await axios.post('/api/auth/register', body);
+      if (res.status === 201) setPageState('signin');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -53,7 +57,8 @@ const PageView = ({
     const body = { username: name, password };
 
     try {
-      await axios.post('/api/login', body);
+      const res = await axios.post('/api/auth/login', body);
+      if (res.status === 200) Router.push('/');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -63,6 +68,14 @@ const PageView = ({
   // TODO: Add forgot password logic
   async function handleForgotPassword(e: React.FormEvent) {
     e.preventDefault();
+    const body = { email };
+    try {
+      await axios.post('/api/auth/forgot-password', body);
+      // TODO: Add notification for "please check your email"
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   if (pageState === 'signup') {

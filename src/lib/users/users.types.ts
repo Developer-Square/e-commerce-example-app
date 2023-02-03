@@ -52,4 +52,7 @@ export interface IUserService {
     name: string,
     lean?: boolean
   ): Promise<IUserWithoutPassword | null>;
+  findByEmail(email: string): Promise<IUser | null>;
+  resetPassword(resetPasswordToken: any, newPassword: string): Promise<void>;
+  verifyEmail(verifyEmailToken: any): Promise<IUserWithoutPassword>;
 }

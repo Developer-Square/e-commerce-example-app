@@ -1,9 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getLoginSession } from '@/lib/auth/auth';
+import catchAPIError from '@/lib/error-handling/catchAPIError';
 import Users from '@/lib/users/users.services';
-
-import catchAPIError from '../../lib/error-handling/catchAPIError';
 
 async function userRoute(req: NextApiRequest, res: NextApiResponse) {
   const session = await getLoginSession(req);

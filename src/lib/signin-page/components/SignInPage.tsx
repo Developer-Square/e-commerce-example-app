@@ -68,6 +68,7 @@ const SignInPage = () => {
             signUpProps={signUpProps}
             forgotPasswordProps={forgotPasswordProps}
             pageState={pageState}
+            setPageState={setPageState}
           />
           <div className="card-actions flex w-full justify-center">
             <PageFooter

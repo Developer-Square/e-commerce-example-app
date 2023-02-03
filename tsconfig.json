@@ -42,10 +42,5 @@
     }
   },
   "exclude": ["./out/**/*", "./node_modules/**/*", "**/*.test.ts"],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "src/pages/api/[...nextauth].js"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
