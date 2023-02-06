@@ -17,7 +17,7 @@ async function register(req: NextApiRequest, res: NextApiResponse) {
       'Something went wrong while saving your details. Please try again next time'
     );
   }
-  const verifyEmailToken = await Tokens.generateVerifyEmailToken(user._id);
+  const verifyEmailToken = await Tokens.generateVerifyEmailToken(user.email);
   await emailServices.sendSuccessfulRegistration(
     user.email,
     verifyEmailToken,

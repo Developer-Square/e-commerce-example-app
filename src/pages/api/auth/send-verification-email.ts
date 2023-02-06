@@ -16,7 +16,7 @@ async function sendVerificationEmailRoute(
   if (!session) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Please login first');
   }
-  const verifyEmailToken = await Tokens.generateVerifyEmailToken(session._id);
+  const verifyEmailToken = await Tokens.generateVerifyEmailToken(session.email);
   await emailServices.sendVerificationEmail(
     session.email,
     verifyEmailToken,
