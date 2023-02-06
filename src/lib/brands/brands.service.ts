@@ -12,7 +12,9 @@ export class BrandService implements IBrandService {
 
   private model: BrandsRaw = BrandsModel;
 
-  async create(params: Pick<IBrand, 'description'>): Promise<IBrand | null> {
+  async create(
+    params: Pick<IBrand, 'description' | '_id'>
+  ): Promise<IBrand | null> {
     const result = await this.model.insertOne(params);
     return this.model.findOneById(result.insertedId);
   }

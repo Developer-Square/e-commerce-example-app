@@ -10,7 +10,9 @@ export interface ICategory extends IDBRecord {
 }
 
 export interface ICategoryService {
-  create(params: Pick<ICategory, 'description'>): Promise<ICategory | null>;
+  create(
+    params: Pick<ICategory, 'description' | '_id'>
+  ): Promise<ICategory | null>;
   update(
     categoryId: ICategory['_id'],
     updateBody: Pick<ICategory, 'description'>

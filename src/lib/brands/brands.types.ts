@@ -10,7 +10,7 @@ export interface IBrand extends IDBRecord {
 }
 
 export interface IBrandService {
-  create(params: Pick<IBrand, 'description'>): Promise<IBrand | null>;
+  create(params: Pick<IBrand, 'description' | '_id'>): Promise<IBrand | null>;
   update(
     brandId: IBrand['_id'],
     updateBody: Pick<IBrand, 'description'>

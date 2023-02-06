@@ -13,7 +13,7 @@ export class CategoryService implements ICategoryService {
   private model: CategoriesRaw = CategoriesModel;
 
   async create(
-    params: Pick<ICategory, 'description'>
+    params: Pick<ICategory, 'description' | '_id'>
   ): Promise<ICategory | null> {
     const result = await this.model.insertOne(params);
     return this.model.findOneById(result.insertedId);
