@@ -12,14 +12,16 @@ export class CategoryService implements ICategoryService {
 
   private model: CategoriesRaw = CategoriesModel;
 
-  async create(params: Pick<ICategory, 'name'>): Promise<ICategory | null> {
+  async create(
+    params: Pick<ICategory, 'description'>
+  ): Promise<ICategory | null> {
     const result = await this.model.insertOne(params);
     return this.model.findOneById(result.insertedId);
   }
 
   async update(
     categoryId: string,
-    updateBody: Pick<ICategory, 'name'>
+    updateBody: Pick<ICategory, 'description'>
   ): Promise<ICategory | null> {
     const query = { _id: categoryId };
     const result = await this.model.updateOne(query, { $set: updateBody });
