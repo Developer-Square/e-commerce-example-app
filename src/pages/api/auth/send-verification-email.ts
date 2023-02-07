@@ -5,7 +5,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getLoginSession } from '@/lib/auth/auth';
 import { emailServices } from '@/lib/email';
 import ApiError from '@/lib/error-handling/ApiError';
-import catchAPIError from '@/lib/error-handling/catchAPIError';
 import Tokens from '@/lib/tokens/tokens.services';
 
 async function sendVerificationEmailRoute(
@@ -25,4 +24,4 @@ async function sendVerificationEmailRoute(
   res.status(httpStatus.NO_CONTENT).send({});
 }
 
-export default catchAPIError(sendVerificationEmailRoute);
+export default sendVerificationEmailRoute;
