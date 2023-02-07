@@ -56,3 +56,6 @@ export class ProductService implements IProductService {
     };
   }
 }
+
+const Products = new ProductService();
+export default Products;
