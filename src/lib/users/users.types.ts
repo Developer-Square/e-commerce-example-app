@@ -7,11 +7,17 @@ import type {
 
 export interface IUser extends IDBRecord {
   name: string;
-  role: 'admin' | 'user';
+  role: UserRoles;
   email: string;
   isEmailVerified: boolean;
   password: string;
   salt: string;
+}
+
+export enum UserRoles {
+  ADMIN = 'admin',
+  SELLER = 'seller',
+  BUYER = 'buyer',
 }
 
 export type IUserWithID = Omit<IUser, '_id' | 'password' | 'salt'> & {

@@ -1,5 +1,6 @@
 import { parse, serialize } from 'cookie';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextRequest } from 'next/server';
 
 const TOKEN_NAME = 'token';
 
@@ -39,4 +40,8 @@ export function parseCookies(req: NextApiRequest) {
 export function getTokenCookie(req: NextApiRequest) {
   const cookies = parseCookies(req);
   return cookies[TOKEN_NAME];
+}
+
+export function getTokenCookieAlt(req: NextRequest) {
+  return req.cookies.get(TOKEN_NAME) || '';
 }

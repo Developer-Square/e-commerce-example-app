@@ -1,6 +1,7 @@
 import httpStatus from 'http-status';
 import { MongoError, WriteConcernError, WriteError } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 
 import envVariables from '../../config/envVariables';
 import logger from '../../config/logger';
@@ -19,6 +20,21 @@ export const errorConverter = (error: any): ApiError => {
       ? error.errmsg
       : `${httpStatus[statusCode]}`;
   return new ApiError(statusCode, message, false, error.stack);
+};
+
+export const CustomResponse = (
+  message: string,
+  status: number
+): NextResponse => {
+  return new NextResponse(
+    JSON.stringify({
+      message,
+    }),
+    {
+      status,
+      headers: { 'content-type': 'application/json' },
+    }
+  );
 };
 
 const catchAPIError =

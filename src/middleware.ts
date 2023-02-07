@@ -1,3 +1,3 @@
-import { errorHandler, stackMiddlewares } from '@/lib/middlewares';
+import { authHandler, errorHandler, stackMiddlewares } from '@/lib/middlewares';
 
-export default stackMiddlewares([errorHandler]);
+export default stackMiddlewares([authHandler, errorHandler]);
