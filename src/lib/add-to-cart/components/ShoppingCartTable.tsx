@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { SetStateAction } from "react";
 import React, { useEffect, useState } from "react";
 
-interface ICartItems {
+export interface ICartItems {
   name: string;
   price: string;
   img: string;
