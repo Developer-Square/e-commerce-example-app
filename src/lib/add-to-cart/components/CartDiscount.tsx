@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
-const CartDiscout = () => (
+const CartDiscout = ({ total }: { total: string }) => (
   <>
     <div>
       <div className="mt-10 mb-14">
@@ -22,11 +22,11 @@ const CartDiscout = () => (
         <ul className="mb-6 text-[#444444]">
           <li className="flex justify-between leading-10">
             Subtotal
-            <span className="font-bold text-[#e53637]">$ 169.50</span>
+            <span className="font-bold text-[#e53637]">$ {total}</span>
           </li>
           <li className="flex justify-between leading-10">
             Total
-            <span className="font-bold text-[#e53637]">$ 350.50</span>
+            <span className="font-bold text-[#e53637]">$ {total}</span>
           </li>
         </ul>
         <Link href="/checkout">

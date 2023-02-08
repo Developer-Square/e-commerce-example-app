@@ -1,11 +1,14 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import React from 'react';
+import React, { useState } from "react";
 
-import { Meta } from '@/layouts/Meta';
-import { CartDiscout, CartHeader, ShoppingCartTable } from '@/lib/add-to-cart';
-import { Main } from '@/templates/Main';
+import { Meta } from "@/layouts/Meta";
+import { CartDiscout, CartHeader, ShoppingCartTable } from "@/lib/add-to-cart";
+import { Main } from "@/templates/Main";
 
 const AddToCart = () => {
+  // Todo: Add a function to calculate the total price after discount
+  // const [subtotal, setSubTotal] = useState('')
+  const [total, setTotal] = useState("");
   return (
     <Main
       meta={
@@ -15,11 +18,11 @@ const AddToCart = () => {
         />
       }
     >
-      <section className="text-[#111]">
+      <section className="text-[#0d0d0d]">
         <CartHeader />
         <div className="container-sm container pb-20 lg:flex">
-          <ShoppingCartTable />
-          <CartDiscout />
+          <ShoppingCartTable setTotal={setTotal} />
+          <CartDiscout total={total} />
         </div>
       </section>
     </Main>
