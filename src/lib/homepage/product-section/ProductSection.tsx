@@ -3,18 +3,18 @@
 /* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable tailwindcss/no-custom-classname */
 
-import React, { useEffect, useState } from 'react';
-import { animated, useTransition } from 'react-spring';
+import React, { useEffect, useState } from "react";
+import { animated, useTransition } from "react-spring";
 
-import Product from './components/Product';
-import products from './products.json';
+import Product from "./components/Product";
+import products from "./products.json";
 
 const ProductSection = () => {
   const [rows, set] = useState<Record<string, any>>([]);
 
   useEffect(() => {
     const sortedList = products.filter(
-      (product) => product.category === 'best-sellers'
+      (product) => product.category === "best-sellers"
     );
     set(sortedList);
   }, []);
@@ -41,12 +41,12 @@ const ProductSection = () => {
       (product) => product.category === category
     );
     set(sortedList);
-    const productLinks = document.querySelectorAll('.product-links');
+    const productLinks = document.querySelectorAll(".product-links");
     Array.from(productLinks).map((links): null => {
-      links.classList.remove('active');
+      links.classList.remove("active");
       return null;
     });
-    evt.target.classList.add('active');
+    evt.target.classList.add("active");
   };
   return (
     <section>
@@ -54,29 +54,32 @@ const ProductSection = () => {
         <ul className="grid header-container mb-11 cursor-pointer list-none grid-cols-2 gap-4 text-2xl font-bold text-[#b7b7b7]">
           <li
             className="active product-links sm:text-center"
-            onClick={(e): void => handleProductShuffle(e, 'best-sellers')}
+            onClick={(e): void => handleProductShuffle(e, "best-sellers")}
           >
             Best Sellers
           </li>
           <li
             className="product-links sm:text-center"
-            onClick={(e): void => handleProductShuffle(e, 'new-arrivals')}
+            onClick={(e): void => handleProductShuffle(e, "new-arrivals")}
           >
             New Arrivals
           </li>
           <li
             className="product-links sm:text-center"
-            onClick={(e): void => handleProductShuffle(e, 'hot-sales')}
+            onClick={(e): void => handleProductShuffle(e, "hot-sales")}
           >
             Hot Sales
           </li>
         </ul>
         <div className="products">
           {/* @ts-ignore */}
-          {transitions((style: any, item: any, index: number) => (
+          {transitions((style: any, item: any, product: any, index: number) => (
             <animated.div
               className="product-list"
-              style={{ zIndex: rows.length - index, ...style }}
+              style={{
+                zIndex: parseInt(rows.length + 1, 10) - index + 1,
+                ...style,
+              }}
             >
               <Product
                 title={item.title}
