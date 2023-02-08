@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-shadow */
 import {
   faHeart,
@@ -10,6 +11,7 @@ import { useRouter } from "next/router";
 import type { ReactElement } from "react";
 import React, { useState } from "react";
 import { MobileView } from "react-device-detect";
+import { toast } from "react-toastify";
 
 interface ProductProps {
   image: string;
@@ -73,7 +75,8 @@ const Product = ({
     img: string,
     name: string,
     price: string,
-    color: string
+    color: string,
+    type?: string
   ) => {
     // Todo: Add a notification to the user that the item has been added to the cart.
 
@@ -90,13 +93,28 @@ const Product = ({
         JSON.stringify([{ img, name, price, color }])
       );
     }
+    toast(`${name} added to ${type === "wishlist" ? "wishlist" : "cart"}`, {
+      type: "success",
+    });
   };
 
   return (
     <div className="product__item relative mb-10 flex h-full w-full flex-col items-center">
       <Label category={category} />
       <ul className="product__hover invisible absolute -right-52 top-5 opacity-0 transition-all duration-700">
-        <li className="relative mb-2.5 bg-white px-2.5 pt-2 pb-1">
+        <li
+          className="relative mb-2.5 bg-white px-2.5 pt-2 pb-1"
+          // Todo: Add a function to add an item to the wishlist
+          onClick={() =>
+            handleAddToCart(
+              `/assets/images/product/${image}`,
+              title,
+              price,
+              selectedColor,
+              "wishlist"
+            )
+          }
+        >
           <a href="#">
             <FontAwesomeIcon icon={faHeart} />
           </a>

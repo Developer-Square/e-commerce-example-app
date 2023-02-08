@@ -1,9 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-shadow */
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import type { SetStateAction } from "react";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface ICartItems {
   name: string;
@@ -36,6 +38,7 @@ const CartItem = ({
 
   const handleAddToCart = () => {
     // Todo: Add the item to the cart if it's not already there
+    toast(`${name} added to cart`, { type: "success" });
   };
   return (
     <>

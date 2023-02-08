@@ -4,6 +4,8 @@ import { faBlog, faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { easings } from "react-spring";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ToastContainer } from "react-toastify";
 
 import { config, useSpring } from "@/lib/common";
 import Footer from "@/lib/common/components/Footer";
@@ -100,8 +102,19 @@ const Main = (props: IMainProps) => {
         menuVisibility={menuVisibility}
         setMenuVisibility={setMenuVisibility}
       />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="content text-xl">{props.children}</div>
-
       <Footer />
     </div>
   );

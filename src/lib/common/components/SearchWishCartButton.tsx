@@ -59,7 +59,7 @@ const SearchWishCartButton = ({ placement }: Props) => {
       <Link href="/wishlist">
         <button className="mr-5">
           <label className="btn-ghost btn-circle btn">
-            <FontAwesomeIcon icon={faHeart} />
+            <FontAwesomeIcon icon={faHeart} style={{ height: "1.2em" }} />
           </label>
         </button>
       </Link>
