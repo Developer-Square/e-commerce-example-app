@@ -19,10 +19,10 @@ const AddToCart = () => {
       }
     >
       <section className="text-[#0d0d0d]">
-        <CartHeader />
+        <CartHeader page="cart" />
         <div className="container-sm container pb-20 lg:flex">
           <ShoppingCartTable setTotal={setTotal} />
-          <CartDiscout total={total} />
+          <CartDiscout total={total} page="cart" />
         </div>
       </section>
     </Main>

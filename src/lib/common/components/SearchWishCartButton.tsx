@@ -1,8 +1,8 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import { faCartArrowDown, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
-import React from 'react';
+import { faCartArrowDown, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import React from "react";
 
 type Props = {
   placement: string;
@@ -12,7 +12,7 @@ const SearchWishCartButton = ({ placement }: Props) => {
   return (
     <div
       className={`${
-        placement === 'web' ? 'hidden justify-end' : 'flex justify-center'
+        placement === "web" ? "hidden justify-end" : "flex justify-center"
       } items-center md:flex md:flex-1 lg:w-0`}
     >
       <div className="dropdown">
@@ -45,10 +45,11 @@ const SearchWishCartButton = ({ placement }: Props) => {
           </li>
         </ul>
       </div>
-
-      <button className="mr-5">
-        <FontAwesomeIcon icon={faHeart} />
-      </button>
+      <Link href="/wishlist">
+        <button className="mr-5">
+          <FontAwesomeIcon icon={faHeart} />
+        </button>
+      </Link>
       <Link href="/add-to-cart">
         <button className="mr-5">
           <FontAwesomeIcon icon={faCartArrowDown} />
