@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import TextInput from '@/lib/checkout/components/TextInput';
+import TextInput from "@/lib/checkout/components/TextInput";
 
-import TextArea from './TextArea';
+import TextArea from "./TextArea";
 
 const ContactTitle = () => (
   <div className="mb-10">
@@ -20,7 +20,7 @@ const ContactInfo = () => (
     <li className="mb-6">
       <h4 className="mb-2 text-2xl font-bold">Kenya</h4>
       <p className="text-base leading-7">
-        31832-00600 Ngara Road <br /> +254 703418580
+        1776-00200, Nairobi <br /> +254 703418580
       </p>
     </li>
   </ul>
