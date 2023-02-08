@@ -28,6 +28,7 @@ const RatingSection = () => (
       name="rating-2"
       className="mask mask-star-2 bg-orange-400"
       checked
+      onChange={() => {}}
     />
     <input
       type="radio"
