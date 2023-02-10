@@ -1,11 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-shadow */
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import type { SetStateAction } from "react";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-export interface ICartItems {
+interface ICartItems {
   name: string;
   price: string;
   img: string;
@@ -33,6 +35,11 @@ const CartItem = ({
     localStorage.setItem("cartItems", JSON.stringify(newCartItems));
     setCart(newCartItems);
   };
+
+  const handleAddToCart = () => {
+    // Todo: Add the item to the cart if it's not already there
+    toast(`${name} added to cart`, { type: "success" });
+  };
   return (
     <>
       <tr>
@@ -48,15 +55,13 @@ const CartItem = ({
           </div>
         </td>
         <td>
-          <select className="select-warning select mr-3 max-w-xs">
-            <option disabled selected>
-              1
-            </option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
+          <a
+            href="#"
+            className="black-btn w-auto px-4 text-center text-xs tracking-normal"
+            onClick={() => handleAddToCart()}
+          >
+            Add to Checkout
+          </a>
         </td>
         <td>
           <h5 className="font-bold text-[#0d0d0d]">{price}</h5>
@@ -74,7 +79,7 @@ const CartItem = ({
   );
 };
 
-const ShoppingCartTable = ({
+const WishListCartTable = ({
   setTotal,
 }: {
   setTotal: React.Dispatch<SetStateAction<string>>;
@@ -104,7 +109,7 @@ const ShoppingCartTable = ({
           <thead>
             <tr className="text-left text-base uppercase">
               <th className="pb-6">Product</th>
-              <th className="pb-6">Quantity</th>
+              <th className="pb-6">Add to Cart</th>
               <th className="pb-6">Total</th>
               <th className="pb-6"></th>
             </tr>
@@ -122,7 +127,7 @@ const ShoppingCartTable = ({
               ))
             ) : (
               <tr>
-                <td>No Items in Cart</td>
+                <td>No Items in Wishlist</td>
               </tr>
             )}
           </tbody>
@@ -136,15 +141,10 @@ const ShoppingCartTable = ({
               Continue shopping
             </a>
           </Link>
-          <Link href={"/shop"}>
-            <a href="#" className="black-btn update-cart mt-5 w-3/5">
-              Update cart
-            </a>
-          </Link>
         </div>
       </div>
     </>
   );
 };
 
-export default ShoppingCartTable;
+export default WishListCartTable;

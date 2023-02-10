@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 
 import { Meta } from "@/layouts/Meta";
-import { CartDiscout, CartHeader, ShoppingCartTable } from "@/lib/add-to-cart";
+import { CartDiscout, CartHeader, WishListCartTable } from "@/lib/add-to-cart";
 import { Main } from "@/templates/Main";
 
-const AddToCart = () => {
+const WishList = () => {
   // Todo: Add a function to calculate the total price after discount
   // const [subtotal, setSubTotal] = useState('')
   const [total, setTotal] = useState("");
@@ -19,14 +19,14 @@ const AddToCart = () => {
       }
     >
       <section className="text-[#0d0d0d]">
-        <CartHeader page="cart" />
+        <CartHeader page="" />
         <div className="container-sm container pb-20 lg:flex">
-          <ShoppingCartTable setTotal={setTotal} />
-          <CartDiscout total={total} page="cart" />
+          <WishListCartTable setTotal={setTotal} />
+          <CartDiscout total={total} />
         </div>
       </section>
     </Main>
   );
 };
 
-export default AddToCart;
+export default WishList;

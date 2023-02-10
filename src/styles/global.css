@@ -193,7 +193,7 @@ html, body {
 }
 
 .product__item:hover .add-cart {
-  top: 6px;
+  top: 4px;
   visibility: visible;
   opacity: 1;
   background: #fff;
@@ -255,14 +255,6 @@ html, body {
   right: 20px;
 	opacity: 1;
   visibility: visible;
-}
-
-.product__item:hover .add-cart {
-  top: 6px;
-  visibility: visible;
-  opacity: 1;
-  background: #fff;
-  width: 100%;
 }
 
 .product__item:hover .product__color__select {
