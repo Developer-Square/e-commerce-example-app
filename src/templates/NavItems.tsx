@@ -37,10 +37,11 @@ const NavItems = ({
               className={`navbarItem ${item.toLowerCase()}`}
               onClick={(): void => setMenuVisibility(false)}
             >
-              <Link href={`${item === 'Home' ? '/' : `${item.toLowerCase()}`}`}>
-                <a href="#" className="text-base font-bold text-gray-900">
-                  {item}
-                </a>
+              <Link
+                href={`${item === 'Home' ? '/' : `${item.toLowerCase()}`}`}
+                className="text-base font-bold text-gray-900"
+              >
+                {item}
               </Link>
             </li>
           )}

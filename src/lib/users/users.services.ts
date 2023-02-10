@@ -2,6 +2,7 @@
 /* eslint-disable class-methods-use-this */
 import crypto from 'crypto';
 import httpStatus from 'http-status';
+import type { FindOptions } from 'mongodb';
 
 import type {
   IPaginationOptions,
@@ -21,6 +22,7 @@ import type {
   IUserService,
   IUserWithoutPassword,
 } from './users.types';
+import { UserRoles } from './users.types';
 
 export class UserService implements IUserService {
   protected name = 'user';
@@ -67,7 +69,7 @@ export class UserService implements IUserService {
       isEmailVerified: false,
       password: this.hashPassword(params.password, salt),
       salt,
-      role: 'user',
+      role: UserRoles.BUYER,
     });
     return this.model.findOneById(result.insertedId, {
       projection: { password: 0, salt: 0 },
@@ -80,8 +82,11 @@ export class UserService implements IUserService {
     });
   }
 
-  async findByName(name: string): Promise<IUser | null> {
-    return this.model.findOne({ name });
+  async findByName(
+    name: string,
+    options?: FindOptions<IUser>
+  ): Promise<IUser | null> {
+    return this.model.findOne({ name }, { ...options });
   }
 
   async findByEmail(email: string): Promise<IUser | null> {

@@ -8,7 +8,7 @@ function stackMiddlewares(
   index = 0
 ): NextMiddleware {
   const current = functions[index];
-  if (current) {
+  if (current && functions.length > index) {
     const next = stackMiddlewares(functions, index + 1);
     return current(next);
   }

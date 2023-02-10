@@ -2,6 +2,7 @@
 import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+import { withSessionRoute } from '@/lib/auth/withSession';
 import { emailServices } from '@/lib/email';
 import ApiError from '@/lib/error-handling/ApiError';
 import Tokens from '@/lib/tokens/tokens.services';
@@ -22,7 +23,9 @@ async function register(req: NextApiRequest, res: NextApiResponse) {
     verifyEmailToken,
     user.name
   );
+  req.session.user = user;
+  await req.session.save();
   res.status(httpStatus.CREATED).json(user);
 }
 
-export default register;
+export default withSessionRoute(register);

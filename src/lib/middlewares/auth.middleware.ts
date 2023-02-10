@@ -1,42 +1,41 @@
-import type { NextFetchEvent, NextRequest } from 'next/server';
+import { getIronSession } from 'iron-session/edge';
+import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-import { getLoginSession } from '@/lib/auth/auth';
-
-import { Users } from '../users';
+import sessionOptions from '../auth/session.options';
 import { UserRoles } from '../users/users.types';
 import type { MiddlewareFactory } from './types';
 
-const authHandler: MiddlewareFactory = (next) => {
-  return async (request: NextRequest, _next: NextFetchEvent) => {
-    const { pathname } = request.nextUrl;
-    const response = next(request, _next);
-    const signinUrl = new URL(`/signin`, request.url);
-    const forbidden = new URL(`/403`, request.url);
-    if (pathname.includes('/seller/') || pathname.includes('/admin/')) {
-      const session = await getLoginSession(request);
-      if (!session) {
+const authHandler: MiddlewareFactory = (_next) => {
+  return async (req: NextRequest) => {
+    const { pathname } = req.nextUrl;
+    const res: NextResponse = NextResponse.next();
+    const signinUrl = new URL(`/signin`, req.url);
+    const forbidden = new URL(`/403`, req.url);
+    if (pathname.includes('/seller') || pathname.includes('/admin')) {
+      const session = await getIronSession(req, res, sessionOptions);
+      const { user } = session;
+      if (!user) {
         return NextResponse.rewrite(signinUrl);
       }
-      const user = (await Users.findByName(session.name)) ?? null;
-      switch (user?.role) {
+      switch (user.role) {
         case undefined:
           return NextResponse.rewrite(signinUrl);
         case UserRoles.BUYER:
-          return NextResponse.rewrite(forbidden);
+          return NextResponse.rewrite(new URL(`/test`, req.url));
         case UserRoles.SELLER:
           if (pathname.includes('/admin/')) {
             return NextResponse.rewrite(signinUrl);
           }
-          return response;
+          return res;
         case UserRoles.ADMIN:
-          return response;
+          return res;
 
         default:
           return NextResponse.rewrite(forbidden);
       }
     }
-    return response;
+    return res;
   };
 };
 

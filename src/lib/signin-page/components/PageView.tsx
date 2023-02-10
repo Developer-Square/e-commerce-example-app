@@ -54,7 +54,7 @@ const PageView = ({
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    const body = { username: name, password };
+    const body = { name, password };
 
     try {
       const res = await axios.post('/api/auth/login', body);

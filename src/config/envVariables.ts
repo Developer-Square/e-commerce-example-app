@@ -1,28 +1,24 @@
-import logger from './logger';
-
 const validate = (name: string, envVariable?: string): string => {
   if (!envVariable) {
-    logger.error(`The Environment Variable ${name} is missing`);
-    process.exitCode = 1;
-    throw new Error();
-  } else {
-    return envVariable;
+    throw new Error(`The Environment Variable ${name} is missing`);
   }
+
+  return envVariable;
 };
 
 const envVariables = {
   env: process.env.NODE_ENV,
   auth: {
-    password: validate('IRON_PASSWORD', process.env.IRON_PASSWORD),
+    ironPassword: validate('IRON_PASSWORD', process.env.IRON_PASSWORD),
     cookieOptions: {
       maxAge: 60 * 60 * 8, // 8 hours
     },
-    tokenSecret: validate('TOKEN_SECRET', process.env.TOKEN_SECRET),
+    tokenSecret: validate('TOKEN_SECRET', process.env.NEXT_PUBLIC_TOKEN_SECRET),
   },
   mongodb: {
     uri:
       process.env.NODE_ENV === 'production'
-        ? validate('MONGODB_URI', process.env.MONGODB_URI_PROD)
+        ? validate('MONGODB_URI_PROD', process.env.MONGODB_URI_PROD)
         : validate('MONGODB_URI', process.env.MONGODB_URI),
     dbName: validate('DBNAME', process.env.DBNAME),
   },

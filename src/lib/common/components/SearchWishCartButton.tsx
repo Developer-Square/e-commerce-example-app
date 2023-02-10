@@ -49,7 +49,7 @@ const SearchWishCartButton = ({ placement }: Props) => {
       <button className="mr-5">
         <FontAwesomeIcon icon={faHeart} />
       </button>
-      <Link href="/add-to-cart">
+      <Link href="/add-to-cart" legacyBehavior>
         <button className="mr-5">
           <FontAwesomeIcon icon={faCartArrowDown} />
           <span className="ml-1">$ 0.00</span>

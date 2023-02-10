@@ -4,8 +4,8 @@ import { NextResponse } from 'next/server';
 
 import { config, logger } from '@/config';
 
+import { errorConverter } from '../error-handling';
 import type ApiError from '../error-handling/ApiError';
-import { errorConverter } from '../error-handling/catchAPIError';
 import type { MiddlewareFactory } from './types';
 
 const errorHandler: MiddlewareFactory = (next) => {

@@ -1,3 +1,5 @@
+import type { FindOptions } from 'mongodb';
+
 import type { IDBRecord } from '@/lib/definitions/IDBRecord';
 import type {
   IPaginationOptions,
@@ -56,7 +58,7 @@ export interface IUserService {
   findByName(name: string): Promise<IUser | null>;
   findByName(
     name: string,
-    lean?: boolean
+    options?: FindOptions<IUser>
   ): Promise<IUserWithoutPassword | null>;
   findByEmail(email: string): Promise<IUser | null>;
   resetPassword(resetPasswordToken: any, newPassword: string): Promise<void>;
