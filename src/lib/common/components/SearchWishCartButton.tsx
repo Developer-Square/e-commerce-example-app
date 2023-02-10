@@ -15,11 +15,12 @@ const SearchWishCartButton = ({ placement }: Props) => {
 
   useEffect(() => {
     // fetch cartItems from localStorage
-    const cartItems = localStorage.getItem("cartItems" || "[]");
+    const cartItems = localStorage.getItem("cartItems") || "[]";
     // @ts-ignore
     const cartItemsArray = JSON.parse(cartItems);
     setCart(cartItemsArray);
   }, []);
+
   return (
     <div
       className={`${

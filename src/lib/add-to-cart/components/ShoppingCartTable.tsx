@@ -24,7 +24,7 @@ const CartItem = ({
   setCart: React.Dispatch<SetStateAction<ICartItems[]>>;
 }) => {
   const handleRemoveCart = (name: string) => {
-    const cartItems = localStorage.getItem("cartItems" || "[]");
+    const cartItems = localStorage.getItem("cartItems") || "[]";
     // @ts-ignore
     const cartItemsArray = JSON.parse(cartItems);
     const newCartItems = cartItemsArray.filter(
@@ -92,7 +92,7 @@ const ShoppingCartTable = ({
   }, [cart]);
 
   useEffect(() => {
-    const cartItems = localStorage.getItem("cartItems" || "[]");
+    const cartItems = localStorage.getItem("cartItems") || "[]";
     // @ts-ignore
     setCart(JSON.parse(cartItems));
   }, []);

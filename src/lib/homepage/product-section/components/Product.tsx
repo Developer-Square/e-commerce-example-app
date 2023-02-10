@@ -80,8 +80,8 @@ const Product = ({
   ) => {
     // Todo: Add a notification to the user that the item has been added to the cart.
 
-    const cartItems = localStorage.getItem("cartItems");
-    const cartItemsArray = JSON.parse(cartItems || "[]");
+    const cartItems = localStorage.getItem("cartItems") || "[]";
+    const cartItemsArray = JSON.parse(cartItems);
 
     if (cartItemsArray.length) {
       cartItemsArray.push({ img, name, price, color });
