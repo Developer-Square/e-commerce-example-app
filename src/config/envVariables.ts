@@ -9,11 +9,9 @@ const validate = (name: string, envVariable?: string): string => {
 const envVariables = {
   env: process.env.NODE_ENV,
   auth: {
-    ironPassword: validate('IRON_PASSWORD', process.env.IRON_PASSWORD),
     cookieOptions: {
       maxAge: 60 * 60 * 8, // 8 hours
     },
-    tokenSecret: validate('TOKEN_SECRET', process.env.NEXT_PUBLIC_TOKEN_SECRET),
   },
   mongodb: {
     uri:

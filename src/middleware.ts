@@ -5,7 +5,6 @@ import { NextResponse } from 'next/server';
 import sessionOptions from './lib/auth/session.options';
 import { UserRoles } from './lib/users/users.types';
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const res = NextResponse.next();
