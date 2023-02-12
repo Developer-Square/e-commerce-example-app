@@ -126,17 +126,17 @@ export class UserService implements IUserService {
       { ...query },
       {
         ...(sort && { sort }),
-        limit: count,
-        skip: offset,
+        limit: Number(count),
+        skip: Number(offset) * Number(count),
         projection: { password: 0, salt: 0 },
       }
     );
     return {
       documents: await paginationCursor.toArray(),
-      page: offset || 0,
-      limit: count || 50,
+      page: Number(count),
+      limit: Number(offset),
       totalCount,
-      totalPages: Math.ceil(totalCount / (count || 50)),
+      totalPages: Math.ceil(totalCount / Number(count)),
     };
   }
 

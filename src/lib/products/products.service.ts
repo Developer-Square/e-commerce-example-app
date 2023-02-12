@@ -43,16 +43,16 @@ export class ProductService implements IProductService {
       { ...query },
       {
         ...(sort && { sort }),
-        limit: count,
-        skip: offset,
+        limit: Number(count),
+        skip: Number(offset) * Number(count),
       }
     );
     return {
       documents: await paginationCursor.toArray(),
-      page: offset || 0,
-      limit: count || 50,
+      page: Number(count),
+      limit: Number(offset),
       totalCount,
-      totalPages: Math.ceil(totalCount / (count || 50)),
+      totalPages: Math.ceil(totalCount / Number(count)),
     };
   }
 }
