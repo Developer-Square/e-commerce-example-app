@@ -11,7 +11,7 @@ export interface IProduct extends IDBRecord {
   productInfo: string;
   materialUsed: string;
   images: string[];
-  product: string;
+  category: string;
   brand?: string;
   size?: string;
 }

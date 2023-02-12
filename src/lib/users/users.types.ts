@@ -51,7 +51,7 @@ export interface IUserService {
     params: Partial<IUserLean>
   ): Promise<IUserWithoutPassword | null>;
   delete(userId: string): Promise<void>;
-  getUser(userId: string): Promise<IUserWithoutPassword | null>;
+  get(userId: string): Promise<IUserWithoutPassword | null>;
   hashPassword(password: string, salt: string): string;
   verifyPassword(name: string, password: string): Promise<IUserWithoutPassword>;
   confirmPassword(name: string, password: string): Promise<boolean>;

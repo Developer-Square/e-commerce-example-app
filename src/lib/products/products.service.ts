@@ -49,10 +49,10 @@ export class ProductService implements IProductService {
     );
     return {
       documents: await paginationCursor.toArray(),
-      page: offset,
-      limit: count,
+      page: offset || 0,
+      limit: count || 50,
       totalCount,
-      totalPages: Math.ceil(totalCount / count),
+      totalPages: Math.ceil(totalCount / (count || 50)),
     };
   }
 }

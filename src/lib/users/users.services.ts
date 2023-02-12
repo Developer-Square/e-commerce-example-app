@@ -76,7 +76,7 @@ export class UserService implements IUserService {
     });
   }
 
-  async getUser(userId: string): Promise<IUserWithoutPassword | null> {
+  async get(userId: string): Promise<IUserWithoutPassword | null> {
     return this.model.findOneById(userId, {
       projection: { password: 0, salt: 0 },
     });
@@ -133,10 +133,10 @@ export class UserService implements IUserService {
     );
     return {
       documents: await paginationCursor.toArray(),
-      page: offset,
-      limit: count,
+      page: offset || 0,
+      limit: count || 50,
       totalCount,
-      totalPages: Math.ceil(totalCount / count),
+      totalPages: Math.ceil(totalCount / (count || 50)),
     };
   }
 
@@ -149,7 +149,7 @@ export class UserService implements IUserService {
         token: resetPasswordToken,
         type: TokenTypes.RESET_PASSWORD,
       });
-      const user = await this.getUser(resetPasswordTokenDoc.user);
+      const user = await this.get(resetPasswordTokenDoc.user);
       if (!user) {
         throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
       }
@@ -169,7 +169,7 @@ export class UserService implements IUserService {
         token: verifyEmailToken,
         type: TokenTypes.VERIFY_EMAIL,
       });
-      const user = await this.getUser(verifyEmailTokenDoc.user);
+      const user = await this.get(verifyEmailTokenDoc.user);
       if (!user) {
         throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
       }
