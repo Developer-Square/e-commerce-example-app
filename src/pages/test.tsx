@@ -1,10 +1,18 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 
-import { useUser } from '@/lib/auth';
+import { useUsers } from '@/lib/users/users.hooks';
 
 const Test = () => {
-  const { user } = useUser();
-  return <div>{user?.name ?? 'User not found'}</div>;
+  const { isLoading, data } = useUsers();
+  if (isLoading) return <h1>Loading...</h1>;
+  return (
+    <div>
+      {data?.documents.map((user) => (
+        <div key={user._id}>{user.name}</div>
+      ))}
+    </div>
+  );
 };
 
 export default Test;

@@ -33,7 +33,7 @@ export default async function handler(
     ]) as Filter<IProduct>;
     const sort = formatSort(sortBy);
     const products = await Products.list({ offset, count }, { sort, query });
-    res.status(httpStatus.OK).json({ products });
+    res.status(httpStatus.OK).json(products);
   } else {
     res
       .status(httpStatus.NOT_FOUND)

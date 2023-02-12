@@ -34,7 +34,7 @@ export default async function handler(
     const query = pick(req.query, ['name']) as IQueryOptions<IUser>;
     const sort = formatSort(sortBy);
     const users = await Users.list({ offset, count }, { sort, query });
-    res.status(httpStatus.OK).json({ users });
+    res.status(httpStatus.OK).json(users);
   } else {
     res
       .status(httpStatus.NOT_FOUND)
