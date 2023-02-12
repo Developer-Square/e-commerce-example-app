@@ -22,7 +22,7 @@ export async function middleware(req: NextRequest) {
       case UserRoles.BUYER:
         return NextResponse.rewrite(new URL(`/test`, req.url));
       case UserRoles.SELLER:
-        if (pathname.includes('/admin/')) {
+        if (pathname.includes('/admin')) {
           return NextResponse.rewrite(signinUrl);
         }
         return res;

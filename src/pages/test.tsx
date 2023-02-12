@@ -4,7 +4,7 @@ import React from 'react';
 import { useUsers } from '@/lib/users/users.hooks';
 
 const Test = () => {
-  const { isLoading, data } = useUsers();
+  const { isLoading, data } = useUsers({ name: 'wafula' });
   if (isLoading) return <h1>Loading...</h1>;
   return (
     <div>

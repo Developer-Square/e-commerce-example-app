@@ -15,6 +15,7 @@ export interface IListOptions {
   offset?: IPaginationOptions['offset'];
   count?: IPaginationOptions['count'];
   sortBy?: string;
+  priceRange?: string;
 }
 
 export interface IQueryResult<T> {

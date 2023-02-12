@@ -7,8 +7,7 @@ import { emailServices } from '@/lib/email';
 import { Tokens } from '@/lib/tokens';
 import { Users } from '@/lib/users';
 import type { IUser } from '@/lib/users/users.types';
-import formatSort from '@/lib/utils/formatSort';
-import pick from '@/lib/utils/pick';
+import { formatSort, pick } from '@/lib/utils';
 
 export default async function handler(
   req: NextApiRequest,
