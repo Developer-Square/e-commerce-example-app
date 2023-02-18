@@ -1,3 +1,5 @@
+import type { FindOptions } from 'mongodb';
+
 import type { IDBRecord } from '@/lib/definitions/IDBRecord';
 import type {
   IPaginationOptions,
@@ -7,11 +9,17 @@ import type {
 
 export interface IUser extends IDBRecord {
   name: string;
-  role: 'admin' | 'user';
+  role: UserRoles;
   email: string;
   isEmailVerified: boolean;
   password: string;
   salt: string;
+}
+
+export enum UserRoles {
+  ADMIN = 'admin',
+  SELLER = 'seller',
+  BUYER = 'buyer',
 }
 
 export type IUserWithID = Omit<IUser, '_id' | 'password' | 'salt'> & {
@@ -43,14 +51,14 @@ export interface IUserService {
     params: Partial<IUserLean>
   ): Promise<IUserWithoutPassword | null>;
   delete(userId: string): Promise<void>;
-  getUser(userId: string): Promise<IUserWithoutPassword | null>;
+  get(userId: string): Promise<IUserWithoutPassword | null>;
   hashPassword(password: string, salt: string): string;
   verifyPassword(name: string, password: string): Promise<IUserWithoutPassword>;
   confirmPassword(name: string, password: string): Promise<boolean>;
   findByName(name: string): Promise<IUser | null>;
   findByName(
     name: string,
-    lean?: boolean
+    options?: FindOptions<IUser>
   ): Promise<IUserWithoutPassword | null>;
   findByEmail(email: string): Promise<IUser | null>;
   resetPassword(resetPasswordToken: any, newPassword: string): Promise<void>;

@@ -23,19 +23,16 @@ const NavbarItems = ({ items }: NavbarProps) => {
   return (
     <>
       {items.map((item, index) => (
-        <Link href={`/${toLowerCase(item.title)}`} key={index}>
-          <a
-            href="#"
-            className="hover:bg-gray-150 -m-3 flex items-center rounded-lg p-3"
-          >
-            <FontAwesomeIcon icon={item.icon} />
-            <div className="ml-4">
-              <p className="text-base font-medium text-gray-900">
-                {item.title}
-              </p>
-              <p className="text-gray-550 mt-1 text-sm">{item.content}</p>
-            </div>
-          </a>
+        <Link
+          href={`/${toLowerCase(item.title)}`}
+          key={index}
+          className="hover:bg-gray-150 -m-3 flex items-center rounded-lg p-3"
+        >
+          <FontAwesomeIcon icon={item.icon} />
+          <div className="ml-4">
+            <p className="text-base font-medium text-gray-900">{item.title}</p>
+            <p className="text-gray-550 mt-1 text-sm">{item.content}</p>
+          </div>
         </Link>
       ))}
     </>

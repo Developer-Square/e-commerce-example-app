@@ -82,28 +82,24 @@ const MobileMenu = ({
               <SearchWishCartButton placement="mobile" />
             </div>
             <nav className="grid gap-y-8">
-              <Link href="/">
-                <a
-                  href="#"
-                  className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-                >
-                  <span className="ml-3 text-base font-bold text-gray-900">
-                    {" "}
-                    Home{" "}
-                  </span>
-                </a>
+              <Link
+                href="/"
+                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+              >
+                <span className="ml-3 text-base font-bold text-gray-900">
+                  {" "}
+                  Home{" "}
+                </span>
               </Link>
 
-              <Link href="/shop">
-                <a
-                  href="#"
-                  className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-                >
-                  <span className="ml-3 text-base font-bold text-gray-900">
-                    {" "}
-                    Shop{" "}
-                  </span>
-                </a>
+              <Link
+                href="/shop"
+                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+              >
+                <span className="ml-3 text-base font-bold text-gray-900">
+                  {" "}
+                  Shop{" "}
+                </span>
               </Link>
 
               <span className="ml-3 text-base font-bold text-gray-900">
@@ -122,7 +118,7 @@ const MobileMenu = ({
                       <li key={index}>
                         {
                           <Link href={`/${toLowerCase(page.title)}`}>
-                            <a>{page.title}</a>
+                            {page.title}
                           </Link>
                         }
                       </li>
@@ -130,16 +126,14 @@ const MobileMenu = ({
                   </ul>
                 </div>
               </span>
-              <Link href="/contacts">
-                <a
-                  href="#"
-                  className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-                >
-                  <span className="ml-3 text-base font-bold text-gray-900">
-                    {" "}
-                    Contacts{" "}
-                  </span>
-                </a>
+              <Link
+                href="/contacts"
+                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+              >
+                <span className="ml-3 text-base font-bold text-gray-900">
+                  {" "}
+                  Contacts{" "}
+                </span>
               </Link>
             </nav>
           </div>

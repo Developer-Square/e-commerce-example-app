@@ -2,27 +2,25 @@
 import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getLoginSession } from '@/lib/auth/auth';
 import { emailServices } from '@/lib/email';
 import ApiError from '@/lib/error-handling/ApiError';
-import catchAPIError from '@/lib/error-handling/catchAPIError';
 import Tokens from '@/lib/tokens/tokens.services';
 
 async function sendVerificationEmailRoute(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getLoginSession(req);
-  if (!session) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Please login first');
+  const { user } = req.session;
+  if (!user) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Please login first');
   }
-  const verifyEmailToken = await Tokens.generateVerifyEmailToken(session.email);
+  const verifyEmailToken = await Tokens.generateVerifyEmailToken(user.email);
   await emailServices.sendVerificationEmail(
-    session.email,
+    user.email,
     verifyEmailToken,
-    session.name
+    user.name
   );
   res.status(httpStatus.NO_CONTENT).send({});
 }
 
-export default catchAPIError(sendVerificationEmailRoute);
+export default sendVerificationEmailRoute;

@@ -11,11 +11,11 @@ const ExtendedBreadCrumb = ({ currentPage }: { currentPage: string }) => {
           currentPage === 'Product Details' ? 'md:justify-center' : ''
         }`}
       >
-        <Link href={`/`}>
+        <Link href={`/`} legacyBehavior>
           <h4 className="mr-2 text-sm font-normal">Home</h4>
         </Link>
         <FontAwesomeIcon icon={faChevronRight} className="mt-1 mr-2 !h-3" />
-        <Link href={`/shop`}>
+        <Link href={`/shop`} legacyBehavior>
           <h4 className="mr-2 text-sm font-normal">Shop</h4>
         </Link>
         <FontAwesomeIcon icon={faChevronRight} className="mt-1 !h-3" />

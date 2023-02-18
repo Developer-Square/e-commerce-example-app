@@ -1,12 +1,11 @@
+import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { removeTokenCookie } from '@/lib/auth/auth-cookies';
-import catchAPIError from '@/lib/error-handling/catchAPIError';
+import { withSessionRoute } from '@/lib/auth/withSession';
 
-async function logout(_req: NextApiRequest, res: NextApiResponse) {
-  removeTokenCookie(res);
-  res.writeHead(302, { Location: '/' });
-  res.end();
+async function logout(req: NextApiRequest, res: NextApiResponse) {
+  req.session.destroy();
+  res.status(httpStatus.NO_CONTENT).end();
 }
 
-export default catchAPIError(logout);
+export default withSessionRoute(logout);

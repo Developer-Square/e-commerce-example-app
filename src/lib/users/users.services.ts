@@ -2,6 +2,7 @@
 /* eslint-disable class-methods-use-this */
 import crypto from 'crypto';
 import httpStatus from 'http-status';
+import type { FindOptions } from 'mongodb';
 
 import type {
   IPaginationOptions,
@@ -21,6 +22,7 @@ import type {
   IUserService,
   IUserWithoutPassword,
 } from './users.types';
+import { UserRoles } from './users.types';
 
 export class UserService implements IUserService {
   protected name = 'user';
@@ -67,21 +69,24 @@ export class UserService implements IUserService {
       isEmailVerified: false,
       password: this.hashPassword(params.password, salt),
       salt,
-      role: 'user',
+      role: UserRoles.BUYER,
     });
     return this.model.findOneById(result.insertedId, {
       projection: { password: 0, salt: 0 },
     });
   }
 
-  async getUser(userId: string): Promise<IUserWithoutPassword | null> {
+  async get(userId: string): Promise<IUserWithoutPassword | null> {
     return this.model.findOneById(userId, {
       projection: { password: 0, salt: 0 },
     });
   }
 
-  async findByName(name: string): Promise<IUser | null> {
-    return this.model.findOne({ name });
+  async findByName(
+    name: string,
+    options?: FindOptions<IUser>
+  ): Promise<IUser | null> {
+    return this.model.findOne({ name }, { ...options });
   }
 
   async findByEmail(email: string): Promise<IUser | null> {
@@ -121,17 +126,17 @@ export class UserService implements IUserService {
       { ...query },
       {
         ...(sort && { sort }),
-        limit: count,
-        skip: offset,
+        limit: Number(count),
+        skip: Number(offset) * Number(count),
         projection: { password: 0, salt: 0 },
       }
     );
     return {
       documents: await paginationCursor.toArray(),
-      page: offset,
-      limit: count,
+      page: Number(count),
+      limit: Number(offset),
       totalCount,
-      totalPages: Math.ceil(totalCount / count),
+      totalPages: Math.ceil(totalCount / Number(count)),
     };
   }
 
@@ -144,7 +149,7 @@ export class UserService implements IUserService {
         token: resetPasswordToken,
         type: TokenTypes.RESET_PASSWORD,
       });
-      const user = await this.getUser(resetPasswordTokenDoc.user);
+      const user = await this.get(resetPasswordTokenDoc.user);
       if (!user) {
         throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
       }
@@ -164,7 +169,7 @@ export class UserService implements IUserService {
         token: verifyEmailToken,
         type: TokenTypes.VERIFY_EMAIL,
       });
-      const user = await this.getUser(verifyEmailTokenDoc.user);
+      const user = await this.get(verifyEmailTokenDoc.user);
       if (!user) {
         throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
       }

@@ -1,3 +1,5 @@
+import httpStatus from 'http-status';
+
 class ApiError extends Error {
   statusCode: number;
 
@@ -21,5 +23,13 @@ class ApiError extends Error {
     }
   }
 }
+
+export const errorConverter = (error: any): ApiError => {
+  if (error instanceof ApiError) return error;
+  const statusCode = error.statusCode || httpStatus.BAD_REQUEST;
+  const message: string =
+    error.message || error.errmsg || `${httpStatus[statusCode]}`;
+  return new ApiError(statusCode, message, false, error.stack);
+};
 
 export default ApiError;

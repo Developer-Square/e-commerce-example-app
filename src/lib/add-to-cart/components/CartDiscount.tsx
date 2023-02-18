@@ -34,19 +34,12 @@ const CartDiscout = ({ total, page }: { total: string; page?: string }) => (
             <span className="font-bold text-[#e53637]">$ {total}</span>
           </li>
         </ul>
-        {page === "cart" ? (
-          <Link href="/checkout">
-            <a href="#" className="black-btn w-full text-center">
-              Proceed to checkout
-            </a>
-          </Link>
-        ) : (
-          <Link href="/add-to-cart">
-            <a href="#" className="black-btn w-full text-center">
-              Proceed to Cart
-            </a>
-          </Link>
-        )}
+        <Link
+          href={page === "cart" ? "/checkout" : "add-to-cart"}
+          className="black-btn w-full text-center"
+        >
+          Proceed to checkout
+        </Link>
       </div>
     </div>
   </>

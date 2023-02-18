@@ -15,7 +15,7 @@ const Breadcrumb = ({ previousLink, previousTitle, currentTitle }: Props) => {
       <div className="container-sm container py-10 text-2xl font-bold text-[#111]">
         {currentTitle}
         <div className="mt-2 flex">
-          <Link href={`/${previousLink}`}>
+          <Link href={`/${previousLink}`} legacyBehavior>
             <h4 className="mr-2 text-sm font-normal">{previousTitle}</h4>
           </Link>
           <FontAwesomeIcon icon={faChevronRight} className="mt-1 !h-3" />
