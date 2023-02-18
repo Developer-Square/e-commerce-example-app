@@ -1,10 +1,10 @@
 /* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable tailwindcss/no-custom-classname */
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
 
-import { colors, size } from '@/lib/shop-page/sidebar/Sidebar';
+import { colors, size } from "@/lib/shop-page/sidebar/Sidebar";
 
 const RatingSection = () => (
   <div className="rating mr-2">
@@ -28,6 +28,7 @@ const RatingSection = () => (
       name="rating-2"
       className="mask mask-star-2 bg-orange-400"
       checked
+      onChange={() => {}}
     />
     <input
       type="radio"
@@ -45,7 +46,7 @@ const ProductDescription = () => (
       <div className="text-sm"> - 5 reviews</div>
     </div>
     <h3 className="mb-4 text-center text-3xl font-bold">
-      $270.00{' '}
+      $270.00{" "}
       <span className="ml-2 text-xl text-[#b7b7b7] line-through">70.00</span>
     </h3>
     <p className="mb-9 text-center text-sm">
@@ -149,11 +150,11 @@ const ProductInfo = ({ title }: { title: string }) => (
 );
 
 const ProductDetails = () => {
-  const [activeItem, setActiveItem] = useState('description');
+  const [activeItem, setActiveItem] = useState("description");
   const removeActiveItems = () => {
-    const navbarItems = document.querySelectorAll('.navbarItem');
+    const navbarItems = document.querySelectorAll(".navbarItem");
     Array.from(navbarItems).map((item) =>
-      item.classList.remove('active-description')
+      item.classList.remove("active-description")
     );
   };
 
@@ -162,7 +163,7 @@ const ProductDetails = () => {
     setActiveItem(id);
     const activeItemLi = document.querySelector(`#${id}`);
     if (activeItemLi) {
-      activeItemLi.classList.add('active-description');
+      activeItemLi.classList.add("active-description");
     }
   };
   return (
@@ -176,28 +177,21 @@ const ProductDetails = () => {
           <li
             className="navbarItem active-description mb-3.5 cursor-pointer text-center"
             id="description"
-            onClick={() => handleActiveItem('description')}
+            onClick={() => handleActiveItem("description")}
           >
             <a href="#">Description</a>
           </li>
           <li
             className="navbarItem mb-3.5 cursor-pointer text-center"
             id="previews"
-            onClick={() => handleActiveItem('previews')}
+            onClick={() => handleActiveItem("previews")}
           >
             <a href="#">Customer Previews(5)</a>
-          </li>
-          <li
-            className="navbarItem mb-3.5 cursor-pointer text-center"
-            id="info"
-            onClick={() => handleActiveItem('info')}
-          >
-            <a href="#">Additional Information</a>
           </li>
         </ul>
         <div className="pt-9 text-lg font-bold text-[#111]">
           <div>
-            {activeItem === 'description' || activeItem === 'info' ? (
+            {activeItem === "description" ? (
               <>
                 <p className="mb-6">
                   Nam tempus turpis at metus scelerisque placerat nulla
@@ -210,7 +204,7 @@ const ProductDetails = () => {
               </>
             ) : null}
 
-            {activeItem === 'previews' ? (
+            {activeItem === "previews" ? (
               <>
                 <ProductInfo title="Product Information" />
                 <ProductInfo title="Material used" />

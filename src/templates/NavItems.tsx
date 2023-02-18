@@ -1,8 +1,8 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
-import { ExpandableNavItem } from '@/lib/common';
+import { ExpandableNavItem } from "@/lib/common";
 
 type Props = {
   pages: Record<string, any>[];
@@ -11,7 +11,7 @@ type Props = {
   setMenuVisibility: Function;
 };
 
-const navItems = ['Home', 'Shop', 'Pages', 'Contacts', 'Signin'];
+const navItems = ["Home", "Shop", "Pages", "Contacts", "Signin"];
 
 const NavItems = ({
   pages,
@@ -22,7 +22,7 @@ const NavItems = ({
   return (
     <>
       {navItems.map((item, index) => (
-        <>
+        <div key={index}>
           {index === 2 ? (
             <ExpandableNavItem
               key={index}
@@ -38,14 +38,14 @@ const NavItems = ({
               onClick={(): void => setMenuVisibility(false)}
             >
               <Link
-                href={`${item === 'Home' ? '/' : `${item.toLowerCase()}`}`}
+                href={`${item === "Home" ? "/" : `${item.toLowerCase()}`}`}
                 className="text-base font-bold text-gray-900"
               >
                 {item}
               </Link>
             </li>
           )}
-        </>
+        </div>
       ))}
     </>
   );

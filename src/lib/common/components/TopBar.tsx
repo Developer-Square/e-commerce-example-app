@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import MobileMenu from '@/templates/MobileMenu';
-import NavItems from '@/templates/NavItems';
+import MobileMenu from "@/templates/MobileMenu";
+import NavItems from "@/templates/NavItems";
 
-import SearchWishCartButton from './SearchWishCartButton';
+import SearchWishCartButton from "./SearchWishCartButton";
 
 type Props = {
   menuVisibility: boolean;
@@ -24,7 +24,6 @@ const TopBar = ({
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-4 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
-              <span className="sr-only">Workflow</span>
               <img
                 className="w-16 rounded-full"
                 src="/assets/images/Logo - dark surface.png"
@@ -37,6 +36,7 @@ const TopBar = ({
               type="button"
               className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-900 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               aria-expanded="false"
+              onClick={() => setMenuVisibility(true)}
             >
               <span className="sr-only">Open menu</span>
               {/* Heroicon name: outline/menu */}

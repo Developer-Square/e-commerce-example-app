@@ -1,13 +1,13 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 /* eslint-disable import/no-extraneous-dependencies */
-import Image from 'next/image';
-import React, { useState } from 'react';
+import Image from "next/image";
+import React, { useState } from "react";
 
-import { config, useSpring } from '@/lib/common/index';
-import JewelleryIcon from '@/public/assets/images/icons/jewelry.png';
+import { config, useSpring } from "@/lib/common/index";
+import JewelleryIcon from "@/public/assets/images/icons/jewelry.png";
 
-import PageFooter from './PageFooter';
-import PageView from './PageView';
+import PageFooter from "./PageFooter";
+import PageView from "./PageView";
 
 const SignInPage = () => {
   const [loginOpacity, setLoginOpacity] = useState<Record<string, number>>({
@@ -20,7 +20,7 @@ const SignInPage = () => {
   const [forgotPasswordOpacity, setForgotPasswordOpacity] = useState<
     Record<string, number>
   >({});
-  const [pageState, setPageState] = useState('signin');
+  const [pageState, setPageState] = useState("signin");
 
   // This add a smooth opacity animation when the user switches to the signup or forgot password view.
   const loginProps = useSpring({
@@ -68,6 +68,8 @@ const SignInPage = () => {
             signUpProps={signUpProps}
             forgotPasswordProps={forgotPasswordProps}
             pageState={pageState}
+            setLoginOpacity={setLoginOpacity}
+            setSignUpOpacity={setSignUpOpacity}
             setPageState={setPageState}
           />
           <div className="card-actions flex w-full justify-center">

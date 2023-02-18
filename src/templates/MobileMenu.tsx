@@ -1,13 +1,13 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
-import React from 'react';
-import { animated } from 'react-spring';
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import React from "react";
+import { animated } from "react-spring";
 
-import { useToLowerCase } from '@/hooks/useToLowerCase';
-import { SearchWishCartButton } from '@/lib/common';
+import { useToLowerCase } from "@/hooks/useToLowerCase";
+import { SearchWishCartButton } from "@/lib/common";
 
 type Props = {
   pages: Record<string, any>[];
@@ -27,7 +27,7 @@ const MobileMenu = ({
     <animated.div
       style={navbarProps}
       className={`menu-container absolute inset-x-0 top-0 origin-top-right transition md:hidden ${
-        menuVisibility ? 'z-10' : 'hidden'
+        menuVisibility ? "z-10" : "hidden"
       }`}
     >
       <div className="h-full divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
@@ -44,7 +44,11 @@ const MobileMenu = ({
               <button
                 type="button"
                 className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-900 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                onClick={(): void => setMenuVisibility(!menuVisibility)}
+                onClick={(): void =>
+                  setMenuVisibility(
+                    (prevMenuVisibility: boolean) => !prevMenuVisibility
+                  )
+                }
               >
                 <span className="sr-only">Close menu</span>
                 <svg
@@ -83,8 +87,8 @@ const MobileMenu = ({
                 className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
               >
                 <span className="ml-3 text-base font-bold text-gray-900">
-                  {' '}
-                  Home{' '}
+                  {" "}
+                  Home{" "}
                 </span>
               </Link>
 
@@ -93,15 +97,15 @@ const MobileMenu = ({
                 className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
               >
                 <span className="ml-3 text-base font-bold text-gray-900">
-                  {' '}
-                  Shop{' '}
+                  {" "}
+                  Shop{" "}
                 </span>
               </Link>
 
               <span className="ml-3 text-base font-bold text-gray-900">
                 <div className="dropdown">
                   <label tabIndex={0} className="cursor-pointer">
-                    Pages{' '}
+                    Pages{" "}
                     <span className="ml-0.5">
                       <FontAwesomeIcon icon={faCaretDown} />
                     </span>
@@ -127,8 +131,8 @@ const MobileMenu = ({
                 className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
               >
                 <span className="ml-3 text-base font-bold text-gray-900">
-                  {' '}
-                  Contacts{' '}
+                  {" "}
+                  Contacts{" "}
                 </span>
               </Link>
             </nav>
