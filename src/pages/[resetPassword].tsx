@@ -6,7 +6,6 @@ import { SignInPage } from "@/lib/signin-page";
 
 const ResetPassword = () => {
   const { query } = useRouter();
-  console.log(query);
 
   return (
     <ErrorBoundary>

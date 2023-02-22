@@ -4,6 +4,7 @@ import { faCheck, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Router from "next/router";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 import {
   animated,
@@ -62,17 +63,21 @@ const PageView = ({
           setPassword("");
           setConfirmPassword("");
           setName("");
+          toast(
+            "Registration successful. Please check your email for verification link.",
+            { type: "success" }
+          );
           setLoginOpacity({ to: 1, from: 0 });
           setSignUpOpacity({ to: 0, from: 1 });
         }
       } catch (error) {
         setLoading(false);
         // eslint-disable-next-line no-console
-        console.error(error);
+        toast("Registration failed. Please try again.", { type: "error" });
       }
     } else {
       setLoading(false);
-      // Todo: Add notification for the error
+      toast("Passwords do not match.", { type: "error" });
     }
   }
 
@@ -85,12 +90,14 @@ const PageView = ({
       const res = await axios.post("/api/auth/login", body);
       if (res.status === 200) {
         setLoading(false);
+        toast("Login successful", { type: "success" });
         Router.push("/");
       }
     } catch (error) {
       setLoading(false);
       // eslint-disable-next-line no-console
       console.error(error);
+      toast("Login failed. Please try again.", { type: "error" });
     }
   }
 
@@ -104,14 +111,17 @@ const PageView = ({
         setLoading(false);
         setPassword("");
         setConfirmPassword("");
+        toast("Password reset successful", {
+          type: "success",
+        });
         setPageState("signin");
         setLoginOpacity({ to: 1, from: 0 });
         setSignUpOpacity({ to: 0, from: 1 });
       } catch (error) {
         setLoading(false);
-        // TODO: Add notification for the error
-        // eslint-disable-next-line no-console
-        console.error(error);
+        toast("Password reset failed. Please try again.", {
+          type: "error",
+        });
       }
     } else {
       setLoading(false);
@@ -126,13 +136,11 @@ const PageView = ({
       await axios.post(`/api/auth/verify-email?token=${token}`);
       setLoading(false);
       setVerified(true);
+      toast("Email verified successfully", { type: "success" });
       Router.push("/");
-      // Todo: Add notification for the success
     } catch (error) {
       setLoading(false);
-      // eslint-disable-next-line no-console
-      console.error(error);
-      // Todo: Add notification for the error
+      toast("Email verification failed. Please try again.", { type: "error" });
     }
   }
   async function handleForgotPassword(e: React.FormEvent) {
@@ -143,14 +151,18 @@ const PageView = ({
       await axios.post("/api/auth/forgot-password", body);
       setLoading(false);
       setEmail("");
+      toast(
+        "Password reset link sent to your email. Please check your email.",
+        {
+          type: "success",
+        }
+      );
       setPageState("signin");
       setLoginOpacity({ to: 1, from: 0 });
       setSignUpOpacity({ to: 0, from: 1 });
-      // TODO: Add notification for "please check your email"
     } catch (error) {
       setLoading(false);
-      // eslint-disable-next-line no-console
-      console.error(error);
+      toast("Password reset failed. Please try again.", { type: "error" });
     }
   }
 
