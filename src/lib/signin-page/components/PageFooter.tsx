@@ -1,6 +1,6 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React from "react";
 
 type Props = {
   pageState: string;
@@ -17,7 +17,7 @@ const PageFooter = ({
   setPageState,
   setForgotPasswordOpacity,
 }: Props) => {
-  if (pageState === 'signup') {
+  if (pageState === "signup") {
     return (
       <>
         <div className="mt-5 flex w-full text-sm font-semibold">
@@ -28,7 +28,7 @@ const PageFooter = ({
               onClick={() => {
                 setLoginOpacity({ to: 1, from: 0 });
                 setSignUpOpacity({ to: 0, from: 1 });
-                setPageState('signin');
+                setPageState("signin");
               }}
             >
               Login
@@ -39,15 +39,15 @@ const PageFooter = ({
     );
   }
 
-  if (pageState === 'forgot') {
+  if (pageState === "forgot") {
     return (
       <>
         <button
-          className="btn mt-2 w-full rounded-3xl bg-red-500"
+          className="btn mt-2 w-full rounded-3xl bg-red-500 text-white"
           onClick={() => {
             setLoginOpacity({ to: 1, from: 0 });
             setForgotPasswordOpacity({ to: 0, from: 1 });
-            setPageState('signin');
+            setPageState("signin");
           }}
         >
           Back
@@ -63,7 +63,7 @@ const PageFooter = ({
           onClick={() => {
             setLoginOpacity({ to: 0, from: 1 });
             setSignUpOpacity({ to: 1, from: 0 });
-            setPageState('signup');
+            setPageState("signup");
           }}
         >
           Signup
@@ -73,7 +73,7 @@ const PageFooter = ({
           onClick={() => {
             setLoginOpacity({ to: 0, from: 1 });
             setForgotPasswordOpacity({ to: 1, from: 0 });
-            setPageState('forgot');
+            setPageState("forgot");
           }}
         >
           Forgot Password

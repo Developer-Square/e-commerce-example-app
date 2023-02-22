@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable tailwindcss/no-custom-classname */
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
 type Props = {
   title: string;
@@ -23,7 +23,7 @@ const TextBox = ({
 }: Props) => {
   return (
     <>
-      {type === 'text' ? (
+      {type === "text" ? (
         <div className="mb-3 w-full rounded-3xl bg-white p-2">
           <label className="label pl-4 pb-0">{title}</label>
           <div className="flex items-center pl-4">
@@ -34,7 +34,7 @@ const TextBox = ({
               required={required}
               value={value}
               onChange={onChange}
-              className="input-ghost input w-full max-w-xs pl-1 placeholder:text-slate-500 focus:outline-none"
+              className="input-ghost input w-full max-w-xs bg-transparent pl-1 !text-[#000] outline-none placeholder:text-slate-500 focus:outline-none"
             />
           </div>
         </div>
@@ -49,7 +49,7 @@ const TextBox = ({
               value={value}
               required={required ?? false}
               onChange={onChange}
-              className="input-ghost input w-full max-w-xs pl-1 placeholder:text-slate-500 focus:outline-none"
+              className="input-ghost input w-full max-w-xs bg-transparent pl-1 !text-[#000] outline-none placeholder:text-slate-500 focus:outline-none"
             />
           </div>
         </div>

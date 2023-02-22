@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 /* eslint-disable import/no-extraneous-dependencies */
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { config, useSpring } from "@/lib/common/index";
 import JewelleryIcon from "@/public/assets/images/icons/jewelry.png";
@@ -9,7 +9,13 @@ import JewelleryIcon from "@/public/assets/images/icons/jewelry.png";
 import PageFooter from "./PageFooter";
 import PageView from "./PageView";
 
-const SignInPage = () => {
+const SignInPage = ({
+  token,
+  type,
+}: {
+  type?: string;
+  token?: string | string[] | undefined;
+}) => {
   const [loginOpacity, setLoginOpacity] = useState<Record<string, number>>({
     to: 1,
     from: 0,
@@ -21,6 +27,16 @@ const SignInPage = () => {
     Record<string, number>
   >({});
   const [pageState, setPageState] = useState("signin");
+
+  useEffect(() => {
+    if (token && type === "reset") {
+      setLoginOpacity({ to: 0, from: 1 });
+      setPageState("reset");
+    } else if (token && type === "verify") {
+      setLoginOpacity({ to: 0, from: 1 });
+      setPageState("verify");
+    }
+  }, [token]);
 
   // This add a smooth opacity animation when the user switches to the signup or forgot password view.
   const loginProps = useSpring({
@@ -71,16 +87,19 @@ const SignInPage = () => {
             setLoginOpacity={setLoginOpacity}
             setSignUpOpacity={setSignUpOpacity}
             setPageState={setPageState}
+            token={token}
           />
-          <div className="card-actions flex w-full justify-center">
-            <PageFooter
-              pageState={pageState}
-              setPageState={setPageState}
-              setLoginOpacity={setLoginOpacity}
-              setSignUpOpacity={setSignUpOpacity}
-              setForgotPasswordOpacity={setForgotPasswordOpacity}
-            />
-          </div>
+          {type !== "verify" && (
+            <div className="card-actions flex w-full justify-center">
+              <PageFooter
+                pageState={pageState}
+                setPageState={setPageState}
+                setLoginOpacity={setLoginOpacity}
+                setSignUpOpacity={setSignUpOpacity}
+                setForgotPasswordOpacity={setForgotPasswordOpacity}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

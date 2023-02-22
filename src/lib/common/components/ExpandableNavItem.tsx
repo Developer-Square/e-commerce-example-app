@@ -1,11 +1,11 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 /* eslint-disable import/no-cycle */
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
-import { useToLowerCase } from '@/hooks/useToLowerCase';
-import { animated, FontAwesomeIcon } from '@/lib/common/index';
+import { useToLowerCase } from "@/hooks/useToLowerCase";
+import { animated, FontAwesomeIcon } from "@/lib/common/index";
 
 type Props = {
   pages: Record<string, any>[];
@@ -28,10 +28,14 @@ const NavbarItems = ({ items }: NavbarProps) => {
           key={index}
           className="hover:bg-gray-150 -m-3 flex items-center rounded-lg p-3"
         >
-          <FontAwesomeIcon icon={item.icon} />
-          <div className="ml-4">
-            <p className="text-base font-medium text-gray-900">{item.title}</p>
-            <p className="text-gray-550 mt-1 text-sm">{item.content}</p>
+          <div className="flex flex-row items-center">
+            <FontAwesomeIcon icon={item.icon} />
+            <div className="ml-4">
+              <p className="text-base font-medium text-gray-900">
+                {item.title}
+              </p>
+              <p className="text-gray-550 mt-1 text-sm">{item.content}</p>
+            </div>
           </div>
         </Link>
       ))}
@@ -71,7 +75,7 @@ const ExpandableNavItem = ({
       <animated.div
         style={useSpringProps}
         className={`absolute z-10 -ml-4 mt-3 w-screen max-w-md px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 ${
-          menuVisibility ? 'block' : 'hidden'
+          menuVisibility ? "block" : "hidden"
         }`}
       >
         <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
