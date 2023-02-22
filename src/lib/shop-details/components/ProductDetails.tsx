@@ -4,8 +4,6 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
-import { colors, size } from "@/lib/shop-page/sidebar/Sidebar";
-
 const RatingSection = () => (
   <div className="rating mr-2">
     <input
@@ -59,26 +57,6 @@ const ProductDescription = () => (
 
 const ProductSelectionAndPurchase = () => (
   <>
-    <div className="size-color">
-      <div className="mb-6 flex items-center justify-center">
-        <span className="mr-3 text-base">Size:</span>
-        {size.slice(0, 4).map((item, index) => (
-          <li className="size-item" key={index}>
-            {item}
-          </li>
-        ))}
-      </div>
-      <div className="mb-6 flex items-center justify-center">
-        <span className="mr-3 text-base">Color:</span>
-        {colors.slice(0, 4).map((item, index) => (
-          <li
-            className="color colors-item"
-            style={{ background: `${item}` }}
-            key={index}
-          ></li>
-        ))}
-      </div>
-    </div>
     <div className="mb-6 flex justify-center">
       <select className="select-warning select mr-3 max-w-xs">
         <option disabled selected>
@@ -117,10 +95,6 @@ const ProductSelectionAndPurchase = () => (
         <li className="flex font-bold">
           <span className="mr-2 text-[#b7b7b7]">Categories:</span>
           Clothes
-        </li>
-        <li className="flex font-bold">
-          <span className="mr-2 text-[#b7b7b7]">Tag:</span>
-          Clothes, Skin, Body
         </li>
       </ul>
     </div>

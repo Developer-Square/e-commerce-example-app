@@ -128,18 +128,18 @@ const ShoppingCartTable = ({
           </tbody>
         </table>
         <div className="shopping-cart-btn flex flex-col">
-          <Link href={"/shop"}>
-            <a
-              href="#"
-              className="shop-now continue-shopping mx-auto inline-block w-3/4 border border-[#e1e1e1] bg-[#fff] py-3.5 px-8 text-center text-[#000] md:mt-5"
-            >
-              Continue shopping
-            </a>
+          <Link
+            href={"/shop"}
+            className="shop-now continue-shopping mx-auto inline-block w-3/4 border border-[#e1e1e1] bg-[#fff] py-3.5 px-8 text-center text-[#000] md:mt-5"
+          >
+            Continue shopping
           </Link>
-          <Link href={"/shop"}>
-            <a href="#" className="black-btn update-cart mt-5 w-3/5">
-              Update cart
-            </a>
+          <Link
+            href={"/shop"}
+            className="black-btn update-cart mt-5 w-3/5"
+            legacyBehavior
+          >
+            Update cart
           </Link>
         </div>
       </div>

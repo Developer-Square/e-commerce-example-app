@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable tailwindcss/no-custom-classname */
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -5,6 +6,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 import type { ICartItems } from "@/lib/add-to-cart/components/ShoppingCartTable";
+import { useProducts } from "@/lib/products/products.hooks";
 
 type Props = {
   placement: string;
@@ -12,6 +14,13 @@ type Props = {
 
 const SearchWishCartButton = ({ placement }: Props) => {
   const [cart, setCart] = useState<ICartItems[]>([]);
+  const [searchText, setSearchText] = useState("");
+  const [searchTimeout, setSearchTimeout] = useState<any>(null);
+  const { data } = useProducts({
+    offset: "1",
+    count: "10",
+  });
+  console.log(data);
 
   useEffect(() => {
     // fetch cartItems from localStorage
@@ -20,6 +29,17 @@ const SearchWishCartButton = ({ placement }: Props) => {
     const cartItemsArray = JSON.parse(cartItems);
     setCart(cartItemsArray);
   }, []);
+
+  const handleSearchChange = (e: any) => {
+    clearTimeout(searchTimeout);
+    setSearchText(e.target.value);
+
+    setSearchTimeout(
+      setTimeout(() => {
+        // Todo: Add redux then filter products
+      }, 500)
+    );
+  };
 
   return (
     <div
@@ -53,6 +73,8 @@ const SearchWishCartButton = ({ placement }: Props) => {
               type="text"
               placeholder="Search..."
               className="input-bordered input-info input w-full max-w-xs bg-transparent"
+              value={searchText}
+              onChange={handleSearchChange}
             />
           </li>
         </ul>

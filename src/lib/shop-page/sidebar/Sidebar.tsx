@@ -3,17 +3,26 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-const categories = ["Bags (20)", "Clothing (20)", "Shoes (20)"];
-const branding = ["Louis Vutton", "Chanel", "Hermes", "Gucci"];
-const filterPrice = [
-  "$0.00 - $50.00",
-  "$50.00 - $100.00",
-  "$100.00 - $150.00",
-  "$150.00 - $200.00",
-  "$200.00 - $250.00",
-  "250.00+",
+const categories = ["Jewelry (20)", "Handmade Carvings (20)", "Fashion (20)"];
+const branding = [
+  "Necklaces",
+  "Earrings",
+  "Bracelets",
+  "Wood Carvings",
+  "Metal Carvings",
+  "Stone Carvings",
+  "Maasai Fashion",
+  "Kikoi Fashion",
+  "Kitenge Fashion",
 ];
-export const size = ["xs", "s", "m", "xl", "2xl", "3xl", "4xl"];
+const filterPrice = [
+  "$0.00 - $200.00",
+  "$250.00 - $500.00",
+  "$500.00 - $1000.00",
+  "$1000.00 - $2500.00",
+  "$2500.00 - $5000.00",
+  "5000.00+",
+];
 export const colors = [
   "#0b090c",
   "#20315f",
@@ -41,17 +50,10 @@ const SidebarItems = ({ title, items }: ISidebarItemsProps) => (
     <div className="">
       <ul className="text-sm font-normal text-[#898989]">
         {title === "Categories" ||
-        title === "Branding" ||
+        title === "Sub-Categories" ||
         title === "Filter Price"
           ? items.map((item, index) => (
               <li className="leading-8" key={index}>
-                {item}
-              </li>
-            ))
-          : null}
-        {title === "Size"
-          ? items.map((item, index) => (
-              <li className="size-item" key={index}>
                 {item}
               </li>
             ))
@@ -95,9 +97,8 @@ const Sidebar = () => {
         />
       </div>
       <SidebarItems title="Categories" items={categories} />
-      <SidebarItems title="Branding" items={branding} />
+      <SidebarItems title="Sub-Categories" items={branding} />
       <SidebarItems title="Filter Price" items={filterPrice} />
-      <SidebarItems title="Size" items={size} />
       <SidebarItems title="Colors" items={colors} />
     </section>
   );

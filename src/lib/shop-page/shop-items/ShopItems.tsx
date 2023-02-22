@@ -1,9 +1,9 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Product from '@/lib/homepage/product-section/components/Product';
+import Product from "@/lib/homepage/product-section/components/Product";
 
-import products from '../../homepage/product-section/products.json';
+import products from "../../homepage/product-section/products.json";
 
 interface ISortPriceDropDown {
   filterString: string;
@@ -17,7 +17,7 @@ const SortPriceDropDown = ({
   <div tabIndex={0} className="collapse-arrow collapse text-[#111]">
     <div
       className={`collapse-title text-sm font-bold ${
-        filterString === '$1000 - $10,000' ? 'arrow-right' : ''
+        filterString === "$1000 - $10,000" ? "arrow-right" : ""
       }`}
     >
       {filterString}
@@ -26,25 +26,25 @@ const SortPriceDropDown = ({
       <ul>
         <li
           className="cursor-pointer leading-6"
-          onClick={() => setFilterString('Low to High')}
+          onClick={() => setFilterString("Low to High")}
         >
           Low to High
         </li>
         <li
           className="cursor-pointer leading-6"
-          onClick={() => setFilterString('High to Low')}
+          onClick={() => setFilterString("High to Low")}
         >
           High to Low
         </li>
         <li
           className="cursor-pointer leading-6"
-          onClick={() => setFilterString('$0 - $1000')}
+          onClick={() => setFilterString("$0 - $1000")}
         >
           $0 - $1000
         </li>
         <li
           className="cursor-pointer leading-6"
-          onClick={() => setFilterString('$1000 - $10,000')}
+          onClick={() => setFilterString("$1000 - $10,000")}
         >
           $1000 - $10,000
         </li>
@@ -54,7 +54,7 @@ const SortPriceDropDown = ({
 );
 
 const ShopItems = () => {
-  const [filterString, setFilterString] = useState('Low to High');
+  const [filterString, setFilterString] = useState("Low to High");
   return (
     <section className="products-section lg:py-24">
       <div className="container-sm container lg:flex lg:flex-col">
