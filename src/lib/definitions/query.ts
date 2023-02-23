@@ -1,8 +1,8 @@
 import type { Filter, SchemaMember, Sort } from 'mongodb';
 
 export interface IPaginationOptions {
-  offset?: number;
-  count?: number;
+  page?: number;
+  limit?: number;
 }
 
 export interface IQueryOptions<T> {
@@ -12,8 +12,8 @@ export interface IQueryOptions<T> {
 }
 
 export interface IListOptions {
-  offset?: IPaginationOptions['offset'];
-  count?: IPaginationOptions['count'];
+  page?: IPaginationOptions['page'];
+  limit?: IPaginationOptions['limit'];
   sortBy?: string;
   priceRange?: string;
 }

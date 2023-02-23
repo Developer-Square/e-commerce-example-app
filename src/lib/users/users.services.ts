@@ -118,7 +118,7 @@ export class UserService implements IUserService {
   }
 
   async list(
-    { offset, count }: IPaginationOptions = { offset: 0, count: 50 },
+    { page, limit }: IPaginationOptions = { page: 1, limit: 50 },
     { sort, query }: IQueryOptions<IUser> = { sort: {}, query: {} }
   ): Promise<IQueryResult<IUserWithoutPassword>> {
     const totalCount = await this.model.countDocuments({ ...query });
@@ -126,17 +126,16 @@ export class UserService implements IUserService {
       { ...query },
       {
         ...(sort && { sort }),
-        limit: Number(count),
-        skip: Number(offset) * Number(count),
-        projection: { password: 0, salt: 0 },
+        limit: Number(limit),
+        skip: (Number(page) - 1) * Number(limit),
       }
     );
     return {
       documents: await paginationCursor.toArray(),
-      page: Number(count),
-      limit: Number(offset),
+      page: Number(page),
+      limit: Number(limit),
       totalCount,
-      totalPages: Math.ceil(totalCount / Number(count)),
+      totalPages: Math.ceil(totalCount / Number(limit)),
     };
   }
 

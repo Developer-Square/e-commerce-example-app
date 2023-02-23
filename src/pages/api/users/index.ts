@@ -4,12 +4,13 @@ import { ApiError } from 'next/dist/server/api-utils';
 
 import type { IListOptions, IQueryOptions } from '@/lib/definitions/query';
 import { emailServices } from '@/lib/email';
+import { catchError } from '@/lib/error-handling';
 import { Tokens } from '@/lib/tokens';
 import { Users } from '@/lib/users';
 import type { IUser } from '@/lib/users/users.types';
 import { formatSort, pick } from '@/lib/utils';
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -29,10 +30,10 @@ export default async function handler(
     );
     res.status(httpStatus.CREATED).json(user);
   } else if (req.method === 'GET') {
-    const { offset, count, sortBy }: IListOptions = req.query;
+    const { page, limit, sortBy }: IListOptions = req.query;
     const query = pick(req.query, ['name']) as IQueryOptions<IUser>;
     const sort = formatSort(sortBy);
-    const users = await Users.list({ offset, count }, { sort, query });
+    const users = await Users.list({ page, limit }, { sort, query });
     res.status(httpStatus.OK).json(users);
   } else {
     res
@@ -40,3 +41,5 @@ export default async function handler(
       .json({ message: 'The API Route does not exist' });
   }
 }
+
+export default catchError(handler);
