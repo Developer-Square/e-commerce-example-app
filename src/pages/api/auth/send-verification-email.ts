@@ -3,6 +3,7 @@ import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { emailServices } from '@/lib/email';
+import { catchError } from '@/lib/error-handling';
 import ApiError from '@/lib/error-handling/ApiError';
 import Tokens from '@/lib/tokens/tokens.services';
 
@@ -23,4 +24,4 @@ async function sendVerificationEmailRoute(
   res.status(httpStatus.NO_CONTENT).send({});
 }
 
-export default sendVerificationEmailRoute;
+export default catchError(sendVerificationEmailRoute);

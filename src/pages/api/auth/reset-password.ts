@@ -1,6 +1,7 @@
 import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+import { catchError } from '@/lib/error-handling';
 import Users from '@/lib/users/users.services';
 
 async function resetPasswordRoute(req: NextApiRequest, res: NextApiResponse) {
@@ -9,4 +10,4 @@ async function resetPasswordRoute(req: NextApiRequest, res: NextApiResponse) {
   res.status(httpStatus.NO_CONTENT).send({});
 }
 
-export default resetPasswordRoute;
+export default catchError(resetPasswordRoute);

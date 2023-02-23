@@ -2,6 +2,7 @@ import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withSessionRoute } from '@/lib/auth/withSession';
+import { catchError } from '@/lib/error-handling';
 import { Users } from '@/lib/users';
 
 async function login(req: NextApiRequest, res: NextApiResponse) {
@@ -12,4 +13,4 @@ async function login(req: NextApiRequest, res: NextApiResponse) {
   res.status(httpStatus.OK).json(user);
 }
 
-export default withSessionRoute(login);
+export default withSessionRoute(catchError(login));

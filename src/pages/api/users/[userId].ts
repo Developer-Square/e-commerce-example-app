@@ -1,9 +1,10 @@
 import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+import { catchError } from '@/lib/error-handling';
 import { Users } from '@/lib/users';
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -23,3 +24,5 @@ export default async function handler(
       .json({ message: 'The API Route does not exist' });
   }
 }
+
+export default catchError(handler);

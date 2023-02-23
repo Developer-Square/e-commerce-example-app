@@ -9,7 +9,11 @@ export class UsersRaw extends BaseRaw<T> {
   protected modelIndexes(): IndexDescription[] {
     return [
       {
-        key: { name: 1, email: 1 },
+        key: { name: 1 },
+        unique: true,
+      },
+      {
+        key: { email: 1 },
         unique: true,
       },
     ];

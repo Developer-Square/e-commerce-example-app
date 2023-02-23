@@ -3,13 +3,13 @@
 import crypto from 'crypto';
 import httpStatus from 'http-status';
 import type { FindOptions } from 'mongodb';
+import { ApiError } from 'next/dist/server/api-utils';
 
 import type {
   IPaginationOptions,
   IQueryOptions,
   IQueryResult,
 } from '../definitions/query';
-import ApiError from '../error-handling/ApiError';
 // eslint-disable-next-line import/no-cycle
 import Tokens from '../tokens/tokens.services';
 import { TokenTypes } from '../tokens/tokens.types';
@@ -76,21 +76,33 @@ export class UserService implements IUserService {
     });
   }
 
-  async get(userId: string): Promise<IUserWithoutPassword | null> {
-    return this.model.findOneById(userId, {
+  async get(userId: string): Promise<IUserWithoutPassword> {
+    const user = await this.model.findOneById(userId, {
       projection: { password: 0, salt: 0 },
     });
+    if (!user){
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    return user as IUserWithoutPassword;
   }
 
   async findByName(
     name: string,
     options?: FindOptions<IUser>
-  ): Promise<IUser | null> {
-    return this.model.findOne({ name }, { ...options });
+  ): Promise<IUser> {
+    const user = await this.model.findOne({ name }, { ...options });
+    if (!user){
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    return user;
   }
 
-  async findByEmail(email: string): Promise<IUser | null> {
-    return this.model.findOne({ email });
+  async findByEmail(email: string): Promise<IUser> {
+    const user = await this.model.findOne({ email });
+    if (!user){
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    return user;
   }
 
   async delete(userId: string): Promise<void> {
@@ -128,6 +140,7 @@ export class UserService implements IUserService {
         ...(sort && { sort }),
         limit: Number(limit),
         skip: (Number(page) - 1) * Number(limit),
+        projection: { password: 0, salt: 0 },
       }
     );
     return {

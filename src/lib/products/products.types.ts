@@ -25,7 +25,7 @@ export interface IProductService {
     updateBody: IProductLean
   ): Promise<IProduct | null>;
   delete(productId: IProduct['_id']): Promise<void>;
-  get(productId: IProduct['_id']): Promise<IProduct | null>;
+  get(productId: IProduct['_id']): Promise<IProduct>;
   list(
     paginationOptions?: IPaginationOptions,
     queryOptions?: IQueryOptions<IProduct>

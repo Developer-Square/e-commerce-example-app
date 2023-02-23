@@ -67,9 +67,6 @@ export class TokenService implements ITokenService {
 
   async generateResetPasswordToken(email: IUser['email']): Promise<string> {
     const user = await Users.findByEmail(email);
-    if (!user) {
-      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-    }
     const expires = moment().add(
       envVariables.jwt.resetPasswordExpirationMinutes,
       'minutes'
@@ -90,9 +87,6 @@ export class TokenService implements ITokenService {
 
   async generateVerifyEmailToken(email: IUser['email']): Promise<string> {
     const user = await Users.findByEmail(email);
-    if (!user) {
-      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-    }
     const expires = moment().add(
       envVariables.jwt.verifyEmailExpirationMinutes,
       'minutes'

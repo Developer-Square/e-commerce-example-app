@@ -2,6 +2,7 @@ import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { emailServices } from '@/lib/email';
+import { catchError } from '@/lib/error-handling';
 import Tokens from '@/lib/tokens/tokens.services';
 
 async function forgotPasswordRoute(req: NextApiRequest, res: NextApiResponse) {
@@ -15,4 +16,4 @@ async function forgotPasswordRoute(req: NextApiRequest, res: NextApiResponse) {
   res.status(httpStatus.NO_CONTENT).send({});
 }
 
-export default forgotPasswordRoute;
+export default catchError(forgotPasswordRoute);

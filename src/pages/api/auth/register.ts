@@ -4,6 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withSessionRoute } from '@/lib/auth/withSession';
 import { emailServices } from '@/lib/email';
+import { catchError } from '@/lib/error-handling';
 import ApiError from '@/lib/error-handling/ApiError';
 import Tokens from '@/lib/tokens/tokens.services';
 import Users from '@/lib/users/users.services';
@@ -28,4 +29,4 @@ async function register(req: NextApiRequest, res: NextApiResponse) {
   res.status(httpStatus.CREATED).json(user);
 }
 
-export default withSessionRoute(register);
+export default withSessionRoute(catchError(register));

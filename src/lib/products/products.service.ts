@@ -1,3 +1,6 @@
+import httpStatus from 'http-status';
+import { ApiError } from 'next/dist/server/api-utils';
+
 import type {
   IPaginationOptions,
   IQueryOptions,
@@ -26,8 +29,12 @@ export class ProductService implements IProductService {
     return this.model.findOneById(result.upsertedId.toHexString());
   }
 
-  async get(productId: string): Promise<IProduct | null> {
-    return this.model.findOneById(productId);
+  async get(productId: string): Promise<IProduct> {
+    const product = await this.model.findOneById(productId);
+    if (!product) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'Product not found');
+    }
+    return product;
   }
 
   async delete(productId: string): Promise<void> {

@@ -2,6 +2,7 @@ import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { emailServices } from '@/lib/email';
+import { catchError } from '@/lib/error-handling';
 import Users from '@/lib/users/users.services';
 
 async function verifyEmailRoute(req: NextApiRequest, res: NextApiResponse) {
@@ -11,4 +12,4 @@ async function verifyEmailRoute(req: NextApiRequest, res: NextApiResponse) {
   res.status(httpStatus.NO_CONTENT).send({});
 }
 
-export default verifyEmailRoute;
+export default catchError(verifyEmailRoute);
