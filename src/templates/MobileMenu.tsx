@@ -78,7 +78,7 @@ const MobileMenu = ({
                 <Link href="/faqs">FAQs</Link>
               </span>
             </div>
-            <div className="my-5 flex justify-center">
+            <div className="my-5 flex flex-col justify-center">
               <SearchWishCartButton placement="mobile" />
             </div>
             <nav className="grid gap-y-8">

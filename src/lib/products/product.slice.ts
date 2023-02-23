@@ -7,10 +7,14 @@ import type { IProduct } from "./products.types";
 
 export interface IProductState {
   productsState: IProduct[];
+  filteredProductsState: IProduct[];
+  isFiltering: boolean;
 }
 
 const initialState: IProductState = {
   productsState: [],
+  filteredProductsState: [],
+  isFiltering: false,
 };
 
 export const productsSlice = createSlice({
@@ -21,9 +25,16 @@ export const productsSlice = createSlice({
     addProducts: (state, action: PayloadAction<IProduct[]>) => {
       state.productsState = action.payload;
     },
+    addFilteredProducts: (state, action: PayloadAction<IProduct[]>) => {
+      state.filteredProductsState = action.payload;
+    },
+    isFiltering: (state, action: PayloadAction<boolean>) => {
+      state.isFiltering = action.payload;
+    },
   },
 });
 
-export const { addProducts } = productsSlice.actions;
+export const { addProducts, addFilteredProducts, isFiltering } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;

@@ -386,6 +386,11 @@ html, body {
     max-width: 720px;
   }
 
+  .searchBar, .cartWishBtns {
+    margin-left: initial !important;
+    margin-right: initial !important;
+  }
+
   .product__item {
     width: 330px;
   }
