@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const TextArea = ({ title }: { title: string }) => {
   return (
@@ -10,7 +10,7 @@ const TextArea = ({ title }: { title: string }) => {
         </span>
       </label>
       <textarea
-        className="textarea-bordered textarea h-24"
+        className="textarea-bordered textarea h-24 bg-transparent"
         placeholder={title}
       ></textarea>
     </div>

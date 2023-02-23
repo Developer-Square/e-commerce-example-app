@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   title: string;
@@ -14,16 +14,16 @@ const TextInput = ({ title }: Props) => {
         </span>
       </label>
       <input
-        type={`${title.includes('password') ? 'password' : 'text'}`}
+        type={`${title.includes("password") ? "password" : "text"}`}
         required
         placeholder={`${title}`}
-        className="input-bordered input w-full"
+        className="input-bordered input w-full bg-transparent"
       />
-      {title === 'Address' ? (
+      {title === "Address" ? (
         <input
           type="text"
           placeholder="Apartment, suite, unite etc."
-          className="input-bordered input mt-5 w-full"
+          className="input-bordered input mt-5 w-full bg-transparent"
         />
       ) : null}
     </div>

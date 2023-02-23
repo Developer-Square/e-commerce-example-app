@@ -48,7 +48,7 @@ const CartItem = ({
           </div>
         </td>
         <td>
-          <select className="select-warning select mr-3 max-w-xs">
+          <select className="select-warning select mr-3 max-w-xs bg-transparent placeholder:text-black">
             <option disabled selected>
               1
             </option>
@@ -134,11 +134,7 @@ const ShoppingCartTable = ({
           >
             Continue shopping
           </Link>
-          <Link
-            href={"/shop"}
-            className="black-btn update-cart mt-5 w-3/5"
-            legacyBehavior
-          >
+          <Link href={"/shop"} className="black-btn update-cart mt-5 w-3/5">
             Update cart
           </Link>
         </div>

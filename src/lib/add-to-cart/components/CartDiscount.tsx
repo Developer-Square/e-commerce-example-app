@@ -12,7 +12,7 @@ const CartDiscout = ({ total, page }: { total: string; page?: string }) => (
               <input
                 type="text"
                 placeholder="Coupon code"
-                className="coupon-code input-bordered input w-2/3 rounded-none focus:outline-none"
+                className="coupon-code input-bordered input w-2/3 rounded-none bg-transparent placeholder:text-black focus:outline-none"
               />
               <span className="black-btn">apply</span>
             </div>
