@@ -13,7 +13,7 @@ async function forgotPasswordRoute(req: NextApiRequest, res: NextApiResponse) {
     req.body.email,
     resetPasswordToken
   );
-  res.status(httpStatus.NO_CONTENT).send({});
+  res.status(httpStatus.NO_CONTENT).end();
 }
 
 export default catchError(forgotPasswordRoute);

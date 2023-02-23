@@ -4,10 +4,10 @@ import httpStatus from 'http-status';
 import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import type { Filter } from 'mongodb';
+import { ApiError } from 'next/dist/server/api-utils'
 
 import envVariables from '@/config/envVariables';
 
-import ApiError from '../error-handling/ApiError';
 // eslint-disable-next-line import/no-cycle
 import Users from '../users/users.services';
 import type { IUser } from '../users/users.types';
@@ -60,7 +60,7 @@ export class TokenService implements ITokenService {
     });
 
     if (!tokenDoc) {
-      throw new Error('Token not found');
+      throw new ApiError(httpStatus.UNAUTHORIZED, "Unauthorized");
     }
     return tokenDoc;
   }

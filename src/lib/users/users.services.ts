@@ -123,8 +123,8 @@ export class UserService implements IUserService {
         salt,
       });
     }
-    const result = await this.model.updateOne(query, { $set: updateInfo });
-    return this.model.findOneById(result.upsertedId.toHexString(), {
+    await this.model.updateOne(query, { $set: updateInfo });
+    return this.model.findOneById(userId, {
       projection: { password: 0, salt: 0 },
     });
   }
@@ -156,46 +156,38 @@ export class UserService implements IUserService {
     resetPasswordToken: any,
     newPassword: string
   ): Promise<void> {
-    try {
-      const resetPasswordTokenDoc = await Tokens.verifyToken({
-        token: resetPasswordToken,
-        type: TokenTypes.RESET_PASSWORD,
-      });
-      const user = await this.get(resetPasswordTokenDoc.user);
-      if (!user) {
-        throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-      }
-      await this.update(user._id, { password: newPassword });
-      await Tokens.deleteMany({
-        user: user._id,
-        type: TokenTypes.RESET_PASSWORD,
-      });
-    } catch (error) {
-      throw new ApiError(httpStatus.UNAUTHORIZED, 'Password reset failed');
+    const resetPasswordTokenDoc = await Tokens.verifyToken({
+      token: resetPasswordToken,
+      type: TokenTypes.RESET_PASSWORD,
+    });
+    const user = await this.get(resetPasswordTokenDoc.user);
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     }
+    await this.update(user._id, { password: newPassword });
+    await Tokens.deleteMany({
+      user: user._id,
+      type: TokenTypes.RESET_PASSWORD,
+    });
   }
 
   async verifyEmail(verifyEmailToken: any): Promise<IUserWithoutPassword> {
-    try {
-      const verifyEmailTokenDoc = await Tokens.verifyToken({
-        token: verifyEmailToken,
-        type: TokenTypes.VERIFY_EMAIL,
-      });
-      const user = await this.get(verifyEmailTokenDoc.user);
-      if (!user) {
-        throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-      }
-      await Tokens.deleteMany({
-        user: user._id,
-        type: TokenTypes.VERIFY_EMAIL,
-      });
-      const updatedUser = await this.update(user._id, {
-        isEmailVerified: true,
-      });
-      return updatedUser as IUserWithoutPassword;
-    } catch (error) {
-      throw new ApiError(httpStatus.UNAUTHORIZED, 'Email verification failed');
+    const verifyEmailTokenDoc = await Tokens.verifyToken({
+      token: verifyEmailToken,
+      type: TokenTypes.VERIFY_EMAIL,
+    });
+    const user = await this.get(verifyEmailTokenDoc.user);
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     }
+    await Tokens.deleteMany({
+      user: user._id,
+      type: TokenTypes.VERIFY_EMAIL,
+    });
+    const updatedUser = await this.update(user._id, {
+      isEmailVerified: true,
+    });
+    return updatedUser as IUserWithoutPassword;
   }
 }
 
