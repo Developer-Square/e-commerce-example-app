@@ -16,6 +16,5 @@ export class TokensRaw extends BaseRaw<T> {
 }
 
 export const TokensModel = new TokensRaw(
-  db.collection('tokens'),
-  db.collection('trash')
+  db.collection('tokens')
 );

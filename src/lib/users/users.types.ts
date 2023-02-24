@@ -22,10 +22,6 @@ export enum UserRoles {
   BUYER = 'buyer',
 }
 
-export type IUserWithID = Omit<IUser, '_id' | 'password' | 'salt'> & {
-  id: string;
-};
-
 export type IUserLean = Omit<
   IUser,
   '_id' | '_updatedAt' | '_createdAt' | 'salt'
@@ -33,7 +29,7 @@ export type IUserLean = Omit<
 
 export type IUserWithoutPassword = Omit<IUser, 'password' | 'salt'>;
 
-export type IUserCreateParams = Omit<IUserLean, 'isEmailVerified' | 'role'>;
+export type IUserCreateParams = Pick<IUser, 'name' | 'email' | 'password'>;
 
 export type IValidatePasswordData = { password: string } & (
   | { name: string; email: never }

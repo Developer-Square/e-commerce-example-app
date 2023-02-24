@@ -2,6 +2,7 @@
 import httpStatus from "http-status";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { ApiError } from "next/dist/server/api-utils";
+import { ZodError } from "zod";
 
 class CustomApiError extends ApiError {
   errorCode?: number;
@@ -15,6 +16,9 @@ class CustomApiError extends ApiError {
 
 export const convertError = (error: any): CustomApiError => {
     if (error instanceof CustomApiError) return error;
+    if (error instanceof ZodError) {
+      return new CustomApiError(httpStatus.BAD_REQUEST, `Invalid value for field: ${error.issues[0]?.path.join(" > ")}`, 'Invalid input');
+    }
     const statusCode: number = error.statusCode || httpStatus.BAD_REQUEST;
     const message: string = error.message || error.errmsg || 'Unknown error';
     const name: string = error.name;

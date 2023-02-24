@@ -7,6 +7,7 @@ import { emailServices } from '@/lib/email';
 import { catchError } from '@/lib/error-handling';
 import { Tokens } from '@/lib/tokens';
 import { Users } from '@/lib/users';
+import { UserCreateParams, UsersListQuery } from '@/lib/users/users.schema';
 import type { IUser } from '@/lib/users/users.types';
 import { formatSort, pick } from '@/lib/utils';
 
@@ -15,7 +16,8 @@ async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const user = await Users.create(req.body);
+    const params = UserCreateParams.parse(req.body);
+    const user = await Users.create(params);
     if (!user) {
       throw new ApiError(
         httpStatus.INTERNAL_SERVER_ERROR,
@@ -30,8 +32,9 @@ async function handler(
     );
     res.status(httpStatus.CREATED).json(user);
   } else if (req.method === 'GET') {
-    const { page, limit, sortBy }: IListOptions = req.query;
-    const query = pick(req.query, ['name']) as IQueryOptions<IUser>;
+    const params = UsersListQuery.parse(req.query);
+    const { page, limit, sortBy }: IListOptions = params;
+    const query = pick(params, ['name']) as IQueryOptions<IUser>;
     const sort = formatSort(sortBy);
     const users = await Users.list({ page, limit }, { sort, query });
     res.status(httpStatus.OK).json(users);

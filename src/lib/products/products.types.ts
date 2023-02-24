@@ -12,6 +12,7 @@ export interface IProduct extends IDBRecord {
   materialUsed: string;
   images: string[];
   category: string;
+  quantity: number;
   brand?: string;
   size?: string;
 }
@@ -22,7 +23,7 @@ export interface IProductService {
   create(params: IProductLean): Promise<IProduct | null>;
   update(
     productId: IProduct['_id'],
-    updateBody: IProductLean
+    updateBody: Partial<IProductLean>
   ): Promise<IProduct | null>;
   delete(productId: IProduct['_id']): Promise<void>;
   get(productId: IProduct['_id']): Promise<IProduct>;
