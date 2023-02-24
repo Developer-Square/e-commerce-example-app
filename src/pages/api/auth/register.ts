@@ -1,16 +1,18 @@
 /* eslint-disable no-underscore-dangle */
 import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { ApiError } from 'next/dist/server/api-utils'
 
 import { withSessionRoute } from '@/lib/auth/withSession';
 import { emailServices } from '@/lib/email';
-import ApiError from '@/lib/error-handling/ApiError';
+import { catchError } from '@/lib/error-handling';
 import Tokens from '@/lib/tokens/tokens.services';
+import { UserCreateParams } from '@/lib/users/users.schema';
 import Users from '@/lib/users/users.services';
-import type { IUserCreateParams } from '@/lib/users/users.types';
 
 async function register(req: NextApiRequest, res: NextApiResponse) {
-  const user = await Users.create(req.body as IUserCreateParams);
+  const params = UserCreateParams.parse(req.body);
+  const user = await Users.create(params);
   if (!user) {
     throw new ApiError(
       httpStatus.INTERNAL_SERVER_ERROR,
@@ -28,4 +30,4 @@ async function register(req: NextApiRequest, res: NextApiResponse) {
   res.status(httpStatus.CREATED).json(user);
 }
 
-export default withSessionRoute(register);
+export default withSessionRoute(catchError(register));

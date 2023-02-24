@@ -1,3 +1,6 @@
+import httpStatus from 'http-status';
+import { ApiError } from 'next/dist/server/api-utils';
+
 import type {
   IPaginationOptions,
   IQueryOptions,
@@ -26,8 +29,12 @@ export class ProductService implements IProductService {
     return this.model.findOneById(result.upsertedId.toHexString());
   }
 
-  async get(productId: string): Promise<IProduct | null> {
-    return this.model.findOneById(productId);
+  async get(productId: string): Promise<IProduct> {
+    const product = await this.model.findOneById(productId);
+    if (!product) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'Product not found');
+    }
+    return product;
   }
 
   async delete(productId: string): Promise<void> {
@@ -35,7 +42,7 @@ export class ProductService implements IProductService {
   }
 
   async list(
-    { offset, count }: IPaginationOptions = { offset: 0, count: 50 },
+    { page, limit }: IPaginationOptions = { page: 1, limit: 50 },
     { sort, query }: IQueryOptions<IProduct> = { sort: {}, query: {} }
   ): Promise<IQueryResult<IProduct>> {
     const totalCount = await this.model.countDocuments({ ...query });
@@ -43,16 +50,16 @@ export class ProductService implements IProductService {
       { ...query },
       {
         ...(sort && { sort }),
-        limit: Number(count),
-        skip: Number(offset) * Number(count),
+        limit: Number(limit),
+        skip: (Number(page) - 1) * Number(limit),
       }
     );
     return {
       documents: await paginationCursor.toArray(),
-      page: Number(count),
-      limit: Number(offset),
+      page: Number(page),
+      limit: Number(limit),
       totalCount,
-      totalPages: Math.ceil(totalCount / Number(count)),
+      totalPages: Math.ceil(totalCount / Number(limit)),
     };
   }
 }

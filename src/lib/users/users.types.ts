@@ -22,10 +22,6 @@ export enum UserRoles {
   BUYER = 'buyer',
 }
 
-export type IUserWithID = Omit<IUser, '_id' | 'password' | 'salt'> & {
-  id: string;
-};
-
 export type IUserLean = Omit<
   IUser,
   '_id' | '_updatedAt' | '_createdAt' | 'salt'
@@ -33,7 +29,7 @@ export type IUserLean = Omit<
 
 export type IUserWithoutPassword = Omit<IUser, 'password' | 'salt'>;
 
-export type IUserCreateParams = Omit<IUserLean, 'isEmailVerified' | 'role'>;
+export type IUserCreateParams = Pick<IUser, 'name' | 'email' | 'password'>;
 
 export type IValidatePasswordData = { password: string } & (
   | { name: string; email: never }
@@ -51,16 +47,16 @@ export interface IUserService {
     params: Partial<IUserLean>
   ): Promise<IUserWithoutPassword | null>;
   delete(userId: string): Promise<void>;
-  get(userId: string): Promise<IUserWithoutPassword | null>;
+  get(userId: string): Promise<IUserWithoutPassword>;
   hashPassword(password: string, salt: string): string;
   verifyPassword(name: string, password: string): Promise<IUserWithoutPassword>;
   confirmPassword(name: string, password: string): Promise<boolean>;
-  findByName(name: string): Promise<IUser | null>;
+  findByName(name: string): Promise<IUser>;
   findByName(
     name: string,
     options?: FindOptions<IUser>
-  ): Promise<IUserWithoutPassword | null>;
-  findByEmail(email: string): Promise<IUser | null>;
+  ): Promise<IUserWithoutPassword>;
+  findByEmail(email: string): Promise<IUser>;
   resetPassword(resetPasswordToken: any, newPassword: string): Promise<void>;
   verifyEmail(verifyEmailToken: any): Promise<IUserWithoutPassword>;
 }

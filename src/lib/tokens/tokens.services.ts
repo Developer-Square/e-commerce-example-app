@@ -4,10 +4,10 @@ import httpStatus from 'http-status';
 import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import type { Filter } from 'mongodb';
+import { ApiError } from 'next/dist/server/api-utils'
 
 import envVariables from '@/config/envVariables';
 
-import ApiError from '../error-handling/ApiError';
 // eslint-disable-next-line import/no-cycle
 import Users from '../users/users.services';
 import type { IUser } from '../users/users.types';
@@ -60,16 +60,13 @@ export class TokenService implements ITokenService {
     });
 
     if (!tokenDoc) {
-      throw new Error('Token not found');
+      throw new ApiError(httpStatus.UNAUTHORIZED, "Unauthorized");
     }
     return tokenDoc;
   }
 
   async generateResetPasswordToken(email: IUser['email']): Promise<string> {
     const user = await Users.findByEmail(email);
-    if (!user) {
-      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-    }
     const expires = moment().add(
       envVariables.jwt.resetPasswordExpirationMinutes,
       'minutes'
@@ -90,9 +87,6 @@ export class TokenService implements ITokenService {
 
   async generateVerifyEmailToken(email: IUser['email']): Promise<string> {
     const user = await Users.findByEmail(email);
-    if (!user) {
-      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-    }
     const expires = moment().add(
       envVariables.jwt.verifyEmailExpirationMinutes,
       'minutes'

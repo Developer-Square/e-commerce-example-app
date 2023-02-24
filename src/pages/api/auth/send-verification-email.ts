@@ -1,9 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 import httpStatus from 'http-status';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { ApiError } from 'next/dist/server/api-utils'
 
 import { emailServices } from '@/lib/email';
-import ApiError from '@/lib/error-handling/ApiError';
+import { catchError } from '@/lib/error-handling';
 import Tokens from '@/lib/tokens/tokens.services';
 
 async function sendVerificationEmailRoute(
@@ -20,7 +21,7 @@ async function sendVerificationEmailRoute(
     verifyEmailToken,
     user.name
   );
-  res.status(httpStatus.NO_CONTENT).send({});
+  res.status(httpStatus.NO_CONTENT).end();
 }
 
-export default sendVerificationEmailRoute;
+export default catchError(sendVerificationEmailRoute);

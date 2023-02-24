@@ -4,16 +4,19 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApiError } from 'next/dist/server/api-utils';
 
 import type { IListOptions } from '@/lib/definitions/query';
+import { catchError } from '@/lib/error-handling';
 import { Products } from '@/lib/products';
+import { ProductCreateParams, ProductsListQuery } from '@/lib/products/products.schema';
 import type { IProduct } from '@/lib/products/products.types';
 import { formatPriceFilter, formatSort, pick } from '@/lib/utils';
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const product = await Products.create(req.body);
+    const params = ProductCreateParams.parse(req.body);
+    const product = await Products.create(params);
     if (!product) {
       throw new ApiError(
         httpStatus.INTERNAL_SERVER_ERROR,
@@ -22,8 +25,9 @@ export default async function handler(
     }
     res.status(httpStatus.CREATED).json(product);
   } else if (req.method === 'GET') {
-    const { offset, count, sortBy, priceRange }: IListOptions = req.query;
-    const query = pick(req.query, [
+    const params = ProductsListQuery.parse(req.query);
+    const { page, limit, sortBy, priceRange }: IListOptions = params;
+    const query = pick(params, [
       'name',
       'category',
       'size',
@@ -41,7 +45,7 @@ export default async function handler(
       query.price = formatPriceFilter(priceRange);
     }
 
-    const products = await Products.list({ offset, count }, { sort, query });
+    const products = await Products.list({ page, limit }, { sort, query });
     res.status(httpStatus.OK).json(products);
   } else {
     res
@@ -49,3 +53,5 @@ export default async function handler(
       .json({ message: 'The API Route does not exist' });
   }
 }
+
+export default catchError(handler);

@@ -3,13 +3,13 @@
 import crypto from 'crypto';
 import httpStatus from 'http-status';
 import type { FindOptions } from 'mongodb';
+import { ApiError } from 'next/dist/server/api-utils';
 
 import type {
   IPaginationOptions,
   IQueryOptions,
   IQueryResult,
 } from '../definitions/query';
-import ApiError from '../error-handling/ApiError';
 // eslint-disable-next-line import/no-cycle
 import Tokens from '../tokens/tokens.services';
 import { TokenTypes } from '../tokens/tokens.types';
@@ -76,21 +76,33 @@ export class UserService implements IUserService {
     });
   }
 
-  async get(userId: string): Promise<IUserWithoutPassword | null> {
-    return this.model.findOneById(userId, {
+  async get(userId: string): Promise<IUserWithoutPassword> {
+    const user = await this.model.findOneById(userId, {
       projection: { password: 0, salt: 0 },
     });
+    if (!user){
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    return user as IUserWithoutPassword;
   }
 
   async findByName(
     name: string,
     options?: FindOptions<IUser>
-  ): Promise<IUser | null> {
-    return this.model.findOne({ name }, { ...options });
+  ): Promise<IUser> {
+    const user = await this.model.findOne({ name }, { ...options });
+    if (!user){
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    return user;
   }
 
-  async findByEmail(email: string): Promise<IUser | null> {
-    return this.model.findOne({ email });
+  async findByEmail(email: string): Promise<IUser> {
+    const user = await this.model.findOne({ email });
+    if (!user){
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    return user;
   }
 
   async delete(userId: string): Promise<void> {
@@ -111,14 +123,14 @@ export class UserService implements IUserService {
         salt,
       });
     }
-    const result = await this.model.updateOne(query, { $set: updateInfo });
-    return this.model.findOneById(result.upsertedId.toHexString(), {
+    await this.model.updateOne(query, { $set: updateInfo });
+    return this.model.findOneById(userId, {
       projection: { password: 0, salt: 0 },
     });
   }
 
   async list(
-    { offset, count }: IPaginationOptions = { offset: 0, count: 50 },
+    { page, limit }: IPaginationOptions = { page: 1, limit: 50 },
     { sort, query }: IQueryOptions<IUser> = { sort: {}, query: {} }
   ): Promise<IQueryResult<IUserWithoutPassword>> {
     const totalCount = await this.model.countDocuments({ ...query });
@@ -126,17 +138,17 @@ export class UserService implements IUserService {
       { ...query },
       {
         ...(sort && { sort }),
-        limit: Number(count),
-        skip: Number(offset) * Number(count),
+        limit: Number(limit),
+        skip: (Number(page) - 1) * Number(limit),
         projection: { password: 0, salt: 0 },
       }
     );
     return {
       documents: await paginationCursor.toArray(),
-      page: Number(count),
-      limit: Number(offset),
+      page: Number(page),
+      limit: Number(limit),
       totalCount,
-      totalPages: Math.ceil(totalCount / Number(count)),
+      totalPages: Math.ceil(totalCount / Number(limit)),
     };
   }
 
@@ -144,46 +156,38 @@ export class UserService implements IUserService {
     resetPasswordToken: any,
     newPassword: string
   ): Promise<void> {
-    try {
-      const resetPasswordTokenDoc = await Tokens.verifyToken({
-        token: resetPasswordToken,
-        type: TokenTypes.RESET_PASSWORD,
-      });
-      const user = await this.get(resetPasswordTokenDoc.user);
-      if (!user) {
-        throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-      }
-      await this.update(user._id, { password: newPassword });
-      await Tokens.deleteMany({
-        user: user._id,
-        type: TokenTypes.RESET_PASSWORD,
-      });
-    } catch (error) {
-      throw new ApiError(httpStatus.UNAUTHORIZED, 'Password reset failed');
+    const resetPasswordTokenDoc = await Tokens.verifyToken({
+      token: resetPasswordToken,
+      type: TokenTypes.RESET_PASSWORD,
+    });
+    const user = await this.get(resetPasswordTokenDoc.user);
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     }
+    await this.update(user._id, { password: newPassword });
+    await Tokens.deleteMany({
+      user: user._id,
+      type: TokenTypes.RESET_PASSWORD,
+    });
   }
 
   async verifyEmail(verifyEmailToken: any): Promise<IUserWithoutPassword> {
-    try {
-      const verifyEmailTokenDoc = await Tokens.verifyToken({
-        token: verifyEmailToken,
-        type: TokenTypes.VERIFY_EMAIL,
-      });
-      const user = await this.get(verifyEmailTokenDoc.user);
-      if (!user) {
-        throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-      }
-      await Tokens.deleteMany({
-        user: user._id,
-        type: TokenTypes.VERIFY_EMAIL,
-      });
-      const updatedUser = await this.update(user._id, {
-        isEmailVerified: true,
-      });
-      return updatedUser as IUserWithoutPassword;
-    } catch (error) {
-      throw new ApiError(httpStatus.UNAUTHORIZED, 'Email verification failed');
+    const verifyEmailTokenDoc = await Tokens.verifyToken({
+      token: verifyEmailToken,
+      type: TokenTypes.VERIFY_EMAIL,
+    });
+    const user = await this.get(verifyEmailTokenDoc.user);
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     }
+    await Tokens.deleteMany({
+      user: user._id,
+      type: TokenTypes.VERIFY_EMAIL,
+    });
+    const updatedUser = await this.update(user._id, {
+      isEmailVerified: true,
+    });
+    return updatedUser as IUserWithoutPassword;
   }
 }
 
